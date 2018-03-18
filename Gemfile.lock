@@ -2,12 +2,14 @@ GEM
   remote: https://rubygems.org/
   specs:
     minitest (5.11.3)
+    pg (1.0.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   minitest
+  pg
 
 RUBY VERSION
    ruby 2.4.3p205
