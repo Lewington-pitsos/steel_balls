@@ -30,9 +30,11 @@ class MarkChangerTest < Minitest::Test
   end
 
   def test_changes_marks_correctly
+    @mark_changer.state = @@sample_state
     balls = @arr_generator.generate_balls()
-    marked_balls = @mark_changer.marked_balls(balls, state)
+    marked_balls = @mark_changer.marked_balls(balls)
 
+    assert_equal 8, marked_balls.length
     assert_equal 4, marked_balls.count { |ball| ball.mark == :unknown }
     assert_equal 2, marked_balls.count { |ball| ball.mark == :possibly_heavier }
     assert_equal 2, marked_balls.count { |ball| ball.mark == :possibly_lighter }
