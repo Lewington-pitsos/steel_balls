@@ -14,7 +14,11 @@ class ArrangementGenerator
   end
 
   def generate_balls(num=@length)
-    Array.new(num, Ball.new())
+    arrangement = []
+    num.times do
+      arrangement << Ball.new()
+    end
+    arrangement
   end
 
 end

@@ -54,16 +54,16 @@ class ArrangementExpanderTest < Minitest::Test
   end
 
   def test_takes_ball_markings_into_account
-    balls = @gen.generate_balls(4)
+    balls = @arr_generator.generate_balls(4)
     balls[0].mark = :possibly_lighter
     all_possible_arrangements = @arr_expander.expand(balls)
-    assert_equal 1, all_possible_arrangements.length
+    assert_equal 3, all_possible_arrangements.length
 
     ArrangementExpander.weights = :both
     new_expander = ArrangementExpander.new()
     balls = @arr_generator.generate_balls(4)
     balls.each { |ball| ball.mark = :normal }
-    balls[0].mark = :possibly_heavier
+    balls[0].mark = :possibly_lighter
     all_possible_arrangements = new_expander.expand(balls)
     assert_equal 1, all_possible_arrangements.length
   end
