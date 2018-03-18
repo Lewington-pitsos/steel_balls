@@ -1,11 +1,11 @@
 require "minitest/autorun"
 require_relative '../logic/shared/ball'
-require_relative '../logic/shared/arrangement_generator'
+require_relative '../logic/shared/ball_generator'
 
-class ArrangementGeneratorTest < Minitest::Test
+class BallGeneratorTest < Minitest::Test
 
   def setup
-    @gen = ArrangementGenerator.new()
+    @gen = BallGenerator.new()
   end
 
   def test_deafult_length

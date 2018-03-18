@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require_relative '../logic/shared/state_generator'
-require_relative '../logic/shared/arrangement_generator'
+require_relative '../logic/shared/ball_generator'
 
 class StateGeneratorTest < Minitest::Test
 
@@ -27,7 +27,7 @@ class StateGeneratorTest < Minitest::Test
 
   def setup
     @state_gen = StateGenerator.new()
-    @arr_gen = ArrangementGenerator.new()
+    @arr_gen = BallGenerator.new()
   end
 
   def test_default_state

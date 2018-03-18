@@ -1,7 +1,7 @@
 require "minitest/autorun"
 require_relative '../logic/shared/ball'
 require_relative '../logic/shared/mark_changer'
-require_relative '../logic/shared/arrangement_generator'
+require_relative '../logic/shared/ball_generator'
 
 class MarkChangerTest < Minitest::Test
   @@basic_state = {
@@ -20,7 +20,7 @@ class MarkChangerTest < Minitest::Test
 
   def setup
     @mark_changer = MarkChanger.new()
-    @arr_generator = ArrangementGenerator.new()
+    @arr_generator = BallGenerator.new()
   end
 
   def test_state_can_be_set

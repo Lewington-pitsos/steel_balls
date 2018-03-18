@@ -1,12 +1,12 @@
 require "minitest/autorun"
 require_relative '../logic/all_arrangements/arrangement_expander'
-require_relative '../logic/shared/arrangement_generator'
+require_relative '../logic/shared/ball_generator'
 
 class ArrangementExpanderTest < Minitest::Test
 
   def setup
     @arr_expander = ArrangementExpander.new()
-    @arr_generator = ArrangementGenerator.new()
+    @arr_generator = BallGenerator.new()
   end
 
   def test_class_weights

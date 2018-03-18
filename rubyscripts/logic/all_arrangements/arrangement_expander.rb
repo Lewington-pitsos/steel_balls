@@ -1,4 +1,4 @@
-require_relative '../shared/arrangement_generator'
+require_relative '../shared/ball_generator'
 
 class ArrangementExpander
 
@@ -79,7 +79,7 @@ class ArrangementExpander
 
   def set_length(length)
     @length = length
-    @generator = ArrangementGenerator.new(length)
+    @generator = BallGenerator.new(length)
   end
 
   def alter_able?(ball, weight)

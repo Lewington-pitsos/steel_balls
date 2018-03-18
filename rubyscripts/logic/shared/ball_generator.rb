@@ -3,7 +3,7 @@
 
 require_relative './ball'
 
-class ArrangementGenerator
+class BallGenerator
 
   attr_reader :length
 
