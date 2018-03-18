@@ -30,6 +30,8 @@ class BallTest < Minitest::Test
     assert_equal 1 , @ball.weight
     @ball.make_heavier
     assert_equal 2, @ball.weight
+    @ball.make_lighter
+    assert_equal 0, @ball.weight
   end
 
 

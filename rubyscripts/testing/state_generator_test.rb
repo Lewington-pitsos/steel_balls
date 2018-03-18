@@ -31,18 +31,21 @@ class StateGeneratorTest < Minitest::Test
   end
 
   def test_default_state
+    assert_raises 'ERROR' do
+      @state_gen.default_state
+    end
     assert_equal @@default_state.to_s, @state_gen.send(:default_state).to_s
   end
 
   def test_generates_correct_state
     state = @state_gen.generate_state(@arr_gen.generate_balls())
-    assert_equal(state.to_s, @@unknown_state.to_s)
+    assert_equal @@unknown_state.to_s, state.to_s
 
     balls = @arr_gen.generate_balls()
-    balls.each { |ball| ball.make_lighter }
+    balls.each { |ball| ball.mark = :possibly_lighter }
 
     state = @state_gen.generate_state(balls)
-    assert_equal(state.to_s, @@light_state.to_s)
+    assert_equal @@light_state.to_s, state.to_s
   end
 
   def teardown
