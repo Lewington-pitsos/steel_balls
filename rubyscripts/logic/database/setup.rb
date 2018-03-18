@@ -58,10 +58,11 @@ class Setup < Archivist
 
 
   @@drop_all_tables = <<~COMMAND
+    DROP TABLE IF EXISTS states_prev_selections;
+    DROP TABLE IF EXISTS selections_prev_states;
     DROP TABLE IF EXISTS scored_selections;
     DROP TABLE IF EXISTS selection_sides;
     DROP TABLE IF EXISTS scored_states;
-    DROP TABLE IF EXISTS states_selections;
   COMMAND
 
   def initialize(name)
@@ -85,7 +86,7 @@ class Setup < Archivist
 
     begin
       @db.exec('SELECT * FROM scored_states;')
-      @db.exec('SELECT * FROM selector_sides;')
+      @db.exec('SELECT * FROM selection_sides;')
       @db.exec('SELECT * FROM scored_selections;')
       @db.exec('SELECT * FROM states_prev_selections;')
       @db.exec('SELECT * FROM selections_prev_states;')
@@ -103,6 +104,7 @@ class Setup < Archivist
     @db.exec(@@scored_selections_setup)
     @db.exec(@@states_prev_selections_setup)
     @db.exec(@@selections_prev_states_setup)
+    true
   end
 
   def clear_database
@@ -110,9 +112,10 @@ class Setup < Archivist
   end
 end
 
-
+=begin
 setup = Setup.new('test_steel_balls')
 
 setup.send(:clear_database)
 
 setup.send(:setup_tables)
+=end
