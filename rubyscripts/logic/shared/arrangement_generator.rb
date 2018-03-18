@@ -9,13 +9,18 @@ class ArrangementGenerator
   def initialize
     @ball_generator = BallGenerator.new()
     @changer = MarkChanger.new()
+    @balls = []
   end
 
   def marked_balls(state)
     # generates a new array of blank balls, alters them to match the passed in state and returns them
     length = get_length(state)
     balls = @ball_generator.generate_balls(length)
-    @changer.marked_balls(balls, state)
+    @balls = @changer.marked_balls(balls, state)
+  end
+
+  def duplicate_balls
+
   end
 
   private

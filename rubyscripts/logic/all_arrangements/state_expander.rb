@@ -1,6 +1,6 @@
-require_relative '../shared/ball_generator'
+require_relative '../shared/arrangement_generator'
 
-class ArrangementExpander
+class StateExpander
 
   # =================== Class Stuff ======================
 
@@ -26,24 +26,33 @@ class ArrangementExpander
 
   def initialize
     @weights = @@weights
-  end
-
-  def expand(balls)
-    # for each index in the array, we check if we can alter the ball at that index (in either direction). if so we generate a new array with that ball altered and add it to a list. Once we finish iterating we return that list
+    @arrangement_generator = ArrangementGenerator.new()
 
     @results = []
+  end
 
-    set_length(balls.length)
+  def expand(state)
+    # we generate an array of ball objects that matches the passed in state
+    # we then generate all the possible varient ball arrangements, and return an array of all the results
 
-    balls.each_index do |index|
-      ball = balls[index]
-      try_add_altered_arrangent(ball, index)
-    end
+    @results = []
+    balls_from_state = @arrangement_generator.marked_balls(state)
+
+    generate_all_ball_arrangements(balls_from_state)
 
     @results
   end
 
   private
+
+  def generate_all_ball_arrangements(balls)
+    # for each index in the array, we check if we can alter the ball at that index (in either direction). if so we generate a new array with that ball altered and add it to a list.
+
+    balls.each_index do |index|
+      ball = balls[index]
+      try_add_altered_arrangent(ball, index)
+    end
+  end
 
   def try_add_altered_arrangent(ball, index)
     # we check if (a) the ball can be made heavier or lighter and (b) this expander is equipped to make it heavier or lighter
@@ -63,7 +72,7 @@ class ArrangementExpander
 
   def altered_arrangement(index, weight)
     # generates a new array of balls, alters the ball at the passed in index and returns the resulting array
-    arrangement = @generator.generate_balls()
+    arrangement = @arrangement_generator.marked_balls
     alter(arrangement, index, weight)
     arrangement
   end
@@ -75,11 +84,6 @@ class ArrangementExpander
     else
       balls[index].make_lighter
     end
-  end
-
-  def set_length(length)
-    @length = length
-    @generator = BallGenerator.new(length)
   end
 
   def alter_able?(ball, weight)

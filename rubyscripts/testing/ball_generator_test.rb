@@ -23,6 +23,15 @@ class BallGeneratorTest < Minitest::Test
     assert_equal 4, balls.length
   end
 
+  def test_deep_clones_passed_in_ball_array
+    balls = @gen.generate_balls(4)
+    balls.map { |ball| ball.mark = :normal }
+    new_balls = @gen.duplicate_balls(balls)
+    new_balls.each_index do |i|
+      refute new_balls[i] === balls[i]
+      assert new_balls[i].mark == balls[i].mark
+    end
+  end
 
   def teardown
   end
