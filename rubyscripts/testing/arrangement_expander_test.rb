@@ -24,17 +24,13 @@ class ArrangementExpanderTest < Minitest::Test
 
   def test_picks_out_alterable_balls
     ball = Ball.new()
-    assert @arr_expander.send(:alter_able?, ball)
+    assert @arr_expander.send(:alter_able?, ball, :heavier)
 
     ball.mark = :normal
-    refute @arr_expander.send(:alter_able?, ball)
+    refute @arr_expander.send(:alter_able?, ball, :heavier)
 
     ball.mark = :possibly_lighter
-    refute @arr_expander.send(:alter_able?, ball)
-
-    ArrangementExpander.weights = :both
-    new_expander = ArrangementExpander.new()
-    assert new_expander.send(:alter_able?, ball)
+    refute @arr_expander.send(:alter_able?, ball, :heavier)
   end
 
   def test_generates_correct_arrangements
