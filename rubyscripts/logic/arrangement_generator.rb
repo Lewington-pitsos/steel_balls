@@ -1,0 +1,3 @@
+class ArrangementGenerator
+
+end
