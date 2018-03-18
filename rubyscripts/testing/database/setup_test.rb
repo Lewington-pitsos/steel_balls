@@ -11,10 +11,11 @@ class ArchivistTest < Minitest::Test
     assert @setup.send(:tables_missing)
   end
 
-  def sets_up_empty_database
-
+  def test_sets_up_empty_database
+    @setup.send(:setup_tables)
   end
 
   def teardown
+    @setup.send(:clear_database)
   end
 end

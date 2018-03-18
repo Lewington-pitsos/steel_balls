@@ -4,6 +4,66 @@ require_relative './archivist'
 
 class Setup < Archivist
 
+  @@scored_states_setup = <<~COMMAND
+    CREATE TABLE scored_states (
+      id serial,
+      unknown INTEGER NOT NULL DEFAULT 0,
+      possibly_lighter INTEGER NOT NULL DEFAULT 0,
+      possibly_heavier INTEGER NOT NULL DEFAULT 0,
+      normal INTEGER NOT NULL DEFAULT 0,
+      score INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY(id)
+    )
+  COMMAND
+
+  @@selection_sides_setup = <<~COMMAND
+    CREATE TABLE selection_sides (
+      id serial,
+      unknown INTEGER NOT NULL DEFAULT 0,
+      possibly_lighter INTEGER NOT NULL DEFAULT 0,
+      possibly_heavier INTEGER NOT NULL DEFAULT 0,
+      normal INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY(id)
+    )
+  COMMAND
+
+  @@scored_selections_setup = <<~COMMAND
+    CREATE TABLE scored_selections (
+      id serial,
+      left_id INTEGER REFERENCES selection_sides(id) ON DELETE CASCADE,
+      right_id INTEGER REFERENCES selection_sides(id) ON DELETE CASCADE,
+      score INTEGER NOT NULL DEFAULT 0,
+      PRIMARY KEY(id)
+    )
+  COMMAND
+
+  @@states_prev_selections_setup = <<~COMMAND
+    CREATE TABLE states_prev_selections (
+      id serial,
+      state_id INTEGER REFERENCES scored_states(id) ON DELETE CASCADE,
+      prev_selection_id INTEGER REFERENCES scored_selections(id) ON DELETE CASCADE,
+      PRIMARY KEY(id)
+    )
+  COMMAND
+
+  @@selections_prev_states_setup = <<~COMMAND
+    CREATE TABLE selections_prev_states (
+      id serial,
+      selection_id INTEGER REFERENCES scored_selections(id) ON DELETE CASCADE,
+      prev_state_id INTEGER REFERENCES scored_states(id) ON DELETE CASCADE,
+      PRIMARY KEY(id)
+    )
+  COMMAND
+
+
+
+  @@drop_all_tables = <<~COMMAND
+    DROP TABLE IF EXISTS scored_selections;
+    DROP TABLE IF EXISTS selection_sides;
+    DROP TABLE IF EXISTS scored_states;
+    DROP TABLE IF EXISTS states_selections;
+  COMMAND
+
   def initialize(name)
     super(name)
   end
@@ -24,10 +84,11 @@ class Setup < Archivist
   def tables_missing
 
     begin
-      @db.exec('SELECT * FROM Scored_States;')
-      @db.exec('SELECT * FROM Scored_Selections;')
-      @db.exec('SELECT * FROM States_Selections;')
-      @db.exec('SELECT * FROM Selector_Sides;')
+      @db.exec('SELECT * FROM scored_states;')
+      @db.exec('SELECT * FROM selector_sides;')
+      @db.exec('SELECT * FROM scored_selections;')
+      @db.exec('SELECT * FROM states_prev_selections;')
+      @db.exec('SELECT * FROM selections_prev_states;')
     rescue
       puts "At least one table is missing"
       return true
@@ -37,7 +98,21 @@ class Setup < Archivist
   end
 
   def setup_tables
-
+    @db.exec(@@scored_states_setup)
+    @db.exec(@@selection_sides_setup)
+    @db.exec(@@scored_selections_setup)
+    @db.exec(@@states_prev_selections_setup)
+    @db.exec(@@selections_prev_states_setup)
   end
 
+  def clear_database
+    @db.exec(@@drop_all_tables)
+  end
 end
+
+
+setup = Setup.new('test_steel_balls')
+
+setup.send(:clear_database)
+
+setup.send(:setup_tables)
