@@ -20,14 +20,14 @@ class MarkChanger
     @index = 0
   end
 
-  def marked_balls(balls)
+  def marked_balls(balls, state=@state)
     # for each kvp in the current state, we mark that number of balls with the appropriate mark. Each time we mark a ball we move to the next ball
     # as long as the number of balls in the state and the passed in array are the same we should be fine
     @balls = balls
     @index = 0
 
 
-    @state.each do |mark, number|
+    state.each do |mark, number|
       number.times do
         mark_ball_as(mark)
       end

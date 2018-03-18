@@ -40,6 +40,16 @@ class MarkChangerTest < Minitest::Test
     assert_equal 2, marked_balls.count { |ball| ball.mark == :possibly_lighter }
   end
 
+  def test_state_can_be_passed_in
+    balls = @arr_generator.generate_balls()
+    marked_balls = @mark_changer.marked_balls(balls, @@sample_state)
+
+    assert_equal 8, marked_balls.length
+    assert_equal 4, marked_balls.count { |ball| ball.mark == :unknown }
+    assert_equal 2, marked_balls.count { |ball| ball.mark == :possibly_heavier }
+    assert_equal 2, marked_balls.count { |ball| ball.mark == :possibly_lighter }
+  end
+
 
   def teardown
   end
