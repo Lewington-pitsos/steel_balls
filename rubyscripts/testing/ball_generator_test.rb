@@ -1,6 +1,6 @@
 require "minitest/autorun"
-require_relative '../logic/shared/ball'
-require_relative '../logic/shared/ball_generator'
+require_relative '../logic/shared/arrangement_generator/ball'
+require_relative '../logic/shared/arrangement_generator/ball_generator'
 
 class BallGeneratorTest < Minitest::Test
 
