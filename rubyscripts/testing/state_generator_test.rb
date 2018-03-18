@@ -1,6 +1,6 @@
 require "minitest/autorun"
-require_relative '../logic/state_generator'
-require_relative '../logic/arrangement_generator'
+require_relative '../logic/shared/state_generator'
+require_relative '../logic/shared/arrangement_generator'
 
 class StateGeneratorTest < Minitest::Test
 
