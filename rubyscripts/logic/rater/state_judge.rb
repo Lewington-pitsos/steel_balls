@@ -1,0 +1,3 @@
+class StateJudge
+
+end
