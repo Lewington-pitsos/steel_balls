@@ -18,7 +18,8 @@ class ArchivistTest < Minitest::Test
   end
 
   def test_sets_up_empty_database
-    assert @setup.send(:setup_tables)
+    @setup.setup_if_needed
+    refute @setup.send(:tables_missing)
   end
 
   def test_drops_set_up_database
