@@ -8,9 +8,9 @@ class ArchivistTest < Minitest::Test
   end
 
   def test_connects_to_database
-    databse = @archivist.send(:db).exec('SELECT current_database();').values[0][0]
+    database = @archivist.send(:db).exec('SELECT current_database();').values[0][0]
 
-    assert_equal 'postgres', database
+    assert_equal 'steel_balls', database
   end
 
   def teardown
