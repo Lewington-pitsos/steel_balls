@@ -20,7 +20,7 @@ class ArrangementGenerator
   end
 
   def duplicate_balls
-
+    @ball_generator.duplicate_balls(@balls)
   end
 
   private

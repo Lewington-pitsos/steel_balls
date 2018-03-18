@@ -71,8 +71,8 @@ class StateExpander
   end
 
   def altered_arrangement(index, weight)
-    # generates a new array of balls, alters the ball at the passed in index and returns the resulting array
-    arrangement = @arrangement_generator.marked_balls
+    # generates a new array of balls based on the most recent state passed to the arrangement generator, alters the ball at the passed in index and returns the resulting array
+    arrangement = @arrangement_generator.duplicate_balls()
     alter(arrangement, index, weight)
     arrangement
   end
