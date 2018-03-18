@@ -4,8 +4,8 @@ require_relative '../../logic/database/setup'
 class ArchivistTest < Minitest::Test
 
   def setup
-    @setup.send(:clear_database)
     @setup = Setup.new('test_steel_balls')
+    @setup.send(:clear_database)
   end
 
   def test_identifies_empty_database
@@ -19,6 +19,13 @@ class ArchivistTest < Minitest::Test
 
   def test_sets_up_empty_database
     assert @setup.send(:setup_tables)
+  end
+
+  def test_drops_set_up_database
+    assert @setup.send(:setup_tables)
+    refute @setup.send(:tables_missing)
+    @setup.send(:clear_database)
+    assert @setup.send(:tables_missing)
   end
 
   def teardown
