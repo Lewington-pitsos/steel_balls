@@ -12,10 +12,10 @@ class BallTest < Minitest::Test
     assert_equal 8, @gen.length
   end
 
-  def test_generates_balls
+  def test_generates_default_balls
     balls = @gen.generate_balls()
     assert_equal 8, balls.length
-    assert_equal Ball.new(), balls[0]
+    assert balls[0].mark == :unknown
   end
 
   def test_generates_different_length_arrays
