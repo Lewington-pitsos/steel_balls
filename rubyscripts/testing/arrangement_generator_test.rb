@@ -2,7 +2,7 @@ require "minitest/autorun"
 require_relative '../logic/ball'
 require_relative '../logic/arrangement_generator'
 
-class BallTest < Minitest::Test
+class ArrangementGeneratorTest < Minitest::Test
 
   def setup
     @gen = ArrangementGenerator.new()
