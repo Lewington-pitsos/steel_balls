@@ -6,17 +6,15 @@ require_relative './arrangement_generator/mark_changer'
 
 class ArrangementGenerator
 
-  @@default_length = 8
-
-  def initialize(length=false)
-    @length = @@default_length
-    @ball_generator = BallGenerator.new(length)
+  def initialize
+    @ball_generator = BallGenerator.new()
     @changer = MarkChanger.new()
   end
 
   def marked_balls(state)
     # generates a new array of blank balls, alters them to match the passed in state and returns them
-    balls = @ball_generator.generate_balls()
+    length = get_length(state)
+    balls = @ball_generator.generate_balls(length)
     @changer.marked_balls(balls, state)
   end
 
