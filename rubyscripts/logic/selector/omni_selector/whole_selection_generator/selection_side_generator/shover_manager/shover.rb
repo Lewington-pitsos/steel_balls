@@ -42,6 +42,7 @@ class Shover
     return try_shove
   end
 
+  private
 
   def try_shove
     # points the shover at the next bucket and, if that worked, tries to increment it
@@ -56,8 +57,6 @@ class Shover
 
     return @successful
   end
-
-  private
 
   def set_current_counter
     # sets the counter thuis shover is "pointitng to" for it's next attempted increment
