@@ -49,10 +49,10 @@ class StateExpanderTest < Minitest::Test
   end
 
   def test_default_weights
-    assert_equal :heavier, @arr_expander.weights
-    StateExpander.weights = :both
+    assert_equal :both, @arr_expander.weights
+    StateExpander.weights = :heavier
     new_expander = StateExpander.new()
-    assert_equal :both, new_expander.weights
+    assert_equal :heavier, new_expander.weights
   end
 
   def test_picks_out_alterable_balls

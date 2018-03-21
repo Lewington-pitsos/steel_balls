@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require_relative '../../../logic/state_evaluator/score_overseer/rater/rater_manager/weigher/weigh_manager/weigh_collector/scale_manager/scale/balancer'
+require_relative '../../../logic/state_evaluator/score_overseer/rater/rater_manager/weigher/weigh_collector/scale_manager/scale/balancer'
 require_relative '../../../logic/shared/arrangement_generator/ball_generator'
 
 class BalancerTest < Minitest::Test

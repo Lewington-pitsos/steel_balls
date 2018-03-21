@@ -10,8 +10,8 @@
 
 require_relative './scale/balancer'
 require_relative './scale/weigh_executer'
-require_relative '../../../../../../../../shared/ball_helper'
-require_relative '../../../../../../../../shared/state_generator'
+require_relative '../../../../../../../shared/ball_helper'
+require_relative '../../../../../../../shared/state_generator'
 require 'pry'
 class Scale
 

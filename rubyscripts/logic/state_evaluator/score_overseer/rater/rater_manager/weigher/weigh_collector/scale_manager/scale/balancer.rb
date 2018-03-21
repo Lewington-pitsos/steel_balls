@@ -10,7 +10,6 @@
 
 require_relative './balancer/comparer'
 require_relative './scale_helper'
-require 'pry'
 
 class Balancer
 
