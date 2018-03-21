@@ -1,4 +1,4 @@
-# generates every possible permutations of selections  for one side of a scale
+# basically has a captive ShoverManager. on command it orders the ShoverManager to generate a new shover state, turns it into a simple ball state objct, and stores and returns it.
 
 require_relative './selection_side_generator/shover_manager'
 
@@ -13,12 +13,17 @@ class SelectionSideGenerator
   end
 
   def next_selection
-    # keeps generating selections and adding them to the selections list
-    # returns the selections list as soon as a seleciton fails
-    @shover_manager.shove
-    generate_selection()
-    @all_selections
+    # keeps generating selections, adding them to the selections list and returning them
+    # returns the false
+    if @shover_manager.shove
+      generate_selection()
+      @all_selections[-1]
+    else
+      false
+    end
   end
+
+  private
 
   def generate_selection
     # modifies the defaulot selection by adding one ball to the order from one mark category for each shover "pointing at" that category
