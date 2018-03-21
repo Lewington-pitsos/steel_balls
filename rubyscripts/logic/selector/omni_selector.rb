@@ -4,24 +4,36 @@ require_relative './omni_selector/whole_selection_generator'
 
 class OmniSelector
 
+  attr_reader :all_selections
+
   def initialize
     @generator = nil
+    @all_selections = []
+    @requestable_numbers = []
   end
 
   def get_all_possible_selections(state)
     # is passed in a ball state and the total number of balls and returns all the possible selection orders given that state
-    @generator = WholeSelectionGenerator.new(state)
-    requestable_numbers = weighable_ball_numbers(state)
-    requestable_numbers.each do |num|
+    set_up_generator(state)
+    @requestable_numbers.each do |num|
       @generator.generate_all_selections(num)
     end
+    @all_selections.concat(all_generated_selections)
   end
 
-  def all_selections
+
+  private
+
+  def set_up_generator(state)
+    @all_selections = []
+    @generator = WholeSelectionGenerator.new(state)
+    @requestable_numbers = weighable_ball_numbers(state)
+  end
+
+  def all_generated_selections
     @generator.all_selections
   end
 
-  private
 
   def weighable_ball_numbers(state)
     # works out the total number of balls in the state and returns all the even numbers equal or below it
