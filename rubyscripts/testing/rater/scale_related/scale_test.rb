@@ -28,7 +28,7 @@ class ScaleTest < Minitest::Test
 
   @@normal_arrangements = StateExpander.new.expand(@@normal_state)
 
-  @@normal_balance = [{:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}]
+  @@normal_balance = [{:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>2, :normal=>4}]
 
 
   @@fancy_state = {
@@ -55,7 +55,7 @@ class ScaleTest < Minitest::Test
 
   @@fancy_arrangements = StateExpander.new.expand(@@fancy_state)
 
-  @@fancy_balance = [{:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}, {:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}, {:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}, {:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}]
+  @@fancy_balance = [{:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}, {:unknown=>0, :possibly_lighter=>0, :possibly_heavier=>1, :normal=>7}, {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>2, :normal=>5}]
 
 
   def setup
