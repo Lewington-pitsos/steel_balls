@@ -10,13 +10,6 @@ class WholeSelectionGeneratorTest < Minitest::Test
     normal: 0
   }
 
-  @@normal_state = {
-    unknown: 4,
-    possibly_heavier: 2,
-    possibly_lighter: 2,
-    normal: 8
-  }
-
   @@small_state = {
     unknown: 2,
     possibly_heavier: 0,
@@ -181,10 +174,6 @@ class WholeSelectionGeneratorTest < Minitest::Test
 
     @generator.generate_all_selections(3)
     assert_equal @@example_full_selection.to_s, @generator.all_selections.to_s
-  end
-
-  def test
-
   end
 
   def test_never_alters_passed_in_state
