@@ -67,7 +67,7 @@ Generator<y:LabelModel>
           <y:Geometry height="141.56719999982636" width="310.52886765153596" x="1321.3968219913759" y="987.0278202230909"/>
           <y:Fill color="#99CCFF" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="96.080078125" x="107.22439476326804" y="54.814849999913235">Selection Side
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="96.080078125" x="107.22439476326804" y="54.81484999991312">Selection Side
 generator (left)<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
@@ -103,7 +103,7 @@ generator<y:LabelModel>
           <y:Geometry height="141.56719999982636" width="291.7788676515362" x="1741.7341344175084" y="987.0278202230908"/>
           <y:Fill color="#3366FF" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="104.62890625" x="93.57498070076804" y="54.81484999991312">Selection Side
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="104.62890625" x="93.57498070076804" y="54.814849999913235">Selection Side
 generator (right)<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
@@ -154,7 +154,6 @@ selecion orders<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSid
       </data>
     </edge>
     <edge id="e3" source="n1" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="59.700000000000045" tx="-264.83295131512" ty="42.5"/>
@@ -170,7 +169,6 @@ that integer<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="
       </data>
     </edge>
     <edge id="e4" source="n1" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="64.24549348406215" sy="-71.48436254914591" tx="81.06877013080909" ty="-22.830970093625254">
@@ -187,7 +185,6 @@ total number of balls<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRi
       </data>
     </edge>
     <edge id="e5" source="n4" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-247.2747855138041" sy="-59.589240446094436" tx="-57.94408315594478" ty="-284.1819421105083"/>
@@ -198,7 +195,6 @@ total number of balls<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRi
       </data>
     </edge>
     <edge id="e6" source="n4" target="n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-226.78553684670746" sy="0.0" tx="-50.583533125658604" ty="0.0">
@@ -220,7 +216,6 @@ that integer<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="
       </data>
     </edge>
     <edge id="e7" source="n3" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="108.66538611860165" sy="-69.2522541925847" tx="-94.79692630753084" ty="67.66320642948244">
@@ -237,7 +232,6 @@ states given the input<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnR
       </data>
     </edge>
     <edge id="e8" source="n4" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="5.586159329154725" sy="0.0" tx="-68.89997381237102" ty="0.0">
@@ -257,7 +251,6 @@ same integer<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="
       </data>
     </edge>
     <edge id="e9" source="n5" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="86.55801787290969" sy="0.0" tx="151.5719917683757" ty="64.13340967222621">
@@ -274,7 +267,6 @@ states given the input<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnR
       </data>
     </edge>
     <edge id="e10" source="n4" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-265.1086591216381" sy="-17.200000000000045" tx="82.47070985137134" ty="0.0"/>
@@ -289,7 +281,6 @@ strapped together)<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRight
       </data>
     </edge>
     <edge id="e11" source="n4" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-94.66535117892954" sy="-59.589240446094436" tx="0.0" ty="-224.59270166441388"/>
@@ -300,7 +291,6 @@ strapped together)<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRight
       </data>
     </edge>
     <edge id="e12" source="n4" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-94.66535117892954" sy="-59.589240446094436" tx="0.0" ty="-224.59270166441388"/>
@@ -311,7 +301,6 @@ strapped together)<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRight
       </data>
     </edge>
     <edge id="e13" source="n4" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="246.6974068843576" sy="0.0" tx="246.6974068843576" ty="70.78380029722621">
