@@ -44,6 +44,8 @@ class Shover
 
   private
 
+  attr_reader :next_shover
+
   def try_shove
     # points the shover at the next bucket and, if that worked, tries to increment it
     # if incrmenting is impossible we recur

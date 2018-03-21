@@ -26,6 +26,8 @@ class ShoverManager
 
   private
 
+  attr_accessor :shovers
+
   def setup_counters(state)
     # resets the counters array with counter objects whose marks and numbers correspond to the passed in ball state. If there are no balls in a given state category we omit to create a counter for it.
     # Each counter links to the previous counter (and first links to last)
