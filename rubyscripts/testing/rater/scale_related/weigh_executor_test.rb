@@ -32,7 +32,7 @@ class WeighExecutorTest < Minitest::Test
 
     lighter = @generator.generate_balls(4)
 
-    lighter[0].mark == :possibly_heavier
+    lighter[0].mark = :possibly_heavier
 
     unweighed = @generator.generate_balls(4).each do |ball|
       ball.mark = :possibly_lighter
@@ -103,6 +103,24 @@ class WeighExecutorTest < Minitest::Test
     assert_equal 2, @executor.altered_arrangement.count { |b| b.mark == :possibly_lighter}
     assert_equal 0, @executor.altered_arrangement.count { |b| b.mark == :unknown}
 
+    @executor.execute_weigh(@balanced_balance_state)
+
+    assert_equal 4, @executor.altered_arrangement.count { |b| b.mark == :normal}
+    assert_equal 0, @executor.altered_arrangement.count { |b| b.mark == :possibly_heavier}
+    assert_equal 0, @executor.altered_arrangement.count { |b| b.mark == :possibly_lighter}
+    assert_equal 4, @executor.altered_arrangement.count { |b| b.mark == :unknown}
+
+    @executor.execute_weigh(@marked_balance_state)
+
+    assert_equal 9, @executor.altered_arrangement.count { |b| b.mark == :normal}
+    assert_equal 0, @executor.altered_arrangement.count { |b| b.mark == :possibly_heavier}
+    assert_equal 3, @executor.altered_arrangement.count { |b| b.mark == :possibly_lighter}
+    assert_equal 0, @executor.altered_arrangement.count { |b| b.mark == :unknown}
+
+  end
+
+  def test_returns_an_arrangement
+    assert_equal 8, @executor.execute_weigh(@example_balance_state).length
   end
 
   def teardown

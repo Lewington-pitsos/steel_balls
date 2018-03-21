@@ -9,6 +9,7 @@
 # each balance state is added to the origional passed in selection object
 
 require_relative './scale/balancer'
+require_relative './scale/weigh_executer'
 require_relative '../../../../../../../../shared/ball_helper'
 
 class Scale
@@ -19,6 +20,7 @@ class Scale
 
   def initialize
     @balancer = Balancer.new()
+    @executor = WeighExecutor.new()
     @arrangements = []
   end
 
@@ -34,6 +36,7 @@ class Scale
       balls = duplicate_balls(arrangement)
       @balancer.balance(@selection_order, balls)
       balance_state = @balancer.balance_state
+      arrangement = @executor.weigh(balance_state)
     end
   end
 end
