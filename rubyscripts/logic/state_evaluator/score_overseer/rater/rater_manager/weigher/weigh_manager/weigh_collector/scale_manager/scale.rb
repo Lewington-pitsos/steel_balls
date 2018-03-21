@@ -9,7 +9,7 @@
 # finally it returns an array of balance states
 
 require_relative './scale/balancer'
-require_relative '../../../../../../../shared/ball_helper'
+require_relative '../../../../../../../../shared/ball_helper'
 
 class Scale
 
