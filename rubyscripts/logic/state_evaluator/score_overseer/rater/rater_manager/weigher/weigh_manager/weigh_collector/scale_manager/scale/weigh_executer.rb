@@ -14,10 +14,10 @@ class WeighExecutor
   def execute_weigh(balance_state)
     @balance_state = balance_state
     if balanced?
-      normalize(balance_state[:unweighed])
+      normalize(@balance_state[:unweighed])
       re_mark_weighed_balls
     else
-      normalize(balance_state[:balanced])
+      normalize(@balance_state[:balanced])
     end
   end
 
