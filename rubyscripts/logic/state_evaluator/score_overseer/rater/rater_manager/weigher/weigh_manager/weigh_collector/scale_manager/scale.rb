@@ -33,7 +33,7 @@ class Scale
     @selection_order[:balls].each do |arrangement|
       balls = duplicate_balls(arrangement)
       @balancer.balance(@selection_order, balls)
-      @selection_order[:balances] << @balancer.balance_state
+      balance_state = @balancer.balance_state
     end
   end
 end
