@@ -1,11 +1,13 @@
 # takes in a ball state and holds a captive Omni selector and a captive State expander. It gets he Omni selector to generate all possible selection orders and the state expander to generate all possible ball arrangements. it then maps each selection order to a ball arrangement, and returns this huge agglomoration.
 
-require_relative './selector/omni_selector'
-require_relative './all_arrangements/state_expander'
-require_relative '../../shared/ball_helper'
+require_relative './selection_overseer/selector/omni_selector'
+require_relative './selection_overseer/all_arrangements/state_expander'
+require_relative '../shared/ball_helper'
 class SelectionOverseer
 
   include BallHelper
+
+  attr_accessor :weigh_orders
 
   def initialize(state)
     @state = state
@@ -17,6 +19,7 @@ class SelectionOverseer
   end
 
   def selections_to_weigh
+    # gathers all the selection orders and arrangements. Merges them by adding a copy of each arrangement to each selection order, and then returns all the seletion orders
     get_all_selection_orders
     get_all_arranments
     merge
@@ -24,6 +27,8 @@ class SelectionOverseer
   end
 
   private
+
+  attr_accessor :arrangements, :selection_orders
 
   def get_all_selection_orders
     @omni_selector.get_all_possible_selections(@state)
