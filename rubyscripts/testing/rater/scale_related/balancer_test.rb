@@ -4,6 +4,27 @@ require_relative '../../../logic/shared/arrangement_generator/ball_generator'
 
 class BalancerTest < Minitest::Test
 
+  @@basic_state = {
+    unknown: 4,
+    possibly_heavier: 0,
+    possibly_lighter: 0,
+    normal: 0
+  }
+
+  @@small_state = {
+    unknown: 2,
+    possibly_heavier: 0,
+    possibly_lighter: 0,
+    normal: 0
+  }
+
+  @@weird_state = {
+    unknown: 1,
+    possibly_heavier: 3,
+    possibly_lighter: 1,
+    normal: 2
+  }
+
   @@normal_balls = BallGenerator.new.generate_balls
 
   def setup
@@ -61,6 +82,50 @@ class BalancerTest < Minitest::Test
     assert_equal 2, categories[:normal].length
     assert_equal 1, categories[:possibly_lighter].length
     assert_equal 3, categories[:possibly_heavier].length
+  end
+
+  def test_gathers_balls_correctly
+    @balancer.send(:balls=, @@normal_balls)
+    @balancer.send(:categorize_balls)
+    to_weigh = @balancer.send(:gather_balls, @@basic_state)
+
+
+    assert_equal 4, to_weigh.length
+    to_weigh.each do |ball|
+      assert_equal :unknown, ball.mark
+    end
+
+    @balancer.send(:balls=, @marked_balls)
+    @balancer.send(:categorize_balls)
+    to_weigh = @balancer.send(:gather_balls, @@weird_state)
+
+    assert_equal 7, to_weigh.length
+    assert_equal 3, to_weigh.count { |b| b.mark == :possibly_heavier }
+    assert_equal 1, to_weigh.count { |b| b.mark == :possibly_lighter }
+    assert_equal 1, to_weigh.count { |b| b.mark == :unknown }
+    assert_equal 2, to_weigh.count { |b| b.mark == :normal }
+  end
+
+  def test_balls_removed_from_categories_when_targeted_for_weigh
+    @balancer.send(:balls=, @@normal_balls)
+    @balancer.send(:categorize_balls)
+    to_weigh = @balancer.send(:gather_balls, @@basic_state)
+    to_weigh2 = @balancer.send(:gather_balls, @@basic_state)
+
+    leftovers = @balancer.send(:agglomorate, @balancer.send(:categories))
+
+    to_weigh.each do |ball|
+      refute to_weigh2.include?(ball)
+      refute leftovers.include?(ball)
+    end
+
+    to_weigh2.each do |ball|
+      refute leftovers.include?(ball)
+    end
+  end
+
+  def test_accurate_balance_state_returned
+
   end
 
   def teardown

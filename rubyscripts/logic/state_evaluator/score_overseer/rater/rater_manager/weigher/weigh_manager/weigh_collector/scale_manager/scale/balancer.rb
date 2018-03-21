@@ -15,6 +15,7 @@ class Balancer
   def initialize
     @comparer = Comparer.new()
     @categories = []
+    @balance_state = []
   end
 
   def balance(selection_order, balls)
@@ -56,12 +57,12 @@ class Balancer
 
   def balance
     @comparer.balance(@left, @right)
-    balance_state = default_balance_state
+    @balance_state = default_balance_state
 
-    balance_state[:balanced] = comparer.balanced
-    balance_state[:heavier] = comparer.heavier
-    balance_state[:lighter] = comparer.lighter
-    balance_state[:unweighed] = agglomorate(@categories)
+    @balance_state[:balanced] = comparer.balanced
+    @balance_state[:heavier] = comparer.heavier
+    @balance_state[:lighter] = comparer.lighter
+    @balance_state[:unweighed] = agglomorate(@categories)
 
   end
 
