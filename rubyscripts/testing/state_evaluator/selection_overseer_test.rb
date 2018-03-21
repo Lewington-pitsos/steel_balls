@@ -54,7 +54,7 @@ class SelectionOverseerTest < Minitest::Test
 
   def test_merges_properly
     selections = @overseer.selections_to_weigh
-
+    
     selections.each do |selection|
       assert selection[:balls]
       assert_equal 4, selection[:balls].length
