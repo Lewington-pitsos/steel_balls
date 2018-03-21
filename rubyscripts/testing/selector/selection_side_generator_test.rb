@@ -25,9 +25,21 @@ class SelectionSideGeneratorTest < Minitest::Test
     normal: 100
   }
 
+  @@default_start = {
+    normal: 0,
+    possibly_lighter: 2,
+    possibly_heavier: 2,
+    unknown: 0,
+  }
+
 
   def setup
     @generator = SelectionSideGenerator.new(@@medium_state, 4)
+  end
+
+  def test_default_selection_recorded
+    assert_equal 1, @generator.all_selections.length
+    assert_equal @@default_start.to_s, @generator.all_selections[0].to_s
   end
 
   def teardown

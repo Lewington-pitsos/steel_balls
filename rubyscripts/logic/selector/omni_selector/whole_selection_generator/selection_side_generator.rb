@@ -5,15 +5,9 @@ require_relative './selection_side_generator/shover_manager'
 class SelectionSideGenerator
   attr_accessor :all_selections
 
-  def initialize
+  def initialize(ball_state, balls_requested)
+    # adds the default selection (generated just by adding shovers) to the list of all selections
     @all_selections = []
-    @balls_requested = 0
-    @shover_manager = nil
-  end
-
-  def setup_selection_generator(ball_state, balls_requested)
-    # sets up a new shover manager object, records the default state of the shover manager as the first selection order and then starts recursive generation of all further selection orders
-    @balls_requested = balls_requested
     @shover_manager = ShoverManager.new(ball_state, balls_requested)
     generate_selection()
   end
@@ -30,7 +24,7 @@ class SelectionSideGenerator
     # modifies the defaulot selection by adding one ball to the order from one mark category for each shover "pointing at" that category
     selection_order = default_order()
 
-    @shover_manager.state.each_with_index do |shover, index|
+    @shover_manager.state.each do |shover|
       selection_order[shover.mark] += 1
     end
 
@@ -40,8 +34,8 @@ class SelectionSideGenerator
   def default_order
     {
       normal: 0,
-      not_lighter: 0,
-      not_heavier: 0,
+      possibly_lighter: 0,
+      possibly_heavier: 0,
       unknown: 0,
     }
   end
