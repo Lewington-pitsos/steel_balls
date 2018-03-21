@@ -27,8 +27,9 @@ class ScaleManager
 
   def weigh_all_selections
     # for each selection generated we ask the scale to weigh that selection, passing in the original arrangements object for weighing each time
+    @scale.arrangements = @arrangements
     @selections.each do |selection|
-      balls = duplicate_balls(selection, @arrangements)
+      @scale.weigh(selection)
     end
   end
 
