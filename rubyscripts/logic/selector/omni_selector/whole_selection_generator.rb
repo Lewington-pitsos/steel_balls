@@ -9,10 +9,12 @@ require_relative './whole_selection_generator/selection_side_generator'
 
 class WholeSelectionGenerator
 
+  attr_reader :all_selections
+
   def initialize(state)
     @to_select = 0
     @state = state
-    @left
+    @left = nil
     @all_selections = []
   end
 
@@ -25,6 +27,8 @@ class WholeSelectionGenerator
     generate_next_left_selections
     @all_selections
   end
+
+  private
 
   def generate_next_left_selections
     # untill the next attempt at genrating a selection fails
