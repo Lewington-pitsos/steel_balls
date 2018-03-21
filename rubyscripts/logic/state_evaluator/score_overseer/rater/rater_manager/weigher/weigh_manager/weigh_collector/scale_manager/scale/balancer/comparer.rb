@@ -3,15 +3,21 @@
 
  class Comparer
 
+   attr_reader :balanced, :heavier, :lighter
+
     def initialize
-     @balanced = []
-     @heavier = []
-     @lighter = []
+      @left = []
+      @right = []
+      @balanced = []
+      @heavier = []
+      @lighter = []
     end
 
     def weigh_balls(left, right)
       reset_results
-      weigh_result(total_weight(right), total_weight(left))
+      @left = left
+      @right = right
+      weigh_result(total_weight(@left), total_weight(@right))
     end
 
     private
@@ -24,19 +30,17 @@
 
     def weigh_result(left, right)
       if left > right
-        @heavier = left
-        @lighter = right
+        @heavier = @left
+        @lighter = @right
       elsif left < right
-        @heavier = right
-        @lighter = left
+        @heavier = @right
+        @lighter = @left
       else
-        @balanced = left + right
+        @balanced = @left + @right
       end
     end
 
     def total_weight(balls)
-      count = 0
-      balls.each { |b| count += b.weight }
-      count
+      balls.inject(0) { |count, ball| count += ball.weight }
     end
 end
