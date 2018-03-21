@@ -26,7 +26,7 @@ class OmniSelector
   def weighable_ball_numbers(state)
     # works out the total number of balls in the state and returns all the even numbers equal or below it
     total = state.inject(0) { |sum, arry| sum + arry[-1] }
-    (2.. total / 2).to_a
+    (1.. total / 2).to_a
   end
 
 end
