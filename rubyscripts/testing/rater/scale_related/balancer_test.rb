@@ -156,7 +156,6 @@ class BalancerTest < Minitest::Test
     assert_equal 2, @balancer.balance_state[:heavier].length
     assert_equal 2, @balancer.balance_state[:lighter].length
     assert_empty @balancer.balance_state[:balanced]
-
   end
 
   def teardown

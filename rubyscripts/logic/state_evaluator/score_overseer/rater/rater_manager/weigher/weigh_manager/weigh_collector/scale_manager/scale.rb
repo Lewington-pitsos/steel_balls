@@ -8,20 +8,32 @@
 
 # finally it returns an array of balance states
 
+require_relative './scale/balancer'
+require_relative '../../../../../../../shared/ball_helper'
+
 class Scale
 
-  def initialize
+  include BallHelper
 
+  def initialize
+    @balancer = Balancer.new()
+    @left = {}
+    @right = {}
+    @arrangements = []
   end
 
   def weigh(selection_order)
     @left = selecion_order[:left]
     @right = selection_order[:right]
-    @balls = selecion_order[:balls]
+    @arrangements = selecion_order[:balls]
   end
 
-  def method_name
-
+  def generate_all_balance_states
+    # for each selection, triggers a balance of that selection with ALL of the passed in ball arrangements
+    @arrangements.each do |arrangement|
+      balls = duplicate_balls(arrangement)
+      @balancer.balance(selection, balls)
+    end
   end
 
 end
