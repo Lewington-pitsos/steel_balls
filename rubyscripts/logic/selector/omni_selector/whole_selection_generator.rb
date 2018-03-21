@@ -24,7 +24,7 @@ class WholeSelectionGenerator
     @all_selections = []
     @to_select = number
     @left = SelectionSideGenerator.new(@state, @to_select)
-    generate_next_left_selections
+    generate_left_selections
     @all_selections
   end
 
