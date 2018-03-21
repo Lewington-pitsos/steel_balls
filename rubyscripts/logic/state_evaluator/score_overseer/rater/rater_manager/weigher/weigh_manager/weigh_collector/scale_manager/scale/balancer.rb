@@ -14,6 +14,7 @@ class Balancer
 
   def initialize
     @comparer = Comparer.new()
+    @categories = []
   end
 
   def balance(selection_order, balls)
@@ -23,6 +24,11 @@ class Balancer
     @right = gather_balls(selection_order[:right])
     balance
   end
+
+  private
+
+  attr_reader :categories
+  attr_writer :balls
 
   def categorize_balls
     # splits the passed in ball array into a hash of arrays, each containing all and only the balls of a given mark
