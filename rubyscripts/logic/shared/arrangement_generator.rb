@@ -5,7 +5,6 @@ require_relative './arrangement_generator/mark_changer'
 
 
 class ArrangementGenerator
-
   def initialize
     @ball_generator = BallGenerator.new()
     @changer = MarkChanger.new()
