@@ -17,7 +17,7 @@ class Scale
 
   include BallHelper
 
-  attr_accessor :selecion_order
+  attr_accessor :selection_order
 
   def initialize
     @balancer = Balancer.new()
@@ -25,13 +25,16 @@ class Scale
     @state_generator = StateGenerator.new()
     @arrangements = []
     @generated_state = {}
+    @selection_order = {}
   end
 
   def weigh(selection_order)
-    @selecion_order = selecion_order
-    @selecion_order[:balances] = []
+    @selection_order = selection_order
+    @selection_order[:balances] = []
     generate_all_balance_states
   end
+
+  private
 
   def generate_all_balance_states
     # for each selection, triggers a balance of that selection with ALL of the passed in ball arrangements
@@ -49,8 +52,8 @@ class Scale
     balls = duplicate_balls(arrangement)
     @balancer.balance(@selection_order, balls)
     balance_state = @balancer.balance_state
-    
-    arrangement = @executor.weigh(balance_state)
-    @generated_state = @state_generator.generate_state(state)
+
+    arrangement = @executor.execute_weigh(balance_state)
+    @generated_state = @state_generator.generate_state(arrangement)
   end
 end

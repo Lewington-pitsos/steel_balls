@@ -5,13 +5,39 @@ require_relative '../../../logic/state_evaluator/selection_overseer/all_arrangem
 class ScaleTest < Minitest::Test
 
   @@normal_state = {
+    unknown: 8,
+    possibly_heavier: 0,
+    possibly_lighter: 0,
+    normal: 0
+  }
+
+  @@normal_selection = {
+    left: {
+      unknown: 2,
+      possibly_heavier: 0,
+      possibly_lighter: 0,
+      normal: 0
+    },
+    right: {
+      unknown: 2,
+      possibly_heavier: 0,
+      possibly_lighter: 0,
+      normal: 0
+    },
+    balls: StateExpander.new.expand(@@normal_state)
+  }
+
+  @@normal_balance = [{:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}]
+
+
+  @@fancy_state = {
     unknown: 2,
     possibly_heavier: 2,
     possibly_lighter: 2,
     normal: 2
   }
 
-  @@normal_selection = {
+  @@fancy_selection = {
     left: {
       unknown: 1,
       possibly_heavier: 0,
@@ -24,13 +50,24 @@ class ScaleTest < Minitest::Test
       possibly_lighter: 0,
       normal: 0
     },
-    balls: StateExpander.new.expand(@@normal_state)
+    balls: StateExpander.new.expand(@@fancy_state)
   }
 
+  @@fancy_balance = [{:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}, {:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}, {:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}, {:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}]
+
+
   def setup
-    @lighter_balls = BallGenerator.new.generate_balls
-    @lighter_balls[0].make_lighter
-    @comparer = Scale.new()
+    @scale = Scale.new()
+  end
+
+  def test_weigh_outcomes_as_expectded
+    @scale.weigh(@@fancy_selection)
+
+    assert_equal @@fancy_balance.to_s, @scale.selection_order[:balances].to_s
+
+    @scale.weigh(@@normal_selection)
+
+    assert_equal @@normal_balance.to_s, @scale.selection_order[:balances].to_s
   end
 
   def teardown
