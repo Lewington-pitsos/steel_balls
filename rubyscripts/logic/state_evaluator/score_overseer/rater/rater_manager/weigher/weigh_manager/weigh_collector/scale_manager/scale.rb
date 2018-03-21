@@ -15,24 +15,29 @@ class Scale
 
   include BallHelper
 
+  attr_accessor :selecion_order
+
   def initialize
     @balancer = Balancer.new()
+    @selection_order = {}
     @left = {}
     @right = {}
     @arrangements = []
   end
 
   def weigh(selection_order)
-    @left = selecion_order[:left]
-    @right = selection_order[:right]
-    @arrangements = selecion_order[:balls]
+    @selecion_order = selecion_order
+    @arrangements = @selecion_order[:balls]
+    @selecion_order[:balances] = []
+    generate_all_balance_states
   end
 
   def generate_all_balance_states
     # for each selection, triggers a balance of that selection with ALL of the passed in ball arrangements
     @arrangements.each do |arrangement|
       balls = duplicate_balls(arrangement)
-      @balancer.balance(selection, balls)
+      @balancer.balance(@selection_order, balls)
+      @selection_order[:balances] << @balancer.balance_state
     end
   end
 
