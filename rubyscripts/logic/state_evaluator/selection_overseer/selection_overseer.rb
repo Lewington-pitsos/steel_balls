@@ -20,7 +20,7 @@ class SelectionOverseer
     get_all_selection_orders
     get_all_arranments
     merge
-
+    @selection_orders
   end
 
   private
@@ -35,8 +35,11 @@ class SelectionOverseer
   end
 
   def merge
+    # for each selection order, makes a deep clone of every arrangement in the ball arrangement's list and adds the whole cloned arrangeemnt list to the selection order
     @selection_orders.each do |order|
-      order[:balls] =
+      order[:balls] = @arrangements.map do |arrangement|
+        duplicate_balls(arrangement)
+      end
     end
   end
 end
