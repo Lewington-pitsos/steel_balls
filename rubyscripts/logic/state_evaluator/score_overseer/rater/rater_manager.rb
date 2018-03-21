@@ -1,0 +1,5 @@
+class RaterManager
+
+  
+
+end
