@@ -60,19 +60,3 @@ class SelectionSideGenerator
     }
   end
 end
-
-
-=begin
-state = {
-  normal: 0,
-  not_lighter: 0,
-  not_heavier: 0,
-  unknown: 8
-}
-
-gen = SelectionGenerator.new()
-
-gen.generate_all_selections(state, 4)
-puts gen.all_selections
-puts gen.all_selections.length
-=end

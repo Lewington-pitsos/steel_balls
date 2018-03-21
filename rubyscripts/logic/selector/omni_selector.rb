@@ -21,7 +21,6 @@ class OmniSelector
     @all_selections.concat(all_generated_selections)
   end
 
-
   private
 
   def set_up_generator(state)
@@ -42,19 +41,3 @@ class OmniSelector
   end
 
 end
-
-=begin
-state = {
-  normal: 2,
-  not_lighter: 2,
-  not_heavier: 2,
-  unknown: 8
-}
-
-om = OmniSelector.new
-
-om.get_all_possible_selections(state)
-
-puts om.all_selections
-puts om.all_selections.length
-=end

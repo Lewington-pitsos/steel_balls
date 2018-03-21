@@ -66,28 +66,3 @@ class ShoverManager
     end
   end
 end
-
-=begin
-
-state = {
-  not_lighter: 4,
-  unknown: 8,
-  not_heavier: 0,
-  normal: 0
-}
-
-number = 6
-
-manager = ShoverManager.new(state, number)
-
-puts manager.state.map { |shover| shover.mark }
-
-puts manager.counters.map { |shover| shover.count }
-puts
-
-15.times do
-  manager.shove
-  puts manager.counters.map { |shover| shover.count }
-  puts
-end
-=end
