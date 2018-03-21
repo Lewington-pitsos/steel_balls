@@ -14,6 +14,11 @@ class WeighExecutor
     possibly_lighter: :possibly_heavier
   }
 
+  @@marks = {
+    heavier: :possibly_heavier,
+    lighter: :possibly_lighter
+  }
+
   def initialize
     @balance_state = {}
     @altered_arrangement = []
@@ -21,20 +26,22 @@ class WeighExecutor
 
   def execute_weigh(balance_state)
     @balance_state = balance_state
-    if balanced?
+    if imbalanced?
       normalize(@balance_state[:unweighed])
       re_mark_weighed_balls
     else
       normalize(@balance_state[:balanced])
     end
+
+    @altered_arrangement = agglomorate(@balance_state)
   end
 
   private
 
-  attr_reader :balance_state
+  attr_writer :balance_state
 
-  def balanced?
-    !@balance_state[:balanced].empty?
+  def imbalanced?
+    @balance_state[:balanced].empty?
   end
 
   def normalize(balls)
@@ -42,13 +49,13 @@ class WeighExecutor
   end
 
   def re_mark_weighed_balls
-    update_balls(:possibly_heavier)
-    update_balls(:possibly_lighter)
+    update_balls(:heavier)
+    update_balls(:lighter)
   end
 
   def update_balls(mark)
-    @balance_state[mark].each do
-      update_mark(ball, mark)
+    @balance_state[mark].each do |ball|
+      update_mark(ball, @@marks[mark])
     end
   end
 

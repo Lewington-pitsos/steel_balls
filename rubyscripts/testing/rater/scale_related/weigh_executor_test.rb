@@ -55,38 +55,32 @@ class WeighExecutorTest < Minitest::Test
 
   def test_recognized_balanced_states
     @executor.send(:balance_state=, @example_balance_state)
-    refute @executor.send(:balanced?)
+    assert @executor.send(:imbalanced?)
 
     @executor.send(:balance_state=, @balanced_balance_state)
-    assert @executor.send(:balanced?)
+    refute @executor.send(:imbalanced?)
 
     @executor.send(:balance_state=, @marked_balance_state)
-    refute @executor.send(:balanced?)
+    assert @executor.send(:imbalanced?)
   end
 
   def test_mark_updating_correctly
     @executor.send(:update_mark, @normal_ball, :possibly_heavier)
-
     assert_equal :normal, @normal_ball.mark
 
     @executor.send(:update_mark, @heavier_ball, :possibly_heavier)
-
     assert_equal :possibly_heavier, @heavier_ball.mark
 
     @executor.send(:update_mark, @lighter_ball, :possibly_lighter)
-
     assert_equal :possibly_lighter, @lighter_ball.mark
 
     @executor.send(:update_mark, @lighter_ball, :possibly_heavier)
-
     assert_equal :normal, @lighter_ball.mark
 
     @executor.send(:update_mark, @heavier_ball, :possibly_lighter)
-
     assert_equal :normal, @heavier_ball.mark
 
     @executor.send(:update_mark, @unknown_ball, :possibly_lighter)
-
     assert_equal :possibly_lighter, @unknown_ball.mark
   end
 
@@ -97,12 +91,18 @@ class WeighExecutorTest < Minitest::Test
     @executor.send(:normalize, heavier)
 
     heavier.each do |ball|
-      assert_equal :normal ball.mark
+      assert_equal :normal, ball.mark
     end
   end
 
   def test_weighing_produces_expected_results
     @executor.execute_weigh(@example_balance_state)
+
+    assert_equal 4, @executor.altered_arrangement.count { |b| b.mark == :normal}
+    assert_equal 2, @executor.altered_arrangement.count { |b| b.mark == :possibly_heavier}
+    assert_equal 2, @executor.altered_arrangement.count { |b| b.mark == :possibly_lighter}
+    assert_equal 0, @executor.altered_arrangement.count { |b| b.mark == :unknown}
+
   end
 
   def teardown
