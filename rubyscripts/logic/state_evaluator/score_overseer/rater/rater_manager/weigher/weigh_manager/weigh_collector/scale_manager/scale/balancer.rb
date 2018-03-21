@@ -8,6 +8,8 @@
 
 # the original ball arrangement passed in is destroyed in the process
 
+require_relative './balancer/comparer'
+
 class Balancer
 
   def initialize

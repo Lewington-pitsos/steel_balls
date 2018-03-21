@@ -12,9 +12,29 @@ class BalancerTest < Minitest::Test
     .each { |ball| ball.make_heavier  }
 
   def setup
-    @lighter_balls = BallGenerator.new.generate_balls
-    @lighter_balls[0].make_lighter
-    @comparer = Balancer.new()
+    @generator = BallGenerator.new()
+    @example_categories = {
+      balanced: [],
+      heavier: @generator.generate_balls(2),
+      lighter: @generator.generate_balls(2),
+      unweighed: @generator.generate_balls(4)
+    }
+
+    @weird_categories = {
+      balanced: [],
+      heavier: @generator.generate_balls(9),
+      lighter: @generator.generate_balls(1),
+      unweighed: @generator.generate_balls(40)
+    }
+    @balancer = Balancer.new()
+  end
+
+  def test_agglomorates_correctly
+    array = @balancer.send(:agglomorate, @example_categories)
+    assert_equal 8, array.length
+
+    array = @balancer.send(:agglomorate, @weird_categories)
+    assert_equal 50, array.length
   end
 
   def teardown
