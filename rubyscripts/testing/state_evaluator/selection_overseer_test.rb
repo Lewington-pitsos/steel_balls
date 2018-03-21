@@ -1,4 +1,5 @@
 require "minitest/autorun"
+require "set"
 require_relative '../../logic/state_evaluator/selection_overseer'
 
 class SelectionOverseerTest < Minitest::Test
@@ -24,22 +25,52 @@ class SelectionOverseerTest < Minitest::Test
     normal: 0
   }
 
+  @@medium_selection = [{:left=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}, :right=>[{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}]}]
+
+
 
   def setup
-    @overseer = SelectionOverseer.new(@@small_state)
+    @overseer = SelectionOverseer.new(@@medium_state)
   end
 
   def test_gathers_arrangements_correctly
     @overseer.send(:get_all_arranments)
-    assert_equal 2, @overseer.send(:arrangements).length
+    assert_equal 4, @overseer.send(:arrangements).length
 
-    overseer = SelectionOverseer.new(@@medium_state)
+    overseer = SelectionOverseer.new(@@small_state)
     overseer.send(:get_all_arranments)
-    assert_equal 4, overseer.send(:arrangements).length
+    assert_equal 2, overseer.send(:arrangements).length
 
     overseer = SelectionOverseer.new(@@light_state)
     overseer.send(:get_all_arranments)
     assert_equal 3, overseer.send(:arrangements).length
+  end
+
+  def test_gathers_selections_correctly
+    @overseer.send(:get_all_selection_orders)
+
+    assert_equal @@medium_selection.to_s, @overseer.send(:selection_orders).to_s
+  end
+
+  def test_merges_properly
+    selections = @overseer.selections_to_weigh
+
+    selections.each do |selection|
+      assert selection[:balls]
+      assert_equal 4, selection[:balls].length
+    end
+  end
+
+  def test_arrangeemnt_deep_cloning_on_merge
+    selections = @overseer.selections_to_weigh
+
+    all_balls = Set[]
+
+    selections.each do |selection|
+      selection[:balls].each do |ball|
+        assert all_balls.add?(ball)
+      end
+    end
   end
 
   def teardown
