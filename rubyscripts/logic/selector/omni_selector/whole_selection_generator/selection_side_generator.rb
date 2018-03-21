@@ -13,6 +13,7 @@ class SelectionSideGenerator
 
   def next_selection
     # if this is the first time a selection is requested we return the default selection based on the state generated simply by creating the shovers. Otherwise we generate the next state and return it.
+    # NOTE: the default selection must always be poissible, so there's no fear of returning it without checking if it is a legitimate selection
     if @first
       @first = false
       current_selection
