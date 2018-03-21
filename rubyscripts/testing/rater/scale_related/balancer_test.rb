@@ -125,6 +125,37 @@ class BalancerTest < Minitest::Test
   end
 
   def test_accurate_balance_state_returned
+    selection_order =  {
+      left: {
+        unknown: 1,
+        possibly_heavier: 0,
+        possibly_lighter: 0,
+        normal: 1
+      },
+      right: {
+        unknown: 0,
+        possibly_heavier: 2,
+        possibly_lighter: 0,
+        normal: 0
+      }
+    }
+
+    @balancer.balance(selection_order, @marked_balls)
+
+    assert_equal 4, @balancer.balance_state[:unweighed].length
+    assert_equal 4, @balancer.balance_state[:balanced].length
+    assert_empty @balancer.balance_state[:heavier]
+    assert_empty @balancer.balance_state[:lighter]
+
+    ball = @marked_balls[5]
+
+    ball.make_lighter
+
+    @balancer.balance(selection_order, @marked_balls)
+    assert_equal 4, @balancer.balance_state[:unweighed].length
+    assert_equal 2, @balancer.balance_state[:heavier].length
+    assert_equal 2, @balancer.balance_state[:lighter].length
+    assert_empty @balancer.balance_state[:balanced]
 
   end
 

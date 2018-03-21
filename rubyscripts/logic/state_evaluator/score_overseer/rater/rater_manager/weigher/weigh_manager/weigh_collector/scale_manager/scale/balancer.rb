@@ -12,6 +12,8 @@ require_relative './balancer/comparer'
 
 class Balancer
 
+  attr_accessor :balance_state
+
   def initialize
     @comparer = Comparer.new()
     @categories = []
@@ -23,7 +25,7 @@ class Balancer
     categorize_balls
     @left = gather_balls(selection_order[:left])
     @right = gather_balls(selection_order[:right])
-    balance
+    compare
   end
 
   private
@@ -55,13 +57,13 @@ class Balancer
     to_weigh
   end
 
-  def balance
-    @comparer.balance(@left, @right)
+  def compare
+    @comparer.weigh_balls(@left, @right)
     @balance_state = default_balance_state
 
-    @balance_state[:balanced] = comparer.balanced
-    @balance_state[:heavier] = comparer.heavier
-    @balance_state[:lighter] = comparer.lighter
+    @balance_state[:balanced] = @comparer.balanced
+    @balance_state[:heavier] = @comparer.heavier
+    @balance_state[:lighter] = @comparer.lighter
     @balance_state[:unweighed] = agglomorate(@categories)
 
   end
