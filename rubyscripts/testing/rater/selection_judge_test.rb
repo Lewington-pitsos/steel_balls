@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require_relative '../../logic/rater/selection_judge'
+require_relative '../../logic/state_evaluator/score_overseer/rater/selection_judge'
 
 class SelectionJudgeTest < Minitest::Test
 

@@ -28,7 +28,7 @@
     <node id="n1">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="270.24887095354336" width="201.15386765153593" x="1431.9517823679232" y="571.2371122152784"/>
+          <y:Geometry height="270.24887095354336" width="201.15386765153593" x="995.5119401588502" y="571.2371122152784"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="63.255859375" x="68.94900413826804" y="119.15568547677174">Selection
@@ -62,16 +62,12 @@ Manager<y:LabelModel>
       </data>
     </node>
     <edge id="e0" source="n1" target="n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="-15.0" tx="0.0" ty="-36.7436094674556">
-            <y:Point x="1697.6493452036443" y="691.3615476920501"/>
-            <y:Point x="1697.6493452036443" y="669.6179382245945"/>
-          </y:Path>
+          <y:Path sx="0.0" sy="-15.0" tx="0.0" ty="-14.999999999999773"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="84.296875" x="6.256219259160389" y="14.031225426425067">the state and
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="84.296875" x="256.25571804442006" y="14.03122542642518">the state and
 that integer<y:LabelModel>
               <y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/>
             </y:LabelModel>
@@ -85,7 +81,6 @@ that integer<y:LabelModel>
       </data>
     </edge>
     <edge id="e1" source="n2" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-7.624788234035855" sy="55.901704948085275" tx="415.3938040621929" ty="-65.90049047493301"/>
@@ -96,15 +91,14 @@ that integer<y:LabelModel>
       </data>
     </edge>
     <edge id="e2" source="n1" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="50.8434868628431" sy="118.09774430013772" tx="90.66581861169487" ty="-126.90225569986228">
-            <y:Point x="1676.255774710222" y="870.4604210386443"/>
+            <y:Point x="1239.815932501149" y="870.4604210386443"/>
           </y:Path>
           <y:LineStyle color="#000000" type="dashed_dotted" width="2.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="117.841796875" x="42.380068702348126" y="-30.10673156965936">untill we recieve a 
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="117.841796875" x="42.38004582921258" y="-30.10673156965936">untill we recieve a 
 null "shover state"<y:LabelModel>
               <y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/>
             </y:LabelModel>
@@ -118,16 +112,15 @@ null "shover state"<y:LabelModel>
       </data>
     </edge>
     <edge id="e3" source="n1" target="n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="15.435285711915185" sy="123.09774430013772" tx="-32.024110582950584" ty="56.83633542717216">
-            <y:Point x="1547.9640019056064" y="993.2092919921878"/>
-            <y:Point x="1830.7458636306467" y="993.2092919921878"/>
+            <y:Point x="1111.5241596965334" y="993.2092919921878"/>
+            <y:Point x="1830.745863630647" y="993.2092919921878"/>
           </y:Path>
           <y:LineStyle color="#000000" type="dashed_dotted" width="2.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="135.015625" x="-97.50779985220606" y="73.86277429925485">request for next state<y:LabelModel>
+          <y:EdgeLabel alignment="center" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="135.015625" x="-97.50782272534161" y="73.86277429925485">request for next state<y:LabelModel>
               <y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -140,7 +133,6 @@ null "shover state"<y:LabelModel>
       </data>
     </edge>
     <edge id="e4" source="n2" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-6.099830587228684" sy="0.0" tx="416.9187617089999" ty="-54.75440435275618"/>
@@ -151,7 +143,6 @@ null "shover state"<y:LabelModel>
       </data>
     </edge>
     <edge id="e5" source="n2" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-61.36446499845874" sy="73.75" tx="335.39314931877834" ty="-122.30703629232539"/>
@@ -162,7 +153,6 @@ null "shover state"<y:LabelModel>
       </data>
     </edge>
     <edge id="e6" source="n2" target="n0">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-44.66346691288413" sy="-23.2563905325444" tx="333.69165847046065" ty="-219.3134268248698"/>
@@ -173,12 +163,11 @@ null "shover state"<y:LabelModel>
       </data>
     </edge>
     <edge id="e7" source="n2" target="n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="18.299491761686053" sy="62.46854130535459" tx="-36.51056367518754" ty="73.09774430013772">
             <y:Point x="1881.0694659752835" y="1081.959291992188"/>
-            <y:Point x="1496.0181525185037" y="1081.959291992188"/>
+            <y:Point x="1059.5783103094307" y="1081.959291992188"/>
           </y:Path>
           <y:LineStyle color="#000000" type="dashed_dotted" width="2.0"/>
           <y:Arrows source="none" target="standard"/>

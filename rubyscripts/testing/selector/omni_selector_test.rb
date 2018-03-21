@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require_relative '../../logic/selector/omni_selector'
+require_relative '../../logic/state_evaluator/selection_overseer/selector/omni_selector'
 
 class OmniSelectorTest < Minitest::Test
 
