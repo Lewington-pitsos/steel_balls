@@ -49,6 +49,7 @@ class SelectionSideGeneratorTest < Minitest::Test
 
   def setup
     @generator = SelectionSideGenerator.new(@@medium_state, 4)
+    @generator.next_selection
   end
 
   def test_default_selection_recorded
@@ -67,6 +68,8 @@ class SelectionSideGeneratorTest < Minitest::Test
 
   def test_returns_false_if_a_shove_fails
     generator = SelectionSideGenerator.new(@@small_state, 2)
+
+    generator.next_selection
 
     refute generator.next_selection
   end

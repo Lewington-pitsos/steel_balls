@@ -1,7 +1,5 @@
 # this guy contains all the shovers and counters and returns the "shover state" i.e. where each shover is currently "pointing". This is then used by SelectionGenerator to craete a unique selection order
 
-#
-
 require_relative './shover_manager/mark_counter'
 require_relative './shover_manager/shover'
 

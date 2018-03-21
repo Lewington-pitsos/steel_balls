@@ -30,7 +30,7 @@ class WholeSelectionGenerator
 
   private
 
-  def generate_next_left_selections
+  def generate_left_selections
     # untill the next attempt at genrating a selection fails
     # => we generate a selection, and then generate all selections of the same length possible with the balls NOT selected for that selection.
     # => we then add a "selection order" to the list of selection orders

@@ -6,24 +6,38 @@ class SelectionSideGenerator
   attr_accessor :all_selections
 
   def initialize(ball_state, balls_requested)
-    # adds the default selection (generated just by adding shovers) to the list of all selections
     @all_selections = []
     @shover_manager = ShoverManager.new(ball_state, balls_requested)
-    generate_selection()
+    @first = true
   end
 
   def next_selection
+    # if this is the first time a selection is requested we return the default selection based on the state generated simply by creating the shovers. Otherwise we generate the next state and return it.
+    if @first
+      @first = false
+      current_selection
+    else
+      find_next_selection
+    end
+  end
+
+  private
+
+  def find_next_selection
     # keeps generating selections, adding them to the selections list and returning them
     # returns the false
     if @shover_manager.shove
-      generate_selection()
-      @all_selections[-1]
+      current_selection
     else
       false
     end
   end
 
-  private
+  def current_selection
+    # generates a seleciton using the current shover manager state, adds it to the list and returns it
+    generate_selection()
+    @all_selections[-1]
+  end
 
   def generate_selection
     # modifies the defaulot selection by adding one ball to the order from one mark category for each shover "pointing at" that category
