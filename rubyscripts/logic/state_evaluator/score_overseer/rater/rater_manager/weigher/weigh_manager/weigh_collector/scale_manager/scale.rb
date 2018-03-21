@@ -18,6 +18,9 @@ class Scale
     @left = selecion_order[:left]
     @right = selection_order[:right]
     @balls = selecion_order[:balls]
+  end
+
+  def method_name
 
   end
 
