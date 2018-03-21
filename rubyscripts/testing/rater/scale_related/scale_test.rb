@@ -1,15 +1,31 @@
 require "minitest/autorun"
 require_relative '../../../logic/state_evaluator/score_overseer/rater/rater_manager/weigher/weigh_manager/weigh_collector/scale_manager/scale'
-require_relative '../../../logic/shared/arrangement_generator/ball_generator'
+require_relative '../../../logic/state_evaluator/selection_overseer/all_arrangements/state_expander'
 
 class ScaleTest < Minitest::Test
 
-  @@normal_balls = BallGenerator.new.generate_balls
+  @@normal_state = {
+    unknown: 2,
+    possibly_heavier: 2,
+    possibly_lighter: 2,
+    normal: 2
+  }
 
-  @@weird_balls = BallGenerator
-    .new
-    .generate_balls
-    .each { |ball| ball.make_heavier  }
+  @@normal_selection = {
+    left: {
+      unknown: 1,
+      possibly_heavier: 0,
+      possibly_lighter: 0,
+      normal: 1
+    },
+    right: {
+      unknown: 0,
+      possibly_heavier: 2,
+      possibly_lighter: 0,
+      normal: 0
+    },
+    balls: StateExpander.new.expand(@@normal_state)
+  }
 
   def setup
     @lighter_balls = BallGenerator.new.generate_balls
