@@ -12,7 +12,7 @@ require_relative './scale/balancer'
 require_relative './scale/weigh_executer'
 require_relative '../../../../../../../../shared/ball_helper'
 require_relative '../../../../../../../../shared/state_generator'
-
+require 'pry'
 class Scale
 
   include BallHelper
@@ -26,11 +26,13 @@ class Scale
     @arrangements = []
     @generated_state = {}
     @selection_order = {}
+    @already_generated_states = []
   end
 
   def weigh(selection_order)
     @selection_order = selection_order
-    @selection_order[:balances] = []
+    @selection_order[:states] = []
+    @already_generated_states = []
     generate_all_balance_states
   end
 
@@ -40,7 +42,7 @@ class Scale
     # for each selection, triggers a balance of that selection with ALL of the passed in ball arrangements
     @arrangements.each do |arrangement|
       apply_conversions(arrangement)
-      @selection_order[:balances] << @generated_state
+      record_if_new(@generated_state)
     end
   end
 
@@ -55,5 +57,12 @@ class Scale
 
     arrangement = @executor.execute_weigh(balance_state)
     @generated_state = @state_generator.generate_state(arrangement)
+  end
+
+  def record_if_new(state)
+    unless @already_generated_states.include?(state.to_s)
+      @selection_order[:states] << state
+      @already_generated_states << state.to_s
+    end
   end
 end

@@ -65,11 +65,11 @@ class ScaleTest < Minitest::Test
   def test_weigh_outcomes_as_expectded
     @scale.arrangements = @@normal_arrangements
     @scale.weigh(@@normal_selection)
-    assert_equal @@normal_balance.to_s, @scale.selection_order[:balances].to_s
+    assert_equal @@normal_balance.to_s, @scale.selection_order[:states].to_s
 
     @scale.arrangements = @@fancy_arrangements
     @scale.weigh(@@fancy_selection)
-    assert_equal @@fancy_balance.to_s, @scale.selection_order[:balances].to_s
+    assert_equal @@fancy_balance.to_s, @scale.selection_order[:states].to_s
   end
 
   def teardown

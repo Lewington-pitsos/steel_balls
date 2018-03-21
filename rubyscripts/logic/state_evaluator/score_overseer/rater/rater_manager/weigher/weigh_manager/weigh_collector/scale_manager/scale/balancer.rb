@@ -10,6 +10,7 @@
 
 require_relative './balancer/comparer'
 require_relative './scale_helper'
+require 'pry'
 
 class Balancer
 
@@ -24,6 +25,7 @@ class Balancer
   end
 
   def balance(selection_order, balls)
+    #binding.pry
     @balls = balls
     categorize_balls
     @left = gather_balls(selection_order[:left])

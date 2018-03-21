@@ -12,7 +12,7 @@ class StateExpander
     both: [:unknown, :possibly_lighter, :possibly_heavier]
   }
 
-  @@weights = :heavier
+  @@weights = :both
 
   def self.weights
     @@weights

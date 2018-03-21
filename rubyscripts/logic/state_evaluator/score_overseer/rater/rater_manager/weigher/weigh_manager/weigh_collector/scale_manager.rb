@@ -3,6 +3,8 @@ require_relative './scale_manager/scale'
 
 class ScaleManager
 
+  attr_reader :selections
+
   def initialize
     @scale = Scale.new()
     @selections = []
@@ -18,9 +20,9 @@ class ScaleManager
 
   private
 
-  attr_reader :selections
-
   def parse_selection_order(selection_order)
+    @selections = []
+    @selections_to_rate = []
     @left = selection_order[:left]
     @right = selection_order[:right]
     @arrangements = selection_order[:balls]
