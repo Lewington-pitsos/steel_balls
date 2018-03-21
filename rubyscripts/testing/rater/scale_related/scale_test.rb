@@ -23,9 +23,10 @@ class ScaleTest < Minitest::Test
       possibly_heavier: 0,
       possibly_lighter: 0,
       normal: 0
-    },
-    balls: StateExpander.new.expand(@@normal_state)
+    }
   }
+
+  @@normal_arrangements = StateExpander.new.expand(@@normal_state)
 
   @@normal_balance = [{:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}]
 
@@ -49,9 +50,10 @@ class ScaleTest < Minitest::Test
       possibly_heavier: 2,
       possibly_lighter: 0,
       normal: 0
-    },
-    balls: StateExpander.new.expand(@@fancy_state)
+    }
   }
+
+  @@fancy_arrangements = StateExpander.new.expand(@@fancy_state)
 
   @@fancy_balance = [{:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}, {:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}, {:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}, {:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}]
 
@@ -61,13 +63,13 @@ class ScaleTest < Minitest::Test
   end
 
   def test_weigh_outcomes_as_expectded
-    @scale.weigh(@@fancy_selection)
-
-    assert_equal @@fancy_balance.to_s, @scale.selection_order[:balances].to_s
-
+    @scale.arrangements = @@normal_arrangements
     @scale.weigh(@@normal_selection)
-
     assert_equal @@normal_balance.to_s, @scale.selection_order[:balances].to_s
+
+    @scale.arrangements = @@fancy_arrangements
+    @scale.weigh(@@fancy_selection)
+    assert_equal @@fancy_balance.to_s, @scale.selection_order[:balances].to_s
   end
 
   def teardown

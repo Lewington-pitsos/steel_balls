@@ -38,7 +38,7 @@ class Scale
 
   def generate_all_balance_states
     # for each selection, triggers a balance of that selection with ALL of the passed in ball arrangements
-    @arrangements do |arrangement|
+    @arrangements.each do |arrangement|
       apply_conversions(arrangement)
       @selection_order[:balances] << @generated_state
     end
