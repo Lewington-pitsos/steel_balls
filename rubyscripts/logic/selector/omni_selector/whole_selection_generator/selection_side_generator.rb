@@ -1,8 +1,8 @@
 # generates every possible permutations of selections  for one side of a scale
 
-require_relative './selection_generator/shover_manager'
+require_relative './selection_side_generator/shover_manager'
 
-class SelectionGenerator
+class SelectionSideGenerator
   attr_accessor :all_selections
 
   def initialize
