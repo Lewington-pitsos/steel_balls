@@ -9,8 +9,11 @@
 # the original ball arrangement passed in is destroyed in the process
 
 require_relative './balancer/comparer'
+require_relative './scale_helper'
 
 class Balancer
+
+  include ScaleHelper
 
   attr_accessor :balance_state
 
@@ -76,10 +79,4 @@ class Balancer
       balanced: []
     }
   end
-
-  def agglomorate(category_hash)
-    # returns an vversion of the array hash compounded into a single array
-    category_hash.map { |_, array| array }.flatten
-  end
-
 end

@@ -1,6 +1,13 @@
 # gets passed in a (single) balance state and converts it into a single ball arrangement with each ball updated according to how they previous weigh panned out
 
+require_relative './scale_helper'
+
+
 class WeighExecutor
+
+  include ScaleHelper
+
+  attr_accessor :altered_arrangement
 
   @@opposites = {
     possibly_heavier: :possibly_lighter,
@@ -9,6 +16,7 @@ class WeighExecutor
 
   def initialize
     @balance_state = {}
+    @altered_arrangement = []
   end
 
   def execute_weigh(balance_state)
@@ -22,6 +30,8 @@ class WeighExecutor
   end
 
   private
+
+  attr_reader :balance_state
 
   def balanced?
     !@balance_state[:balanced].empty?
