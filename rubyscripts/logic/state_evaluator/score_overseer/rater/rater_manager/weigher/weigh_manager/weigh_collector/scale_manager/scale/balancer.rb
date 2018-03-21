@@ -11,7 +11,7 @@
 class Balancer
 
   def initialize
-    @comparer = Comparer.new
+    @comparer = Comparer.new()
   end
 
   def balance(selection_order, balls)
