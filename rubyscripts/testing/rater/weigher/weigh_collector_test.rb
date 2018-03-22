@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require_relative '../../../logic/state_evaluator/score_overseer/rater/rater_manager/weigher/weigh_collector'
+require_relative '../../../logic/state_evaluator/score_overseer/rater_manager/weigher/weigh_collector'
 require_relative '../../../logic/state_evaluator/selection_overseer/state_expander'
 
 class WeighCollectorTest < Minitest::Test

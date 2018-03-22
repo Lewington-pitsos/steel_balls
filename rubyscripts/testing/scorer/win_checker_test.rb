@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require_relative '../../logic/state_evaluator/score_overseer/scorer/scorer_manager/win_checker'
+require_relative '../../logic/state_evaluator/score_overseer/scorer_manager/win_checker'
 
 class WinCheckerTest < Minitest::Test
 
