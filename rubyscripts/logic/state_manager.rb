@@ -18,7 +18,7 @@ class StateManager
 
   def score
 
-    recorded_score = recorded_score
+    recorded_score = score_in_database
 
     if recorded_score
       recorded_score
@@ -30,7 +30,7 @@ class StateManager
 
   private
 
-  def recorded_score
+  def score_in_database
     # to be added
     false
   end

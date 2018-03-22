@@ -7,6 +7,9 @@
 
 # finally, returns the state score to the state manager
 
+require_relative './state_evaluator/score_overseer'
+require_relative './state_evaluator/selection_overseer'
+
 class StateEvaluator
 
   def initialize(state, rating)

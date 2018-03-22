@@ -12,6 +12,8 @@ require_relative './scorer_manager/win_resolver'
 require_relative './scorer_manager/win_checker'
 require_relative './scorer_manager/selection_manager'
 
+require 'pry'
+
 class ScorerManager
 
   def initialize
@@ -21,7 +23,7 @@ class ScorerManager
 
   def scored_selections(rated_selections)
     scored_selections = @checker.winners(rated_selections)
-
+    binding.pry
     if !scored_selections.any?
       score_selections(rated_selections)
     end
