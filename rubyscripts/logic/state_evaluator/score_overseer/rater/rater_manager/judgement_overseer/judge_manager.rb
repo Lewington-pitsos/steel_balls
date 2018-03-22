@@ -10,12 +10,10 @@ class JudgeManager
   def initialize(minimum)
     @kuller = SelectionKuller.new(minimum)
     @judge = Judge.new()
-    @rated_weigh_result = []
   end
 
-  def score_and_kull(weigh_result)
+  def scored_and_kulled(weigh_result)
     @judge.rate_selections(weigh_result)
-    @rated_weigh_result = @kuller.kulled(weigh_result)
-    @rated_weigh_result
+    @kuller.kulled(weigh_result)
   end
 end
