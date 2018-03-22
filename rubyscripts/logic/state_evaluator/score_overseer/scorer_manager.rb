@@ -19,13 +19,11 @@ class ScorerManager
   def initialize
     @checker = WinChecker.new()
     @resolver = WinResolver.new()
+    @selection_manager = SelectionManager.new()
   end
 
   def scored_selections(rated_selections)
-    scored_selections = @checker.winners(rated_selections)
-    if !scored_selections.any?
-      score_selections(rated_selections)
-    end
+    scored_selections = score_all(rated_selecions)
 
     state_score = @resolver.state_score(scored_selections)
     {selections: scored_selections, state_score: state_score}
@@ -33,9 +31,12 @@ class ScorerManager
 
   private
 
-  def score_selections
-    # tbd
-    false
+  def score_all(rated_selecions)
+    winners = @checker.winners(rated_selections)
+    if winners.any?
+      winners
+    else
+      @selection_manager.score_all_selections(rated_selecions)
+    end
   end
-
 end
