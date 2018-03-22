@@ -23,7 +23,6 @@ class ScorerManager
 
   def scored_selections(rated_selections)
     scored_selections = @checker.winners(rated_selections)
-    binding.pry
     if !scored_selections.any?
       score_selections(rated_selections)
     end
