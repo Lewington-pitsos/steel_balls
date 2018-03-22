@@ -4,7 +4,7 @@ require_relative './archivist'
 
 class SelectionRecorder < Archivist
 
-  def initialize(name)
+  def initialize(name=false)
     super(name)
   end
 
@@ -13,6 +13,8 @@ class SelectionRecorder < Archivist
       record_sides(selection)
     end
   end
+
+  private
 
   def record_sides(selection)
     # saves both the sides (iff they haven't already been covered) finds the id's of both sides, and saves the selection using those ids
@@ -50,7 +52,6 @@ class SelectionRecorder < Archivist
             #{side[:normal]}
           )
         END IF;
-
       COMMAND
     )
   end
