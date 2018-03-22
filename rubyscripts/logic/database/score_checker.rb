@@ -4,7 +4,7 @@ require_relative './archivist'
 
 class ScoreChecker < Archivist
 
-  def initialize(name=false)
+  def initialize(name=@@database_name)
     super(name)
     @score = nil
   end

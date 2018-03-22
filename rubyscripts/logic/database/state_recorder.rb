@@ -5,20 +5,20 @@ require_relative './selection_recorder'
 
 class StateRecorder < Archivist
 
-  def initialize(name=false)
+  def initialize(name=@@database_name)
     super(name)
     @selection_recorder = SelectionRecorder.new(name)
   end
 
   def record_state(scored_state)
     selections = scored_state[:selections]
-    @selection_recorder.save_selections(selections)
-    record_state(state)
+    # @selection_recorder.save_selections(selections)
+    save_state(scored_state)
   end
 
   private
 
-  def record_state(state)
+  def save_state(state)
     @db.exec(
       <<~COMMAND
           INSERT INTO scored_states (
@@ -33,7 +33,7 @@ class StateRecorder < Archivist
             #{state[:state][:possibly_lighter]},
             #{state[:state][:possibly_heavier]},
             #{state[:state][:normal]},
-            #{state[:score]}
+            #{state[:state_score]}
           );
       COMMAND
     )

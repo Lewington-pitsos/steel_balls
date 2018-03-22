@@ -95,5 +95,6 @@ class ScoreCheckerTest < Minitest::Test
 
   def teardown
     @setup.send(:clear_database)
+    @setup.close()
   end
 end

@@ -70,12 +70,11 @@ class Setup < Archivist
     SET client_min_messages TO WARNING;
   COMMAND
 
-  def initialize(name)
+  def initialize(name=@@database_name)
     super(name)
   end
 
   def setup_if_needed
-
     setup_tables_if_needed
   end
 

@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require_relative '../logic/state_manager'
+require_relative '../logic/database/setup.rb'
 
 class StateManagerTest < Minitest::Test
 
@@ -75,6 +76,10 @@ class StateManagerTest < Minitest::Test
 
 
   def setup
+    @setup = Setup.new()
+    @setup.suppress_warnings
+    @setup.send(:clear_database)
+    @setup.setup_if_needed
   end
 
   def test_deafult_score_for_winning_states
@@ -101,5 +106,7 @@ class StateManagerTest < Minitest::Test
   end
 
   def teardown
+    @setup.send(:clear_database)
+    @setup.close()
   end
 end

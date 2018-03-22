@@ -14,5 +14,6 @@ class ArchivistTest < Minitest::Test
   end
 
   def teardown
+    @archivist.close()
   end
 end

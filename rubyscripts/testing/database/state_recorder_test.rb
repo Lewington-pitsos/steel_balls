@@ -12,7 +12,7 @@ class StateRecorderTest < Minitest::Test
       possibly_lighter: 0,
       normal: 0
     },
-    score: 29,
+    state_score: 29,
     selections: []
   }
 
@@ -23,7 +23,7 @@ class StateRecorderTest < Minitest::Test
       possibly_lighter: 0,
       normal: 2
     },
-    score: 25,
+    state_score: 25,
     selections: []
   }
 
@@ -43,26 +43,27 @@ class StateRecorderTest < Minitest::Test
   end
 
   def test_records_single_state
-    @recorder.send(:record_state, @@example_state)
+    @recorder.send(:save_state, @@example_state)
     row = @db.exec(@@get_database_states)[0]
 
     @@example_state[:state].each do |mark, num|
       assert_equal num, row[mark.to_s].to_i
     end
-    assert_equal @@example_state[:score], row['score'].to_i
+    assert_equal @@example_state[:state_score], row['score'].to_i
     assert_raises 'Error' do
       @db.exec(@@get_database_states)[1]
     end
 
-    @recorder.send(:record_state, @@example_state2)
+    @recorder.send(:save_state, @@example_state2)
     row = @db.exec(@@get_database_states)[1]
     @@example_state2[:state].each do |mark, num|
       assert_equal num, row[mark.to_s].to_i
     end
-    assert_equal @@example_state2[:score], row['score'].to_i
+    assert_equal @@example_state2[:state_score], row['score'].to_i
   end
 
   def teardown
     @setup.send(:clear_database)
+    @setup.close()
   end
 end

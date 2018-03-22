@@ -9,13 +9,14 @@
 # however we got the score, we return it
 
 require_relative './state_evaluator'
+require_relative './database/score_checker'
 
 class StateManager
 
   def initialize(rated_state)
     @rating = rated_state[:rating]
     @state = rated_state[:state]
-    @database = nil
+    @score_checker = ScoreChecker.new()
   end
 
   def score
@@ -36,7 +37,7 @@ class StateManager
   private
 
   def score_in_database
-    # to be added
-    false
+    @score_checker.recorded_score(@state)
+    @score_checker.close()
   end
 end

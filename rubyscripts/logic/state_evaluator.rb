@@ -9,19 +9,23 @@
 
 require_relative './state_evaluator/score_overseer'
 require_relative './state_evaluator/selection_overseer'
+require_relative './database/state_recorder'
 
 class StateEvaluator
 
   def initialize(state, rating)
-    @selector = SelectionOverseer.new(state)
+    @state = state
+    @selector = SelectionOverseer.new(@state)
     @scorer = ScoreOverseer.new(rating)
-    @saver = nil
+    @recorder = StateRecorder.new()
   end
 
   def state_score
     pre_weigh = @selector.selections_to_weigh
     scored_state_info = @scorer.score(pre_weigh)
-    # @saver.save(scored_state_info)
+    scored_state_info[:state] = @state
+    @recorder.record_state(scored_state_info)
+    @recorder.close()
     scored_state_info[:state_score]
   end
 end

@@ -10,6 +10,11 @@ class Archivist
     @db = PG.connect({ dbname: name, user: 'postgres' })
   end
 
+
+  def close
+    @db.finish()
+  end
+
   private
 
   attr_accessor :db
