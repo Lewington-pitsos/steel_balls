@@ -17,8 +17,10 @@ class OmniSelector
     set_up_generator(state)
     @requestable_numbers.each do |num|
       @generator.generate_all_selections(num)
+      @all_selections += all_generated_selections
     end
-    @all_selections.concat(all_generated_selections)
+
+    @all_selections
   end
 
   private
