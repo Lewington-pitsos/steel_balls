@@ -15,8 +15,8 @@ class StateJudge
 
   end
 
-  def judge_states(weigh_outcome)
-    weigh_outcome.each do |selection|
+  def judge_states(weighed_selections)
+    weighed_selections.each do |selection|
       score_states(selection)
     end
   end
@@ -24,8 +24,8 @@ class StateJudge
   private
 
   def score_states(selection)
-    selection.each do |state|
-      state[:score] = score(state)
+    selection[:states].each do |state|
+      score = score(state)
     end
   end
 

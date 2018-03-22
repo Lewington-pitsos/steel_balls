@@ -3,6 +3,9 @@ require_relative '../../../logic/state_evaluator/score_overseer/rater/rater_mana
 
 class StateJudgeTest < Minitest::Test
 
+  @@example_weighed_selections = [{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>2, :possibly_lighter=>0, :normal=>0}, :states=>[{:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}, {:unknown=>0, :possibly_lighter=>0, :possibly_heavier=>1, :normal=>7}, {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>2, :normal=>5}]}, {:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>1, :possibly_lighter=>1, :normal=>0}, :states=>[{:unknown=>1, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>5}, {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>6}]}, {:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>0, :possibly_lighter=>2, :normal=>0}, :states=>[{:unknown=>1, :possibly_lighter=>0, :possibly_heavier=>2, :normal=>5}, {:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>1, :normal=>5}, {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>0, :normal=>7}]}, {:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :states=>[{:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>6}, {:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>2, :normal=>4}]}, {:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>1, :possibly_heavier=>1, :possibly_lighter=>0, :normal=>0}, :states=>[{:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>2, :normal=>5}, {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>6}, {:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>1, :normal=>5}]}, {:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>1, :normal=>0}, :states=>[{:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>6}, {:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>1, :normal=>5}, {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>2, :normal=>5}]}, {:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>1, :possibly_lighter=>0, :normal=>1}, :states=>[{:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>1, :normal=>4}, {:unknown=>0, :possibly_lighter=>0, :possibly_heavier=>1, :normal=>7}, {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>6}]}, {:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>0, :possibly_lighter=>1, :normal=>1}, :states=>[{:unknown=>1, :possibly_lighter=>1, :possibly_heavier=>2, :normal=>4}, {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>6}, {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>0, :normal=>7}]}, {:left=>{:unknown=>2, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>0}, :right=>{:unknown=>2, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>0}, :states=>[{:unknown=>4, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>4}, {:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>2, :normal=>4}]}]
+
+
   @@light_state = {
     unknown: 3,
     possibly_heavier: 0,
@@ -25,6 +28,8 @@ class StateJudgeTest < Minitest::Test
     assert_equal 2, @judge.send(:score, @@light_state)
     assert_equal 17, @judge.send(:score, @@normal_state)
   end
+
+  
 
   def teardown
   end

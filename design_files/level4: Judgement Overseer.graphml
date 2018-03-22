@@ -31,7 +31,7 @@
           <y:Geometry height="159.40999999999997" width="117.19799999999987" x="1550.2928537416853" y="534.1207719088238"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="117.19799999999987" x="0.0" y="70.72062500000004">State judge<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="117.19799999999987" x="0.0" y="70.72062499999993">State judge<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -67,7 +67,7 @@ Judge<y:LabelModel>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="117.19799999999987" x="0.0" y="71.55124999999998">Bad State
-Eliminitor<y:LabelModel>
+Killer<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -145,7 +145,6 @@ results of weighing them
       </data>
     </edge>
     <edge id="e2" source="n2" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="40.676875244332244" tx="52.77833225468021" ty="35.34037216188767"/>
@@ -162,7 +161,6 @@ rating<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" ang
       </data>
     </edge>
     <edge id="e3" source="n1" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="43.39191607945736" tx="78.29833225468064" ty="-186.9176430196719"/>
@@ -176,7 +174,6 @@ arrangement is rated<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRig
       </data>
     </edge>
     <edge id="e4" source="n4" target="n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="-66.54264301967191" tx="-30.159947339434893" ty="-61.20613993722736"/>
@@ -193,7 +190,6 @@ now rated)<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0"
       </data>
     </edge>
     <edge id="e5" source="n4" target="n3">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="159.20603759802896" tx="0.0" ty="-54.999999999999886"/>
@@ -209,7 +205,6 @@ rating<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" ang
       </data>
     </edge>
     <edge id="e6" source="n3" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="41.471131394017675" tx="54.665832254680026" ty="255.67716899204652"/>
@@ -225,7 +220,6 @@ removed<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" an
       </data>
     </edge>
     <edge id="e7" source="n4" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="286.67810857974064" tx="77.83449121671151" ty="286.30564472386584"/>
