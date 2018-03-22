@@ -23,6 +23,7 @@ class Setup < Archivist
       possibly_lighter INTEGER NOT NULL DEFAULT 0,
       possibly_heavier INTEGER NOT NULL DEFAULT 0,
       normal INTEGER NOT NULL DEFAULT 0,
+      CONSTRAINT unique_side UNIQUE (unknown, possibly_lighter, possibly_heavier, normal)
       PRIMARY KEY(id)
     )
   COMMAND
