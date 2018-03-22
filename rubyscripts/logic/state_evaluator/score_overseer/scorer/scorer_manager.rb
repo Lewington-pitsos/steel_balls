@@ -13,12 +13,12 @@ require_relative './scorer_manager/win_checker'
 
 class ScorerManager
 
-  def intialize
+  def initialize
     @checker = WinChecker.new()
     @resolver = WinResolver.new()
   end
 
-  def score(rated_selections)
+  def scored_selections(rated_selections)
     scored_selections = @checker.winners(rated_selections)
 
     if !scored_selections.any?
@@ -28,6 +28,8 @@ class ScorerManager
     state_score = @resolver.state_score(scored_selections)
     {selections: scored_selections, state_score: state_score}
   end
+
+  private
 
   def score_selections
     # to be added
