@@ -28,10 +28,10 @@
     <node id="n1">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="135.83119442072777" width="165.89921874010764" x="-377.9048319087391" y="184.45157265346396"/>
+          <y:Geometry height="602.5569235532244" width="165.89921874010764" x="-232.54406927712813" y="145.3505125827926"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="94.287109375" x="35.80605468255385" y="58.93122221036387">Score Manager<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="94.287109375" x="35.80605468255382" y="292.2940867766122">Score Manager<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -62,23 +62,6 @@
     <node id="n3">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="282.28999999999996" width="311.2599813717186" x="-377.9048319087391" y="514.3355685566722"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
-          <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="311.2599813717186" x="0.0" y="132.16062499999998">Scorer<y:LabelModel>
-              <y:SmartNodeLabelModel distance="4.0"/>
-            </y:LabelModel>
-            <y:ModelParameter>
-              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
-            </y:ModelParameter>
-          </y:NodeLabel>
-          <y:Shape type="rectangle"/>
-        </y:ShapeNode>
-      </data>
-    </node>
-    <node id="n4">
-      <data key="d6">
-        <y:ShapeNode>
           <y:Geometry height="581.455285996055" width="197.07492307692297" x="254.76234273299227" y="166.452150139962"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
@@ -94,7 +77,7 @@ Manager<y:LabelModel>
         </y:ShapeNode>
       </data>
     </node>
-    <node id="n5">
+    <node id="n4">
       <data key="d6">
         <y:ShapeNode>
           <y:Geometry height="302.5516962524652" width="233.4291637080865" x="870.13874269601" y="383.21205277757974"/>
@@ -122,7 +105,7 @@ Overseer<y:LabelModel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e1" source="n4" target="n0">
+    <edge id="e1" source="n3" target="n0">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-53.5518853888712" sy="85.19101868188875" tx="-389.43648114977714" ty="-158.28802650751248"/>
@@ -132,13 +115,13 @@ Overseer<y:LabelModel>
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e2" source="n1" target="n4">
+    <edge id="e2" source="n1" target="n3">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="-62.00382149901378" tx="-78.50460312949116" ty="-266.8164447731754"/>
+          <y:Path sx="0.0" sy="-256.2656259945907" tx="-78.50460312949116" ty="-266.8164447731754"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="73.84375" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="167.212890625" x="149.7892229364773" y="-36.921868920342206">all possible selections
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="73.84375" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="167.212890625" x="77.08044409603275" y="-36.921868920342206">all possible selections
 mapped to all
 possible ball arrangements
 and the current ball state
@@ -148,7 +131,7 @@ and the current ball state
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e3" source="n4" target="n2">
+    <edge id="e3" source="n3" target="n2">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="-238.60670611439832" tx="-117.07259691057804" ty="-54.496399926766856"/>
@@ -162,7 +145,7 @@ possible ball arrangements<y:PreferredPlacementDescriptor angle="0.0" angleOffse
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e4" source="n4" target="n5">
+    <edge id="e4" source="n3" target="n4">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="12.584107363046087" tx="-6.084629856549668" ty="-64.72400040277682"/>
@@ -178,7 +161,7 @@ results of weighing them
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e5" source="n5" target="n4">
+    <edge id="e5" source="n4" target="n3">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="84.43215363723743" tx="20.99909088387136" ty="161.74026140306034"/>
@@ -194,7 +177,7 @@ state are removed<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightS
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e6" source="n2" target="n4">
+    <edge id="e6" source="n2" target="n3">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="27.21255984119489" tx="85.56033348742181" ty="-156.89774634643658"/>
@@ -209,13 +192,13 @@ results of weighing them
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e7" source="n4" target="n3">
+    <edge id="e7" source="n3" target="n1">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="236.70314228258815" tx="0.0" ty="38.4023668639054"/>
+          <y:Path sx="0.0" sy="232.95410817953314" tx="-13.276825463949422" ty="243.50492695811786"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="73.84375" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="144.384765625" x="-232.89297509342035" y="-36.92187414973489">All rated selections
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="73.84375" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="144.384765625" x="-232.91860985904535" y="-36.9218848152899">All rated selections
 with all selections with 
 equal or lower ratings 
 to the passed in ball 
