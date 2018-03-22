@@ -6,7 +6,7 @@
 class WinResolver
 
   def state_score(scored_selections)
-    scored_selections.map { |sel| sel[:score] }.min + 1
+    scored_selections.map { |selection| selection[:score] }.min + 1
   end
 
 end

@@ -5,7 +5,7 @@
 # this array is returned
 
 require_relative './selection_manager/selection_scorer'
-
+require 'pry'
 class SelectionManager
 
   def initialize
@@ -15,6 +15,7 @@ class SelectionManager
 
   def score_all_selections(rated_selecions)
     # generates a scored selection object for each rated selection passed in
+    #binding.pry
     @scored_selections = []
 
     rated_selecions.each do |selection|

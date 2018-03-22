@@ -23,20 +23,20 @@ class ScorerManager
   end
 
   def scored_selections(rated_selections)
-    scored_selections = score_all(rated_selecions)
 
+    scored_selections = score_all(rated_selections)
     state_score = @resolver.state_score(scored_selections)
     {selections: scored_selections, state_score: state_score}
   end
 
   private
 
-  def score_all(rated_selecions)
+  def score_all(rated_selections)
     winners = @checker.winners(rated_selections)
     if winners.any?
       winners
     else
-      @selection_manager.score_all_selections(rated_selecions)
+      @selection_manager.score_all_selections(rated_selections)
     end
   end
 end

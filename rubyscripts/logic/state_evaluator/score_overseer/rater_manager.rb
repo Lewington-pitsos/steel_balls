@@ -16,6 +16,7 @@ require_relative './rater_manager/weigher/weigh_collector'
 class RaterManager
 
   def initialize(minimum_rating)
+    puts minimum_rating
     @judgement_overseer = JudgeManager.new(minimum_rating)
     @weigher = WeighCollector.new()
   end

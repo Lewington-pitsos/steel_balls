@@ -16,6 +16,15 @@ class ScorerManagerTest < Minitest::Test
     assert selections[:selections][0][:selection][:left]
   end
 
+  def test_score_all_always_returns_scored_selections
+    selections = @manager.send(:score_all, @winning_rated_selections)
+    selections.each do |selection|
+      assert selection[:score]
+      assert selection[:selection]
+      assert_instance_of Integer, selection[:score]
+    end
+  end
+
   def teardown
   end
 end
