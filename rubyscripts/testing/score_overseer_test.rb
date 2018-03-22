@@ -5,6 +5,9 @@ require_relative '../logic/state_evaluator/selection_overseer/state_expander'
 
 class ScoreOverseerTest < Minitest::Test
 
+  @@scored_selections = {:selections=>[{:selection=>{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>2, :possibly_lighter=>0, :normal=>0}}, :score=>2}, {:selection=>{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>1, :possibly_lighter=>1, :normal=>0}}, :score=>2}, {:selection=>{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>0, :possibly_lighter=>2, :normal=>0}}, :score=>2}, {:selection=>{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>1, :possibly_heavier=>1, :possibly_lighter=>0, :normal=>0}}, :score=>1}, {:selection=>{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>1, :normal=>0}}, :score=>1}], :state_score=>2}
+
+
   def setup
     @normal_state = {
       unknown: 8,
@@ -110,8 +113,11 @@ class ScoreOverseerTest < Minitest::Test
     @overseer = ScoreOverseer.new(28)
   end
 
-  def test_pending
+  def test_scores_correctly
+    scored_selections = @overseer.score(@example_selection_order)
 
+    assert_equal scored_selections.length, @@scored_selections.length
+    assert_equal scored_selections.to_s, @@scored_selections.to_s
   end
 
   def teardown

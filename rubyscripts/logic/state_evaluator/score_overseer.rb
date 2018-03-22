@@ -16,8 +16,8 @@ class ScoreOverseer
     @scorer = ScorerManager.new()
   end
 
-  def score(pre_weigh_state)
-    rated_selections = @rater.weighed_and_scored(pre_weigh_state)
+  def score(selection_order)
+    rated_selections = @rater.weighed_and_scored(selection_order)
     @scorer.scored_selections(rated_selections)
   end
 end
