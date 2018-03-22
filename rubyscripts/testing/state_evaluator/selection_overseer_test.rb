@@ -35,15 +35,15 @@ class SelectionOverseerTest < Minitest::Test
 
   def test_gathers_arrangements_correctly
     @overseer.send(:get_all_arranments)
-    assert_equal 4, @overseer.send(:arrangements).length
+    assert_equal 8, @overseer.send(:arrangements).length
 
     overseer = SelectionOverseer.new(@@small_state)
     overseer.send(:get_all_arranments)
-    assert_equal 2, overseer.send(:arrangements).length
+    assert_equal 4, overseer.send(:arrangements).length
 
     overseer = SelectionOverseer.new(@@light_state)
     overseer.send(:get_all_arranments)
-    assert_equal 3, overseer.send(:arrangements).length
+    assert_equal 7, overseer.send(:arrangements).length
   end
 
   def test_gathers_selections_correctly
@@ -54,10 +54,10 @@ class SelectionOverseerTest < Minitest::Test
 
   def test_merges_properly
     selections = @overseer.selections_to_weigh
-    
+
     selections.each do |selection|
       assert selection[:balls]
-      assert_equal 4, selection[:balls].length
+      assert_equal 8, selection[:balls].length
     end
   end
 
