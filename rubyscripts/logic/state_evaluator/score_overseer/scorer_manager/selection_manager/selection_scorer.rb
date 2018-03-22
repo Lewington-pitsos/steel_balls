@@ -17,6 +17,7 @@ class SelectionScorer
   end
 
   def score_selection(states)
+    @state_scores = []
     states.each do |rated_state|
       manager = StateManager.new(rated_state)
       @state_scores << manager.score

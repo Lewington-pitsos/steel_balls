@@ -10,6 +10,7 @@
 
 require_relative './scorer_manager/win_resolver'
 require_relative './scorer_manager/win_checker'
+require_relative './scorer_manager/selection_manager'
 
 class ScorerManager
 
@@ -32,7 +33,7 @@ class ScorerManager
   private
 
   def score_selections
-    # to be added
+    # tbd
     false
   end
 
