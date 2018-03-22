@@ -5,7 +5,7 @@ require 'pg'
 
 class SelectionRecorderTest < Minitest::Test
 
-  @@databse_name = 'test_steel_balls'
+  @@database_name = 'test_steel_balls'
 
   @@example_side = {
     unknown: 0,
@@ -19,12 +19,12 @@ class SelectionRecorderTest < Minitest::Test
   CMD
 
   def setup
-    @db = PG.connect({ dbname: @@databse_name, user: 'postgres' })
-    @setup = Setup.new(@@databse_name)
+    @db = PG.connect({ dbname: @@database_name, user: 'postgres' })
+    @setup = Setup.new(@@database_name)
     @setup.suppress_warnings
     @setup.send(:clear_database)
     @setup.setup_if_needed
-    @recorder = SelectionRecorder.new(@@databse_name)
+    @recorder = SelectionRecorder.new(@@database_name)
   end
 
   def test_saves_single_state

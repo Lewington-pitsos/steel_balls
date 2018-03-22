@@ -7,7 +7,7 @@ class StateRecorder < Archivist
 
   def initialize(name=false)
     super(name)
-    @selection_recorder = SelectionRecorder.new()
+    @selection_recorder = SelectionRecorder.new(name)
   end
 
   def record_state(scored_state)
@@ -34,8 +34,7 @@ class StateRecorder < Archivist
             #{state[:state][:possibly_heavier]},
             #{state[:state][:normal]},
             #{state[:score]}
-          )
-        END IF;
+          );
       COMMAND
     )
   end
