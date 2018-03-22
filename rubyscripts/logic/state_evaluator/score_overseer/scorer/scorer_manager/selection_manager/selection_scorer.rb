@@ -8,6 +8,8 @@
 
 # finally we return this score
 
+require_relative '../../../../../state_manager'
+
 class SelectionScorer
 
   def initialize
