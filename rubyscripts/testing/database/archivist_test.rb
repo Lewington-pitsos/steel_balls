@@ -7,7 +7,7 @@ class ArchivistTest < Minitest::Test
     @archivist = Archivist.new('test_steel_balls')
   end
 
-  def test_sets_up_empty_databse
+  def test_sets_up_empty_database
     database = @archivist.send(:db).exec('SELECT current_database();').values[0][0]
 
     assert_equal 'test_steel_balls', database

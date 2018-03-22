@@ -65,6 +65,10 @@ class Setup < Archivist
     DROP TABLE IF EXISTS scored_states;
   COMMAND
 
+  @@suppress_warnings = <<~COMMAND
+    SET client_min_messages TO WARNING;
+  COMMAND
+
   def initialize(name)
     super(name)
   end
@@ -72,6 +76,10 @@ class Setup < Archivist
   def setup_if_needed
 
     setup_tables_if_needed
+  end
+
+  def suppress_warnings
+    @db.exec(@@suppress_warnings)
   end
 
   private
@@ -91,7 +99,6 @@ class Setup < Archivist
       @db.exec('SELECT * FROM states_prev_selections;')
       @db.exec('SELECT * FROM selections_prev_states;')
     rescue
-      puts "At least one table is missing"
       return true
     end
 

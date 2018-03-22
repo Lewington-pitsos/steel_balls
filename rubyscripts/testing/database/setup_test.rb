@@ -5,6 +5,7 @@ class ArchivistTest < Minitest::Test
 
   def setup
     @setup = Setup.new('test_steel_balls')
+    @setup.suppress_warnings
     @setup.send(:clear_database)
   end
 
@@ -30,6 +31,5 @@ class ArchivistTest < Minitest::Test
   end
 
   def teardown
-    @setup.send(:clear_database)
   end
 end
