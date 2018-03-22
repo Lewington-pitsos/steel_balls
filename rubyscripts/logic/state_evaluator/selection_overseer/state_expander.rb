@@ -1,6 +1,6 @@
 # gets passed in a state and from that state, generates all possible arrays of balls (i.e. the possible different positions of differently weighted balls) and returns them
 
-require_relative '../../../shared/arrangement_generator'
+require_relative '../../shared/arrangement_generator'
 
 class StateExpander
 

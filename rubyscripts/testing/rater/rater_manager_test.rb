@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require_relative '../../logic/state_evaluator/score_overseer/rater/rater_manager'
-require_relative '../../logic/state_evaluator/selection_overseer/all_arrangements/state_expander'
+require_relative '../../logic/state_evaluator/selection_overseer/state_expander'
 
 class RaterManagerTest < Minitest::Test
 
