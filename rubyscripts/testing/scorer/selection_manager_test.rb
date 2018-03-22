@@ -15,7 +15,7 @@ class SelectionManagerTest < Minitest::Test
     @manager = SelectionManager.new()
   end
 
-  def test_gets_correct_scores
+  def test_gets_correct_scores_for_winners
     assert_equal 1, @manager.send(:get_score, @@winning_selection)
 
     assert_equal 1, @manager.send(:get_score, @@winning_selection2)
