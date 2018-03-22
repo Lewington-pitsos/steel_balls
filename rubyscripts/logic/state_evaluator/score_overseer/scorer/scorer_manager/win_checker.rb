@@ -19,7 +19,7 @@ class WinChecker
     rated_selections.each do |selection|
       if winner?(selection)
         selection[:selection].delete(:states)
-        @@winning_selections << { selection: selection[:selection], score: 0 }
+        @winning_selections << { selection: selection[:selection], score: 0 }
       end
     end
 
