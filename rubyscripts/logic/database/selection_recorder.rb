@@ -29,27 +29,27 @@ class SelectionRecorder < Archivist
   def save_side(side)
     @db.exec(
       <<~COMMAND
-
-        IF NOT EXISTS SELECT 1
-          FROM selection_sides
-          WHERE unknown = #{side[:unknown]} AND
-            possibly_lighter = #{side[:possibly_lighter]} AND
-            possibly_heavier = #{side[:possibly_heavier]} AND
-            normal = #{side[:normal]}
-        BEGIN
+          IF EXISTS ( SELECT 1
+            FROM selection_sides
+            WHERE unknown = #{side[:unknown]} AND
+              possibly_lighter = #{side[:possibly_lighter]} AND
+              possibly_heavier = #{side[:possibly_heavier]} AND
+              normal = #{side[:normal]}
+            )
+          THEN
           INSERT INTO selection_sides (
               unknown,
-              normal,
               possibly_lighter,
-              possibly_heavier
+              possibly_heavier,
+              normal
             )
           VALUES (
             #{side[:unknown]},
             #{side[:possibly_lighter]},
             #{side[:possibly_heavier]},
-            #{side[:normal]},
+            #{side[:normal]}
           )
-        END;
+        END IF;
 
       COMMAND
     )
