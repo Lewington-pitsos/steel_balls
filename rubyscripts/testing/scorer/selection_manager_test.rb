@@ -9,6 +9,8 @@ class SelectionManagerTest < Minitest::Test
 
   @@example_selection = {:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>2, :possibly_lighter=>0, :normal=>0}, :states=>[{:rating=>29, :state=>{:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5}}, {:rating=>37, :state=>{:unknown=>0, :possibly_lighter=>0, :possibly_heavier=>1, :normal=>7}}, {:rating=>31, :state=>{:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>2, :normal=>5}}]}
 
+  @@example_selection2 = {:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>0}, :right=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>0}, :states=>[{:rating=>34, :state=>{:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>6}}, {:rating=>10, :state=>{:unknown=>6, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>2}}]}
+
   def setup
 
     @winning_rated_selection = {:rating=>30, :selection=>{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>1, :possibly_heavier=>1, :possibly_lighter=>0, :normal=>0}, :states=>[{:rating=>31, :state=>{:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>2, :normal=>5}}, {:rating=>34, :state=>{:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>6}}, {:rating=>31, :state=>{:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>1, :normal=>5}}]}}
@@ -46,6 +48,7 @@ class SelectionManagerTest < Minitest::Test
 
   def test_gets_correct_scores_for_non_winners
     assert_equal 2, @manager.send(:get_score, @@example_selection)
+    # assert_equal 3, @manager.send(:get_score, @@example_selection2)
   end
 
   def teardown

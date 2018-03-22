@@ -1,6 +1,6 @@
 # gets passed in a state and the associated state rating
 
-# automatically returns 0 if the state's rating is already a winning rating, otherwise: 
+# automatically returns 0 if the state's rating is already a winning rating, otherwise:
 
 # checks the database to see if the score has already been recorded
 # => if so, we simply return the recorded score
@@ -19,7 +19,6 @@ class StateManager
   end
 
   def score
-
     if @rating >= 37
       return 0
     end
