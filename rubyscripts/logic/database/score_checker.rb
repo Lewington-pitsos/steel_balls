@@ -2,21 +2,35 @@
 
 require_relative './archivist'
 
-class ScoreChceker < Archivist
+class ScoreChecker < Archivist
 
   def initialize(name=false)
     super(name)
+    @score = nil
   end
 
   def recorded_score(state)
-    score = @db.exec(
+    get_recorded_score(state)
+    if @score.ntuples == 1
+      @score[0]['score'].to_i
+    else
+      nil
+    end
+  end
+
+  private
+
+  attr_reader :score
+
+  def get_recorded_score(state)
+    @score = @db.exec(
       <<~CMD
         SELECT score FROM scored_states
-          WHERE unknown = #{side[:unknown]} AND
-            possibly_lighter = #{side[:possibly_lighter]} AND
-            possibly_heavier = #{side[:possibly_heavier]} AND
-            normal = #{side[:normal]}
+          WHERE unknown = #{state[:unknown]} AND
+            possibly_lighter = #{state[:possibly_lighter]} AND
+            possibly_heavier = #{state[:possibly_heavier]} AND
+            normal = #{state[:normal]}
       CMD
-    ).values
+    )
   end
 end
