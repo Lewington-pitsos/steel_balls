@@ -1,10 +1,10 @@
 require "minitest/autorun"
-require_relative '../../logic/state_evaluator/score_overseer/rater/rater_manager'
+require_relative '../../logic/state_evaluator/score_overseer/rater/rater_manager/weigher/weigh_collector'
 
-class RaterManagerTest < Minitest::Test
+class WeighCollectorTest < Minitest::Test
 
   def setup
-    @manager = RaterManager.new()
+    @collector= WeighCollector.new()
   end
 
   def teardown
