@@ -13,6 +13,9 @@
 require_relative './weigh_collector/scale_manager'
 
 class WeighCollector
+
+  attr_accessor :weighed_selections
+
   def initialize
     @scale_manager = ScaleManager.new()
     @weighed_selections = []
