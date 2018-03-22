@@ -43,9 +43,9 @@ class StateExpanderTest < Minitest::Test
   end
 
   def test_class_weights
-    assert_equal :heavier, StateExpander.weights
-    StateExpander.weights = :both
     assert_equal :both, StateExpander.weights
+    StateExpander.weights = :heavier
+    assert_equal :heavier, StateExpander.weights
   end
 
   def test_default_weights
@@ -67,31 +67,29 @@ class StateExpanderTest < Minitest::Test
   end
 
   def test_generates_correct_arrangements
-    all_possible_arrangements = @arr_expander.expand(@@small_state)
+    all_possible_arrangements = @arr_expander.expand(@@medium_state)
+    assert_equal 8, all_possible_arrangements.length
+
+    StateExpander.weights = :heavier
+    new_expander = StateExpander.new()
+    all_possible_arrangements = new_expander.expand(@@small_state)
     assert_equal 2, all_possible_arrangements.length
 
-    all_possible_arrangements = @arr_expander.expand(@@medium_state)
-    assert_equal 4, all_possible_arrangements.length
-
-    StateExpander.weights = :both
-    new_expander = StateExpander.new()
     all_possible_arrangements = new_expander.expand(@@medium_state)
-    assert_equal 8, all_possible_arrangements.length
+    assert_equal 4, all_possible_arrangements.length
   end
 
   def test_takes_ball_markings_into_account
     all_possible_arrangements = @arr_expander.expand(@@light_state)
-    assert_equal 3, all_possible_arrangements.length
+    assert_equal 7, all_possible_arrangements.length
 
-    StateExpander.weights = :both
-    new_expander = StateExpander.new()
-    all_possible_arrangements = new_expander.expand(@@normal_state)
+    all_possible_arrangements = @arr_expander.expand(@@normal_state)
     assert_equal 1, all_possible_arrangements.length
   end
 
 
   def teardown
-    StateExpander.weights = :heavier
+    StateExpander.weights = :both
   end
 
 end
