@@ -28,10 +28,11 @@
     <node id="n1">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="64.63999999999999" width="99.32979043743643" x="-62.67057942708243" y="259.0221985368908"/>
+          <y:Geometry height="448.32640753828025" width="99.32979043743643" x="-50.7608503340318" y="113.75616699218779"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="99.32979043743643" x="0.0" y="23.335624999999993">win checker<y:LabelModel>
+          <y:NodeLabel alignment="center" autoSizePolicy="node_width" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="99.32979043743643" x="0.0" y="208.19445376914013">Scorer
+manager<y:LabelModel>
               <y:SmartNodeLabelModel distance="4.0"/>
             </y:LabelModel>
             <y:ModelParameter>
@@ -96,23 +97,6 @@
     <node id="n5">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="213.75" width="213.75" x="-109.88068420836422" y="500.857636718752"/>
-          <y:Fill color="#FFCC00" transparent="false"/>
-          <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="79.28125" x="67.234375" y="97.890625">Win resolver<y:LabelModel>
-              <y:SmartNodeLabelModel distance="4.0"/>
-            </y:LabelModel>
-            <y:ModelParameter>
-              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
-            </y:ModelParameter>
-          </y:NodeLabel>
-          <y:Shape type="rectangle"/>
-        </y:ShapeNode>
-      </data>
-    </node>
-    <node id="n6">
-      <data key="d6">
-        <y:ShapeNode>
           <y:Geometry height="116.0" width="199.0" x="846.9698873657762" y="669.2877866269514"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
@@ -130,10 +114,10 @@
     <edge id="e0" source="n1" target="n2">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="-25.087877218934867"/>
+          <y:Path sx="0.0" sy="-81.34070579334167" tx="0.0" ty="-59.85141078783943"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="59.875" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="center" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="157.263671875" x="116.33760233134896" y="-29.93749506662482">all possible selections, 
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="59.875" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="center" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="157.263671875" x="110.3675248612727" y="-29.937509348420008">all possible selections, 
 mapped to
 - the resuling ball states, 
 - and ratings<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="center" side="anywhere" sideReference="relative_to_edge_flow"/>
@@ -156,11 +140,11 @@ mapped to
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="66.91853141950173" sy="-39.34250179132863" tx="80.76128906249983" ty="-58.394887431251306">
-            <y:Point x="545.5157359467455" y="183.79430159409003"/>
+            <y:Point x="548.1526143448609" y="183.79430159409003"/>
           </y:Path>
           <y:LineStyle color="#000000" type="dashed_dotted" width="2.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="center" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="90.888671875" x="-79.81212220982309" y="-73.70875252326698">Each selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="center" side="anywhere" sideReference="relative_to_edge_flow"/>
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="center" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="90.888671875" x="-77.91266418498049" y="-74.2258728845951">Each selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="center" side="anywhere" sideReference="relative_to_edge_flow"/>
           </y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
@@ -664,16 +648,13 @@ and its rating<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e48" source="n2" target="n5">
+    <edge id="e48" source="n2" target="n1">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="83.6262573964497" tx="-59.494315791635785" ty="0.0">
-            <y:Point x="498.8686242044119" y="400.0563331522754"/>
-            <y:Point x="498.8686242044119" y="607.732636718752"/>
-          </y:Path>
+          <y:Path sx="-59.28091638562063" sy="63.62625739644972" tx="5.514449814962447" ty="42.136962390947474"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
-          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="center" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="144.859375" x="-190.36264561098898" y="184.72317626953327">All selections and their 
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="center" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="144.859375" x="-225.44501637284012" y="-22.95312729694342">All selections and their 
 scores (distance from 
 a win)<y:LabelModel>
               <y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/>
@@ -724,7 +705,7 @@ that selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e52" source="n6" target="n6">
+    <edge id="e52" source="n5" target="n5">
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -736,7 +717,7 @@ that selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide
         </y:ArcEdge>
       </data>
     </edge>
-    <edge id="e53" source="n6" target="n6">
+    <edge id="e53" source="n5" target="n5">
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -748,7 +729,7 @@ that selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide
         </y:ArcEdge>
       </data>
     </edge>
-    <edge id="e54" source="n6" target="n6">
+    <edge id="e54" source="n5" target="n5">
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -760,7 +741,7 @@ that selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide
         </y:ArcEdge>
       </data>
     </edge>
-    <edge id="e55" source="n6" target="n6">
+    <edge id="e55" source="n5" target="n5">
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -772,7 +753,7 @@ that selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide
         </y:ArcEdge>
       </data>
     </edge>
-    <edge id="e56" source="n6" target="n6">
+    <edge id="e56" source="n5" target="n5">
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -784,7 +765,7 @@ that selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide
         </y:ArcEdge>
       </data>
     </edge>
-    <edge id="e57" source="n6" target="n6">
+    <edge id="e57" source="n5" target="n5">
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -796,7 +777,7 @@ that selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide
         </y:ArcEdge>
       </data>
     </edge>
-    <edge id="e58" source="n6" target="n6">
+    <edge id="e58" source="n5" target="n5">
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -808,7 +789,7 @@ that selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide
         </y:ArcEdge>
       </data>
     </edge>
-    <edge id="e59" source="n6" target="n6">
+    <edge id="e59" source="n5" target="n5">
       <data key="d10">
         <y:ArcEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
@@ -820,7 +801,7 @@ that selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide
         </y:ArcEdge>
       </data>
     </edge>
-    <edge id="e60" source="n3" target="n6">
+    <edge id="e60" source="n3" target="n5">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="40.42628007329358" sy="-19.101560541002108" tx="49.70168111897601" ty="-11.812009927423333"/>
@@ -838,7 +819,7 @@ that selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide
         </y:PolyLineEdge>
       </data>
     </edge>
-    <edge id="e61" source="n6" target="n3">
+    <edge id="e61" source="n5" target="n3">
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-38.72306774112565" sy="35.146832528198274" tx="-47.998468786808075" ty="56.83701194689823"/>
