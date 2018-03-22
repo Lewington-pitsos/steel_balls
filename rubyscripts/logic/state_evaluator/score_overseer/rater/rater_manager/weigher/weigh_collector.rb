@@ -1,5 +1,5 @@
 # this guy gets passed in a whole huge bunch of complex selection orders
-# (these are hashes composed of:
+# these are hashes composed of:
 # => a single right selectioin
 # => an array of left selections
 # => an array of possible ball arrangements
