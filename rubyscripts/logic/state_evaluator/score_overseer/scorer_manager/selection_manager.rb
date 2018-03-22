@@ -26,6 +26,8 @@ class SelectionManager
 
   private
 
+  attr_reader :scored_selections
+
   def generate_scored_selection(rated_selection)
     # seperates the selection from it's rating, generates a score for it, deletes it's states and adds it to the array of scored selections
     selection = rated_selection[:selection]
