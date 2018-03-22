@@ -27,8 +27,6 @@ class SelectionOverseerTest < Minitest::Test
 
   @@medium_selection = [{:left=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}, :right=>[{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}]}]
 
-
-
   def setup
     @overseer = SelectionOverseer.new(@@medium_state)
   end

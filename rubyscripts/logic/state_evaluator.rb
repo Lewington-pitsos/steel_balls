@@ -10,10 +10,8 @@
 class StateEvaluator
 
   def initialize(state, rating)
-    @state = state
-    @rating = rating
-    @selector = SelectionOverseer.new(@state)
-    @scorer = ScoreOverseer.new()
+    @selector = SelectionOverseer.new(state)
+    @scorer = ScoreOverseer.new(rating)
     @saver = nil
   end
 
