@@ -14,6 +14,7 @@ class SelectionManager
   end
 
   def score_all_selections(rated_selecions)
+    # generates a scored selection object for each rated selection passed in
     @scored_selections = []
 
     rated_selecions.each do |selection|
@@ -25,15 +26,16 @@ class SelectionManager
 
   private
 
-  def generate_scored_selection(selection)
-    selection_object = selection[:selection]
-    score = get_score(selection_object)
-    selection_object.delete(:states)
-    @scored_selections << { selection: selection_object, score: score }
+  def generate_scored_selection(rated_selection)
+    # seperates the selection from it's rating, generates a score for it, deletes it's states and adds it to the array of scored selections
+    selection = rated_selection[:selection]
+    score = get_score(selection)
+    selection.delete(:states)
+    @scored_selections << { selection: selection, score: score }
   end
 
-  def get_score(selection_object)
-    states = selection_object[:states]
+  def get_score(selection)
+    states = selection[:states]
     @selection_scorer.score_selection(states)
   end
 
