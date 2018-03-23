@@ -29,7 +29,8 @@ class ScoreChecker < Archivist
           WHERE unknown = #{state[:unknown]} AND
             possibly_lighter = #{state[:possibly_lighter]} AND
             possibly_heavier = #{state[:possibly_heavier]} AND
-            normal = #{state[:normal]}
+            normal = #{state[:normal]} AND
+            score IS NOT NULL;
       CMD
     )
   end

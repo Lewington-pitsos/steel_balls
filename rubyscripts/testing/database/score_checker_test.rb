@@ -1,7 +1,6 @@
 require "minitest/autorun"
 require './rubyscripts/testing/test_defaults'
-require_relative '../../logic/database/state_recorder'
-require_relative '../../logic/database/score_checker'
+require './rubyscripts/logic/database/score_checker'
 
 class ScoreCheckerTest < Minitest::Test
   @@example_state = {
