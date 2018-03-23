@@ -2,20 +2,15 @@
 
 
 require_relative './ball'
+require_relative '../config'
 
 class MarkChanger
-
-  @@default_state =  {
-      unknown: 8,
-      possibly_heavier: 0,
-      possibly_lighter: 0,
-      normal: 0
-    }
 
   attr_accessor :state
 
   def initialize
-    @state = @@default_state
+    p $DEFAULT_LENGTH
+    @state = default_state
     @balls = []
     @index = 0
   end
@@ -37,6 +32,15 @@ class MarkChanger
   end
 
   private
+
+  def default_state
+    {
+      unknown: $DEFAULT_LENGTH,
+      possibly_heavier: 0,
+      possibly_lighter: 0,
+      normal: 0
+    }
+  end
 
   def mark_ball_as(mark)
     # marks the ball at the current index as the passed in mark and moves the index up one

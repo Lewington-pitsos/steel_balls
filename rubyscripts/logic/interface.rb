@@ -1,11 +1,12 @@
 require_relative './state_manager'
-
+require_relative './shared/arrangement_generator/ball_generator'
 
 class Interface
 
   @@default_rating = 0
 
   def initialize
+    @length = 0
     request_starting_state
   end
 
@@ -14,19 +15,37 @@ class Interface
     puts 'Welcome to Steel Ball Calculator®. Please enter the number of balls you would like to weigh:'
     puts 'Ball Number:'
 
-    number = gets.to_i
-    state = generate_state(number)
+    @length = gets.to_i
+    state = generate_state
+    setup_defaults
 
-    puts "\nThank you, we will now calculate the number of weighs it will take for know, for certain which ball is differently weighted\n"
+    puts "\nThank you, we will now calculate the number of weighs it will take for know for certain which ball is differently weighted\n"
     puts "Calculating...\n"
+
     score = calculate_state_score(state)
+
     puts "\nSuccess! Steel Ball Calculator® has calculated that you will need only #{score} weighs to determine the odd ball cor certain\n\n"
     puts "========================[ END OF PROGRAM ] ========================\n\n\n"
   end
 
-  def generate_state(num)
+  private
+
+  def setup_defaults
+    set_winning_rating
+    set_deafult_length
+  end
+
+  def set_winning_rating
+    $WINNING_RATING = @length * 5 - 3
+  end
+
+  def set_deafult_length
+    $DEFAULT_LENGTH = @length
+  end
+
+  def generate_state
     {
-      unknown: num,
+      unknown: @length,
       possibly_heavier: 0,
       possibly_lighter: 0,
       normal: 0

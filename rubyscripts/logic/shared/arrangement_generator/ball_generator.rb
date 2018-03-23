@@ -3,6 +3,7 @@
 
 require_relative './ball'
 require_relative '../ball_helper'
+require_relative '../config'
 
 class BallGenerator
 
@@ -10,9 +11,8 @@ class BallGenerator
 
   attr_reader :length
 
-  @@default_length = 8
-
-  def initialize(length=@@default_length)
+  def initialize(length=$DEFAULT_LENGTH)
+    p $DEFAULT_LENGTH
     @length = length
   end
 
