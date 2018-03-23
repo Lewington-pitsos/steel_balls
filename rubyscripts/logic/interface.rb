@@ -24,7 +24,7 @@ class Interface
 
     score = calculate_state_score(state)
 
-    puts "\nSuccess! Steel Ball Calculator® has calculated that you will need only #{score} weighs to determine the odd ball cor certain\n\n"
+    puts "\nSuccess! Steel Ball Calculator® has calculated that you will need only #{score} weighs to determine the odd ball for certain\n\n"
     puts "========================[ END OF PROGRAM ] ========================\n\n\n"
   end
 

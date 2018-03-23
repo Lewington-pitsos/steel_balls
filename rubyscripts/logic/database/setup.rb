@@ -82,6 +82,10 @@ class Setup < Archivist
     @db.exec(@@suppress_warnings)
   end
 
+  def clear_database
+    @db.exec(@@drop_all_tables)
+  end
+
   private
 
   def setup_tables_if_needed
@@ -112,10 +116,6 @@ class Setup < Archivist
     @db.exec(@@states_prev_selections_setup)
     @db.exec(@@selections_prev_states_setup)
     true
-  end
-
-  def clear_database
-    @db.exec(@@drop_all_tables)
   end
 end
 
