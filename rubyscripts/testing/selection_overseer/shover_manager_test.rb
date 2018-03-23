@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require 'set'
+require './rubyscripts/testing/test_defaults'
 require_relative '../../logic/state_evaluator/selection_overseer/omni_selector/whole_selection_generator/selection_side_generator/shover_manager.rb'
 
 class ShoverManagerTest < Minitest::Test

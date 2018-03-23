@@ -1,5 +1,6 @@
 require "minitest/autorun"
 require "set"
+require './rubyscripts/testing/test_defaults'
 require_relative '../../logic/state_evaluator/selection_overseer'
 
 class SelectionOverseerTest < Minitest::Test

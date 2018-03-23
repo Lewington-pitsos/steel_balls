@@ -1,6 +1,7 @@
 require "minitest/autorun"
+require './rubyscripts/testing/test_defaults'
 require_relative '../../../logic/state_evaluator/score_overseer/rater_manager/weigher/weigh_collector/scale_manager/scale/balancer/comparer'
-require_relative '../../../logic/shared/arrangement_generator/ball_generator'
+
 
 class ComparerTest < Minitest::Test
 

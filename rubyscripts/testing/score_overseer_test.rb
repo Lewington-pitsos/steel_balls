@@ -1,9 +1,7 @@
 require "minitest/autorun"
 require './rubyscripts/testing/test_defaults'
 require_relative '../logic/state_evaluator/score_overseer'
-require_relative '../logic/state_evaluator/selection_overseer/state_expander'
-require_relative '../logic/database/setup'
-require_relative '../logic/database/archivist'
+
 
 class ScoreOverseerTest < Minitest::Test
 

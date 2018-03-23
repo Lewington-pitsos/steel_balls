@@ -1,10 +1,11 @@
 require "minitest/autorun"
+require './rubyscripts/testing/test_defaults'
 require_relative '../../logic/database/setup'
 
 class SetupTest < Minitest::Test
 
   def setup
-    @setup = Setup.new('test_steel_balls')
+    @setup = Setup.new($DATABASE_NAME)
     @setup.suppress_warnings
     @setup.send(:clear_database)
   end

@@ -1,10 +1,11 @@
 require "minitest/autorun"
+require './rubyscripts/testing/test_defaults'
 require_relative '../../logic/database/archivist'
 
 class ArchivistTest < Minitest::Test
 
   def setup
-    @archivist = Archivist.new('test_steel_balls')
+    @archivist = Archivist.new($DATABASE_NAME)
   end
 
   def test_sets_up_empty_database

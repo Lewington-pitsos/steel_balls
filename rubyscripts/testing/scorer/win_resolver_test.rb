@@ -1,4 +1,5 @@
 require "minitest/autorun"
+require './rubyscripts/testing/test_defaults'
 require_relative '../../logic/state_evaluator/score_overseer/scorer_manager/win_resolver'
 
 class WinResolverTest < Minitest::Test

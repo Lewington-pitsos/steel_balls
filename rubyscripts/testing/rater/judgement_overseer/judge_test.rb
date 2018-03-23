@@ -1,4 +1,5 @@
 require "minitest/autorun"
+require './rubyscripts/testing/test_defaults'
 require_relative '../../../logic/state_evaluator/score_overseer/rater_manager/judgement_overseer/judge_manager/judge'
 
 class JudgeTest < Minitest::Test

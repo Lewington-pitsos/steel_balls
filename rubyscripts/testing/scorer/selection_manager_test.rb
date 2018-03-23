@@ -1,11 +1,8 @@
 require "minitest/autorun"
+require './rubyscripts/testing/test_defaults'
 require_relative '../../logic/state_evaluator/score_overseer/scorer_manager/selection_manager'
-require_relative '../../logic/database/setup'
-require_relative '../../logic/database/archivist'
 
 class SelectionManagerTest < Minitest::Test
-
-  @@database_name = 'test_steel_balls'
 
   @@winning_selection = {:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>1, :possibly_lighter=>1, :normal=>0}, :states=>[{:rating=>34, :state=>{:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>6}}]}
 
@@ -17,7 +14,7 @@ class SelectionManagerTest < Minitest::Test
 
   def setup
 
-    Archivist.set_db_name(@@database_name)
+    Archivist.set_db_name($DATABASE_NAME)
 
     @setup = Setup.new()
     @setup.suppress_warnings

@@ -1,11 +1,9 @@
 require "minitest/autorun"
+require './rubyscripts/testing/test_defaults'
 require_relative '../../logic/database/selection_recorder'
-require_relative '../../logic/database/setup'
 require 'pg'
 
 class SelectionRecorderTest < Minitest::Test
-
-  @@database_name = 'test_steel_balls'
 
   @@example_side = {
     unknown: 0,
@@ -19,12 +17,12 @@ class SelectionRecorderTest < Minitest::Test
   CMD
 
   def setup
-    @db = PG.connect({ dbname: @@database_name, user: 'postgres' })
-    @setup = Setup.new(@@database_name)
+    @db = PG.connect({ dbname: $DATABASE_NAME, user: 'postgres' })
+    @setup = Setup.new($DATABASE_NAME)
     @setup.suppress_warnings
     @setup.send(:clear_database)
     @setup.setup_if_needed
-    @recorder = SelectionRecorder.new(@@database_name)
+    @recorder = SelectionRecorder.new($DATABASE_NAME)
   end
 
   def saves_single_state

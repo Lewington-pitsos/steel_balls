@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require_relative '../../logic/database/info_miner'
+require './rubyscripts/testing/test_defaults'
 require_relative '../../logic/database/setup'
 
 class InfoMinerTest < Minitest::Test
@@ -7,9 +7,8 @@ class InfoMinerTest < Minitest::Test
   @@databse_name = 'test_steel_balls'
 
   def setup
-    @setup = Setup.new(@@databse_name)
+    @setup = Setup.new($DATABASE_NAME)
     @setup.setup_if_needed
-    @archivist = InfoMiner.new(@@databse_name)
   end
 
   def teardown

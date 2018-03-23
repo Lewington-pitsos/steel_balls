@@ -1,8 +1,6 @@
 require "minitest/autorun"
 require './rubyscripts/testing/test_defaults'
 require_relative '../logic/state_manager'
-require_relative '../logic/database/setup'
-require_relative '../logic/database/archivist'
 
 class StateManagerTest < Minitest::Test
 
@@ -196,10 +194,10 @@ class StateManagerTest < Minitest::Test
     manager = StateManager.new(@@state7)
     assert_equal 3, manager.score
 
-    $WINNING_RATING = 57
-    $DEFAULT_LENGTH = 12
-    manager = StateManager.new(@@state12)
-    assert_equal 3, manager.score
+    # $WINNING_RATING = 57
+    # $DEFAULT_LENGTH = 12
+    # manager = StateManager.new(@@state12)
+    # assert_equal 3, manager.score
 
 
     $WINNING_RATING = 37

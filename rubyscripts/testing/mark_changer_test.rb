@@ -1,7 +1,6 @@
 require "minitest/autorun"
 require './rubyscripts/testing/test_defaults'
 require_relative '../logic/shared/arrangement_generator/mark_changer'
-require_relative '../logic/shared/arrangement_generator/ball_generator'
 
 class MarkChangerTest < Minitest::Test
   @@basic_state = {

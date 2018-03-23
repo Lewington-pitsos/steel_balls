@@ -1,6 +1,7 @@
 require "minitest/autorun"
+require './rubyscripts/testing/test_defaults'
 require_relative '../../logic/state_evaluator/score_overseer/rater_manager'
-require_relative '../../logic/state_evaluator/selection_overseer/state_expander'
+
 
 class RaterManagerTest < Minitest::Test
 
