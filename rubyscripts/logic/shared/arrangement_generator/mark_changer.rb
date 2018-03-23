@@ -9,7 +9,6 @@ class MarkChanger
   attr_accessor :state
 
   def initialize
-    p $DEFAULT_LENGTH
     @state = default_state
     @balls = []
     @index = 0
@@ -17,7 +16,7 @@ class MarkChanger
 
   def marked_balls(balls, state=@state)
     # for each kvp in the current state, we mark that number of balls with the appropriate mark. Each time we mark a ball we move to the next ball
-    # as long as the number of balls in the state and the passed in array are the same we should be fine
+    # as long as the number of balls in the state and the passed in array are the same we should 
     @balls = balls
     @index = 0
 

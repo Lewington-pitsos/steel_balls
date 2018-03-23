@@ -8,8 +8,6 @@
 
 class WinChecker
 
-  @@winning_rating = $WINNING_RATING || 37 # 7 normals and one posibly_heavier or possibly_lighter
-
   def initialize
     @winning_selections = []
   end
@@ -29,6 +27,6 @@ class WinChecker
   private
 
   def winner?(selection)
-    selection[:rating] >= @@winning_rating
+    selection[:rating] >= ($WINNING_RATING || 37)
   end
 end

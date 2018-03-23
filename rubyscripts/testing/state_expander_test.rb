@@ -24,6 +24,13 @@ class StateExpanderTest < Minitest::Test
     normal: 0
   }
 
+  @@big_state = {
+    unknown: 12,
+    possibly_heavier: 0,
+    possibly_lighter: 0,
+    normal: 0
+  }
+
   @@light_state = {
     unknown: 3,
     possibly_heavier: 0,
@@ -69,6 +76,9 @@ class StateExpanderTest < Minitest::Test
   def test_generates_correct_arrangements
     all_possible_arrangements = @arr_expander.expand(@@medium_state)
     assert_equal 8, all_possible_arrangements.length
+
+    all_possible_arrangements = @arr_expander.expand(@@big_state)
+    assert_equal 24, all_possible_arrangements.length
 
     StateExpander.weights = :heavier
     new_expander = StateExpander.new()

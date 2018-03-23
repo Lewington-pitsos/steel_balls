@@ -87,6 +87,16 @@ class StateManagerTest < Minitest::Test
     rating: 0
   }
 
+  @@small_state ={
+    state: {
+      unknown: 4,
+      possibly_heavier: 0,
+      possibly_lighter: 0,
+      normal: 0
+    },
+    rating: 0
+  }
+
 
   def setup
     Archivist.set_db_name(@@database_name)
@@ -95,6 +105,8 @@ class StateManagerTest < Minitest::Test
     @setup.suppress_warnings
     @setup.send(:clear_database)
     @setup.setup_if_needed
+    $WINNING_RATING = 37
+    $DEFAULT_LENGTH = 8
   end
 
   def test_deafult_score_for_winning_states
@@ -106,7 +118,7 @@ class StateManagerTest < Minitest::Test
     assert_equal 0, manager.score
   end
 
-  def test_rates_states_correctly
+  def test_scores_states_correctly
     manager = StateManager.new(@@almost_winning_state)
     assert_equal 1, manager.score
 
@@ -121,6 +133,15 @@ class StateManagerTest < Minitest::Test
 
     manager = StateManager.new(@@hard_state)
     assert_equal 3, manager.score
+  end
+
+  def test_scores_different_sized_states_correctly
+    $WINNING_RATING = 17
+    $DEFAULT_LENGTH = 4
+    manager = StateManager.new(@@small_state)
+    assert_equal 2, manager.score
+    $WINNING_RATING = 37
+    $DEFAULT_LENGTH = 8
   end
 
   def teardown

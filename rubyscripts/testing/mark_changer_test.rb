@@ -18,6 +18,20 @@ class MarkChangerTest < Minitest::Test
     normal: 0
   }
 
+  @@small_state = {
+    unknown: 4,
+    possibly_heavier: 0,
+    possibly_lighter: 0,
+    normal: 0
+  }
+
+  @@big_state = {
+    unknown: 12,
+    possibly_heavier: 0,
+    possibly_lighter: 0,
+    normal: 0
+  }
+
   def setup
     @mark_changer = MarkChanger.new()
     @arr_generator = BallGenerator.new()
@@ -48,6 +62,23 @@ class MarkChangerTest < Minitest::Test
     assert_equal 4, marked_balls.count { |ball| ball.mark == :unknown }
     assert_equal 2, marked_balls.count { |ball| ball.mark == :possibly_heavier }
     assert_equal 2, marked_balls.count { |ball| ball.mark == :possibly_lighter }
+
+
+    balls = @arr_generator.generate_balls(4)
+    marked_balls = @mark_changer.marked_balls(balls, @@small_state)
+
+    assert_equal 4, marked_balls.length
+    assert_equal 4, marked_balls.count { |ball| ball.mark == :unknown }
+    assert_equal 0, marked_balls.count { |ball| ball.mark == :possibly_heavier }
+    assert_equal 0, marked_balls.count { |ball| ball.mark == :possibly_lighter }
+
+    balls = @arr_generator.generate_balls(12)
+    marked_balls = @mark_changer.marked_balls(balls, @@small_state)
+
+    assert_equal 12, marked_balls.length
+    assert_equal 12, marked_balls.count { |ball| ball.mark == :unknown }
+    assert_equal 0, marked_balls.count { |ball| ball.mark == :possibly_heavier }
+    assert_equal 0, marked_balls.count { |ball| ball.mark == :possibly_lighter }
   end
 
 
