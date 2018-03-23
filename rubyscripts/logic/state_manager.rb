@@ -27,6 +27,7 @@ class StateManager
     recorded_score = score_in_database
 
     if recorded_score
+      puts 'using recorded score'
       recorded_score
     else
       evaluator = StateEvaluator.new(@state, @rating)
@@ -37,7 +38,8 @@ class StateManager
   private
 
   def score_in_database
-    @score_checker.recorded_score(@state)
+    score = @score_checker.recorded_score(@state)
     @score_checker.close()
+    score
   end
 end

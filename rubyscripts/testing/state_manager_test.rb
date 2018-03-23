@@ -101,12 +101,11 @@ class StateManagerTest < Minitest::Test
     manager = StateManager.new(@@non_winning_state)
     assert_equal 2, manager.score
 
-    manager = StateManager.new(@@unknown_state)
+    # manager = StateManager.new(@@unknown_state)
     # assert_equal 2, manager.score
   end
 
   def teardown
-    @setup.send(:clear_database)
     @setup.close()
   end
 end
