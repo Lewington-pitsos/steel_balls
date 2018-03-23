@@ -16,7 +16,6 @@ class StateManager
   def initialize(rated_state)
     @rating = rated_state[:rating]
     @state = rated_state[:state]
-    @score_checker = ScoreChecker.new()
   end
 
   def score
@@ -27,7 +26,6 @@ class StateManager
     recorded_score = score_in_database
 
     if recorded_score
-      puts 'using recorded score'
       recorded_score
     else
       evaluator = StateEvaluator.new(@state, @rating)
@@ -38,8 +36,10 @@ class StateManager
   private
 
   def score_in_database
-    score = @score_checker.recorded_score(@state)
-    @score_checker.close()
+    # creates a new score checker, gets it to return the recorded score value, and closes it immidiately to prevent connection leakage
+    score_checker = ScoreChecker.new()
+    score = score_checker.recorded_score(@state)
+    score_checker.close()
     score
   end
 end

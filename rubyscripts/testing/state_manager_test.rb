@@ -74,6 +74,16 @@ class StateManagerTest < Minitest::Test
     rating: 0
   }
 
+  @@hard_state = {
+    state: {
+      unknown: 8,
+      possibly_heavier: 0,
+      possibly_lighter: 0,
+      normal: 0
+    },
+    rating: 0
+  }
+
 
   def setup
     @setup = Setup.new()
@@ -101,8 +111,11 @@ class StateManagerTest < Minitest::Test
     manager = StateManager.new(@@non_winning_state)
     assert_equal 2, manager.score
 
-    # manager = StateManager.new(@@unknown_state)
-    # assert_equal 2, manager.score
+    manager = StateManager.new(@@unknown_state)
+    assert_equal 3, manager.score
+
+    manager = StateManager.new(@@hard_state)
+    assert_equal 3, manager.score
   end
 
   def teardown
