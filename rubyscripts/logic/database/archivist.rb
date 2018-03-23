@@ -6,6 +6,10 @@ class Archivist
 
   @@database_name = 'steel_balls'
 
+  def self.set_db_name(name)
+    @@database_name = name
+  end
+
   def initialize(name=@@database_name)
     @db = PG.connect({ dbname: name, user: 'postgres' })
   end

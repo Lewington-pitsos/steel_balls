@@ -11,7 +11,7 @@ class StateRecorder < Archivist
   end
 
   def record_state(scored_state)
-    selections = scored_state[:selections]
+    # selections = scored_state[:selections]
     # @selection_recorder.save_selections(selections)
     save_state(scored_state)
   end

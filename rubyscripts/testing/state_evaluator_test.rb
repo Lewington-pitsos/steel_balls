@@ -1,7 +1,11 @@
 require "minitest/autorun"
 require_relative '../logic/state_evaluator'
+require_relative '../logic/database/setup'
+require_relative '../logic/database/archivist'
 
 class StateEvaluatorTest < Minitest::Test
+
+  @@database_name = 'test_steel_balls'
 
   @@almost_winning_state = {
     unknown: 0,
@@ -27,6 +31,12 @@ class StateEvaluatorTest < Minitest::Test
 
 
   def setup
+    Archivist.set_db_name(@@database_name)
+
+    @setup = Setup.new()
+    @setup.suppress_warnings
+    @setup.send(:clear_database)
+    @setup.setup_if_needed
   end
 
   def test_scores_states_correctly
@@ -39,5 +49,7 @@ class StateEvaluatorTest < Minitest::Test
   end
 
   def teardown
+    @setup.send(:clear_database)
+    @setup.close()
   end
 end

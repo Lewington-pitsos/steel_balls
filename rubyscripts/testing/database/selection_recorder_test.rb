@@ -27,7 +27,7 @@ class SelectionRecorderTest < Minitest::Test
     @recorder = SelectionRecorder.new(@@database_name)
   end
 
-  def test_saves_single_state
+  def saves_single_state
     @recorder.send(:save_side, @@example_side)
 
     p @db.exec(@@get_all_sides)

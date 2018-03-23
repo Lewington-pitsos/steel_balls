@@ -1,7 +1,7 @@
 require "minitest/autorun"
 require_relative '../../logic/database/setup'
 
-class ArchivistTest < Minitest::Test
+class SetupTest < Minitest::Test
 
   def setup
     @setup = Setup.new('test_steel_balls')

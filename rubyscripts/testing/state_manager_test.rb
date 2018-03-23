@@ -1,8 +1,11 @@
 require "minitest/autorun"
 require_relative '../logic/state_manager'
-require_relative '../logic/database/setup.rb'
+require_relative '../logic/database/setup'
+require_relative '../logic/database/archivist'
 
 class StateManagerTest < Minitest::Test
+
+  @@database_name = 'test_steel_balls'
 
   @@winning_state = {
     state: {
@@ -86,6 +89,8 @@ class StateManagerTest < Minitest::Test
 
 
   def setup
+    Archivist.set_db_name(@@database_name)
+
     @setup = Setup.new()
     @setup.suppress_warnings
     @setup.send(:clear_database)
@@ -119,6 +124,7 @@ class StateManagerTest < Minitest::Test
   end
 
   def teardown
+    @setup.send(:clear_database)
     @setup.close()
   end
 end

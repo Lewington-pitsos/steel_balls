@@ -1,5 +1,4 @@
 require "minitest/autorun"
-require "pg"
 require_relative '../../logic/database/state_recorder'
 require_relative '../../logic/database/score_checker'
 require_relative '../../logic/database/setup'
@@ -12,7 +11,7 @@ class ScoreCheckerTest < Minitest::Test
       possibly_lighter: 0,
       normal: 0
     },
-    score: 29,
+    state_score: 29,
     selections: []
   }
 
@@ -30,7 +29,7 @@ class ScoreCheckerTest < Minitest::Test
       possibly_lighter: 0,
       normal: 2
     },
-    score: 25,
+    state_score: 25,
     selections: []
   }
 
@@ -59,15 +58,15 @@ class ScoreCheckerTest < Minitest::Test
   @@database_name = 'test_steel_balls'
 
   def setup
-    @db = PG.connect({ dbname: @@database_name, user: 'postgres' })
     @setup = Setup.new(@@database_name)
     @setup.suppress_warnings
     @setup.send(:clear_database)
     @setup.setup_if_needed
 
     @recorder = StateRecorder.new(@@database_name)
-    @recorder.send(:record_state, @@example_state)
-    @recorder.send(:record_state, @@example_state2)
+    @recorder.send(:save_state, @@example_state)
+    @recorder.send(:save_state, @@example_state2)
+    @recorder.close()
 
     @checker = ScoreChecker.new(@@database_name)
   end
