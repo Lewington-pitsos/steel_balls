@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require './rubyscripts/testing/test_defaults'
-require_relative '../logic/shared/arrangement_generator/ball_generator'
+require './rubyscripts/logic/state_evaluator/selection_overseer/state_expander/arrangement_generator/ball_generator'
 
 class BallGeneratorTest < Minitest::Test
 

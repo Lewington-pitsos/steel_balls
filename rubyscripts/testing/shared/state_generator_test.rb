@@ -1,6 +1,7 @@
 require './rubyscripts/testing/test_defaults'
 require "minitest/autorun"
-require_relative '../logic/shared/state_generator'
+require './rubyscripts/logic/shared/state_generator'
+
 
 class StateGeneratorTest < Minitest::Test
 

@@ -4,7 +4,7 @@ require 'pg'
 
 class Archivist
 
-  @@database_name = 'steel_balls'
+  @@database_name = $DATABASE_NAME
 
   def self.set_db_name(name)
     @@database_name = name

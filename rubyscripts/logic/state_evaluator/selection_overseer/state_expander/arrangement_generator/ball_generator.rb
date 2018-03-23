@@ -1,8 +1,8 @@
 # generates and returns arrays of unmodified ball objects according to the passed in length or the number passed in to generate_balls
 
+require './rubyscripts/logic/shared/ball_helper'
+require_relative './ball_generator/ball'
 
-require_relative './ball'
-require_relative '../ball_helper'
 
 class BallGenerator
 

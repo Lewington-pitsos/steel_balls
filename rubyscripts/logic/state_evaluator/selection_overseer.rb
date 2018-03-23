@@ -1,8 +1,9 @@
 # takes in a ball state and holds a captive Omni selector and a captive State expander. It gets he Omni selector to generate all possible selection orders and the state expander to generate all possible ball arrangements. it then maps each selection order to a ball arrangement, and returns this huge agglomoration.
 
+require './rubyscripts/logic/shared/ball_helper'
 require_relative './selection_overseer/omni_selector'
 require_relative './selection_overseer/state_expander'
-require_relative '../shared/ball_helper'
+
 
 class SelectionOverseer
 

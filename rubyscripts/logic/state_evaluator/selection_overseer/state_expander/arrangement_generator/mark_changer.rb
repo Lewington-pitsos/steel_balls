@@ -1,7 +1,7 @@
 # takes an array of ball objects and a ball state and alters the obejcts so their marks match the state
 
 
-require_relative './ball'
+require_relative './ball_generator/ball'
 
 class MarkChanger
 
