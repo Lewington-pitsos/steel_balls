@@ -1,12 +1,11 @@
-require './defaults'
 require_relative './state_manager'
 require_relative './state_evaluator/selection_overseer/state_expander/arrangement_generator/ball_generator'
 
 class Interface
 
-  def initialize
+  def initialize(run=true)
     @length = 0
-    request_starting_state
+    request_starting_state if run
   end
 
   def request_starting_state
@@ -20,11 +19,13 @@ class Interface
 
   private
 
+  attr_accessor :length
+
   def request
     puts 'Ball Number:'
 
     @length = gets.to_i
-    validate
+    proceed_if_valid
   end
 
   def calculate
@@ -39,16 +40,24 @@ class Interface
     puts "\nSuccess! Steel Ball Calculator® has calculated that you will need only #{score} weighs to determine the odd ball for certain\n\n"
   end
 
-  def validate
-    if @length == 1 || @length == 2
+  def proceed_if_valid
+    if valid?
+      calculate
+    else
+      request
+    end
+  end
+
+  def valid?
+    if @length <= 1 || @length == 2
       if @length == 1
         puts "Hardy har har Mr. Comedian. Try again please.\n\n"
       else
         puts "Funnily enough this isn't even possible, think about it...\n\n"
       end
-      request
+      false
     else
-      calculate
+      true
     end
   end
 
@@ -78,5 +87,3 @@ class Interface
     StateManager.new({ state: state, rating: $DEFAULT_RATING }).score
   end
 end
-
-Interface.new()

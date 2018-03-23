@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require './rubyscripts/testing/test_defaults'
-require_relative '../logic/state_manager'
+require './rubyscripts/logic/state_manager'
 
 class StateManagerTest < Minitest::Test
 
