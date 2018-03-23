@@ -1,4 +1,5 @@
 require "minitest/autorun"
+require './rubyscripts/testing/test_defaults'
 require_relative '../logic/state_evaluator/score_overseer'
 require_relative '../logic/state_evaluator/selection_overseer/state_expander'
 require_relative '../logic/database/setup'
@@ -6,13 +7,11 @@ require_relative '../logic/database/archivist'
 
 class ScoreOverseerTest < Minitest::Test
 
-  @@database_name = 'test_steel_balls'
-
   @@scored_selections = {:selections=>[{:selection=>{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>2, :possibly_lighter=>0, :normal=>0}}, :score=>2}, {:selection=>{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>1, :possibly_lighter=>1, :normal=>0}}, :score=>2}, {:selection=>{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>0, :possibly_heavier=>0, :possibly_lighter=>2, :normal=>0}}, :score=>2}, {:selection=>{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>1, :possibly_heavier=>1, :possibly_lighter=>0, :normal=>0}}, :score=>1}, {:selection=>{:left=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>0, :normal=>1}, :right=>{:unknown=>1, :possibly_heavier=>0, :possibly_lighter=>1, :normal=>0}}, :score=>1}], :state_score=>2}
 
 
   def setup
-    Archivist.set_db_name(@@database_name)
+    Archivist.set_db_name($DATABASE_NAME)
 
     @setup = Setup.new()
     @setup.suppress_warnings

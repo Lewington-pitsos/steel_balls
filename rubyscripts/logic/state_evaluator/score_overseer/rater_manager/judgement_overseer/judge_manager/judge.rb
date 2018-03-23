@@ -5,10 +5,10 @@
 class Judge
 
   @@scores = {
-    unknown: 0,
-    possibly_lighter: 2,
-    possibly_heavier: 2,
-    normal: 5
+    unknown: $UNKNOWN_SCORE,
+    possibly_lighter: $HALF_SCORE,
+    possibly_heavier: $HALF_SCORE,
+    normal: $NORMAL_SCORE
   }
 
   def initialize

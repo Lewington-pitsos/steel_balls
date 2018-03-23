@@ -1,3 +1,4 @@
+require './defaults'
 require_relative './state_manager'
 require_relative './shared/arrangement_generator/ball_generator'
 
@@ -59,7 +60,7 @@ class Interface
   end
 
   def set_winning_rating
-    $WINNING_RATING = @length * 5 - 3
+    $WINNING_RATING = @length * $NORMAL_SCORE - $HALF_SCORE
   end
 
   def set_deafult_length

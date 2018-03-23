@@ -3,7 +3,6 @@
 
 require_relative './ball'
 require_relative '../ball_helper'
-require_relative '../config'
 
 class BallGenerator
 

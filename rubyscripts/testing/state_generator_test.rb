@@ -1,3 +1,4 @@
+require './rubyscripts/testing/test_defaults'
 require "minitest/autorun"
 require_relative '../logic/shared/state_generator'
 require_relative '../logic/shared/arrangement_generator/ball_generator'

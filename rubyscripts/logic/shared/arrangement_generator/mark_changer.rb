@@ -2,7 +2,6 @@
 
 
 require_relative './ball'
-require_relative '../config'
 
 class MarkChanger
 
@@ -16,7 +15,7 @@ class MarkChanger
 
   def marked_balls(balls, state=@state)
     # for each kvp in the current state, we mark that number of balls with the appropriate mark. Each time we mark a ball we move to the next ball
-    # as long as the number of balls in the state and the passed in array are the same we should 
+    # as long as the number of balls in the state and the passed in array are the same we should
     @balls = balls
     @index = 0
 
