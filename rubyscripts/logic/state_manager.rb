@@ -19,7 +19,6 @@ class StateManager
   end
 
   def score
-    puts $WINNING_RATING
     if @rating >= ($WINNING_RATING || 37)
       return 0
     end

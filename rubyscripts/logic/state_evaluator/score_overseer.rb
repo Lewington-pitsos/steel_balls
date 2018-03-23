@@ -17,11 +17,7 @@ class ScoreOverseer
   end
 
   def score(selection_order)
-    p selection_order
-    puts
     rated_selections = @rater.weighed_and_scored(selection_order)
-    p rated_selections
-    puts
     @scorer.scored_selections(rated_selections)
   end
 end

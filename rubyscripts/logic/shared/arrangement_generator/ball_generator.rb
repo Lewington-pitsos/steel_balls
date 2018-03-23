@@ -12,7 +12,6 @@ class BallGenerator
   attr_reader :length
 
   def initialize(length=$DEFAULT_LENGTH)
-    p $DEFAULT_LENGTH
     @length = length
   end
 
