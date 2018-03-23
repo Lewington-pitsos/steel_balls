@@ -24,6 +24,13 @@ class ArrangementGeneratorTest < Minitest::Test
     normal: 0
   }
 
+  @@sample_state4 = {
+    unknown: 4,
+    possibly_heavier: 0,
+    possibly_lighter: 0,
+    normal: 0
+  }
+
   def setup
     @arrangement_generator = ArrangementGenerator.new()
   end
@@ -37,12 +44,27 @@ class ArrangementGeneratorTest < Minitest::Test
 
     length = @arrangement_generator.send(:get_length, @@sample_state3)
     assert_equal 0, length
+
+    length = @arrangement_generator.send(:get_length, @@sample_state4)
+    assert_equal 4, length
   end
 
   def test_generated_arrangments_match_state
     balls = @arrangement_generator.marked_balls(@@sample_state)
 
     @@sample_state.each do |mark, num|
+      assert_equal num, balls.count { |ball| ball.mark == mark }
+    end
+
+    balls = @arrangement_generator.marked_balls(@@sample_state2)
+
+    @@sample_state2.each do |mark, num|
+      assert_equal num, balls.count { |ball| ball.mark == mark }
+    end
+
+    balls = @arrangement_generator.marked_balls(@@sample_state4)
+
+    @@sample_state4.each do |mark, num|
       assert_equal num, balls.count { |ball| ball.mark == mark }
     end
   end

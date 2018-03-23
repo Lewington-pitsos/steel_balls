@@ -13,9 +13,22 @@ class Interface
   def request_starting_state
     puts "========================[ STEEL BALL CALCULATOR ] ========================\n\n\n"
     puts 'Welcome to Steel Ball Calculator®. Please enter the number of balls you would like to weigh:'
+
+    request
+
+    puts "========================[ END OF PROGRAM ] ========================\n\n\n"
+  end
+
+  private
+
+  def request
     puts 'Ball Number:'
 
     @length = gets.to_i
+    validate
+  end
+
+  def calculate
     state = generate_state
     setup_defaults
 
@@ -25,10 +38,20 @@ class Interface
     score = calculate_state_score(state)
 
     puts "\nSuccess! Steel Ball Calculator® has calculated that you will need only #{score} weighs to determine the odd ball for certain\n\n"
-    puts "========================[ END OF PROGRAM ] ========================\n\n\n"
   end
 
-  private
+  def validate
+    if @length == 1 || @length == 2
+      if @length == 1
+        puts "Hardy har har Mr. Comedian. Try again please.\n\n"
+      else
+        puts "Funnily enough this isn't even possible, think about it...\n\n"
+      end
+      request
+    else
+      calculate
+    end
+  end
 
   def setup_defaults
     set_winning_rating
