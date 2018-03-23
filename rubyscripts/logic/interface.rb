@@ -1,10 +1,8 @@
 require './defaults'
 require_relative './state_manager'
-require_relative './shared/arrangement_generator/ball_generator'
+require_relative './state_evaluator/selection_overseer/state_expander/arrangement_generator/ball_generator'
 
 class Interface
-
-  @@default_rating = 0
 
   def initialize
     @length = 0
@@ -60,7 +58,7 @@ class Interface
   end
 
   def set_winning_rating
-    $WINNING_RATING = @length * $NORMAL_SCORE - $HALF_SCORE
+    $WINNING_RATING = @length * $NORMAL_SCORE - ($NORMAL_SCORE - $HALF_SCORE)
   end
 
   def set_deafult_length
@@ -77,7 +75,7 @@ class Interface
   end
 
   def calculate_state_score(state)
-    StateManager.new({ state: state, rating: @@default_rating }).score
+    StateManager.new({ state: state, rating: $DEFAULT_RATING }).score
   end
 end
 

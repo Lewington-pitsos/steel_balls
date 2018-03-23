@@ -8,6 +8,7 @@ $DEFAULT_LENGTH = 8
 # ======================== Score Weighting ========================
 # this is used to generate state ratings
 
+$DEFAULT_RATING = 0
 $NORMAL_SCORE = 5
 $HALF_SCORE = 2
 $UNKNOWN_SCORE = 0
