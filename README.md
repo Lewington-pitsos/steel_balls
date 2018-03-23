@@ -16,6 +16,9 @@ It stores all the results it gets in a huge database so running it for the same 
 - Yes I am currently working on getting it to tell us how it reaches it's conclusions, fear not.
 
 ## Usage
+
+I mean, like, don't but just in case you're mad...
+
 1. Clone it somewhere or other (I like to put all my files in `/bin`)
 2. `bundle install` in the project directory
 3. Hang on, I assumed you already had ruby installed. If you didn't go and install ruby and do 2. again.
