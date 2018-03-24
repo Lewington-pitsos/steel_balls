@@ -1,9 +1,8 @@
 # checks if the database with the proper tables are all setup. Sets them up if not, otherwise does nothing.
 
-require_relative './archivist'
-require_relative './selection_recorder'
+require_relative './searcher'
 
-class StateRecorder < Archivist
+class StateRecorder < Searcher
 
   @@column_name = 'id'
 
@@ -40,17 +39,7 @@ class StateRecorder < Archivist
               normal = #{state[:state][:normal]};
       COMMAND
     )
-    rubify(result)
-  end
-
-  def rubify(pg_result)
-    # returns the actual number value represented within the pg result, or nil if the pg result came up with no matches
-    # only works for maximum 1 length results
-    if pg_result.ntuples == 1
-      pg_result[0][@@column_name].to_i
-    else
-      nil
-    end
+    rubify(result, @@column_name)
   end
 
   def save_state(state)

@@ -1,8 +1,8 @@
 # checks if the database with the proper tables are all setup. Sets them up if not, otherwise does nothing.
 
-require_relative './archivist'
+require_relative './searcher'
 
-class ScoreChecker < Archivist
+class ScoreChecker < Searcher
 
   @@column_name = 'score'
 
@@ -12,21 +12,12 @@ class ScoreChecker < Archivist
   end
 
   def recorded_score(state)
-    rubify(get_recorded_score(state))
+    rubify(get_recorded_score(state), @@column_name)
   end
 
   private
 
   attr_reader :score
-
-  def rubify(pg_result)
-    # returns the actual number value represented within the pg result, or nil if the pg result came up with no matches
-    if pg_result.ntuples == 1
-      pg_result[0][@@column_name].to_i
-    else
-      nil
-    end
-  end
 
   def get_recorded_score(state)
     @score = @db.exec(
