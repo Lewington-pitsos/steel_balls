@@ -1,5 +1,5 @@
 require "minitest/autorun"
-require './rubyscripts/testing/test_defaults'
+require './rubyscripts/testing/database_tester'
 require_relative '../logic/state_evaluator/score_overseer'
 
 
@@ -9,12 +9,8 @@ class ScoreOverseerTest < Minitest::Test
 
 
   def setup
-    Archivist.set_db_name($DATABASE_NAME)
-
-    @setup = Setup.new()
-    @setup.suppress_warnings
-    @setup.send(:clear_database)
-    @setup.setup_if_needed
+    setup_database_for_testing
+    add_defaults
 
     @normal_state = {
       unknown: 8,
@@ -128,5 +124,6 @@ class ScoreOverseerTest < Minitest::Test
   end
 
   def teardown
+    teardown_database
   end
 end

@@ -6,7 +6,7 @@ class StateRecorderTest < DatabaseTester
   @@example_state = {
     state: {
       unknown: 4,
-      possibly_heavier: 0,
+      possibly_heavier: 1,
       possibly_lighter: 0,
       normal: 0
     },

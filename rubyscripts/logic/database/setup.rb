@@ -29,7 +29,7 @@ class Setup < Archivist
       possibly_lighter INTEGER NOT NULL DEFAULT 0,
       possibly_heavier INTEGER NOT NULL DEFAULT 0,
       normal INTEGER NOT NULL DEFAULT 0,
-      score INTEGER NOT NULL DEFAULT 0,
+      score INTEGER DEFAULT NULL,
       PRIMARY KEY(id)
     )
   COMMAND

@@ -1,8 +1,8 @@
 require "minitest/autorun"
-require './rubyscripts/testing/test_defaults'
+require './rubyscripts/testing/database_tester'
 require_relative '../logic/state_evaluator'
 
-class StateEvaluatorTest < Minitest::Test
+class StateEvaluatorTest < DatabaseTester
 
   @@almost_winning_state = {
     unknown: 0,
@@ -28,12 +28,8 @@ class StateEvaluatorTest < Minitest::Test
 
 
   def setup
-    Archivist.set_db_name($DATABASE_NAME)
-
-    @setup = Setup.new()
-    @setup.suppress_warnings
-    @setup.send(:clear_database)
-    @setup.setup_if_needed
+    setup_database_for_testing
+    add_defaults
   end
 
   def test_scores_states_correctly
@@ -46,7 +42,6 @@ class StateEvaluatorTest < Minitest::Test
   end
 
   def teardown
-    @setup.send(:clear_database)
-    @setup.close()
+    teardown_database
   end
 end

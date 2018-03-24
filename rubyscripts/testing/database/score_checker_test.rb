@@ -1,5 +1,6 @@
 require './rubyscripts/testing/database_tester'
 require './rubyscripts/logic/database/score_checker'
+require './rubyscripts/logic/database/info_saver/score_recorder'
 
 class ScoreCheckerTest < DatabaseTester
   @@example_state = {
@@ -62,6 +63,11 @@ class ScoreCheckerTest < DatabaseTester
     @recorder.send(:save, @@example_state[:state])
     @recorder.send(:save, @@example_state2[:state])
     @recorder.close()
+
+    @score_recorder = ScoreRecorder.new($DATABASE_NAME)
+    @score_recorder.record_score(@@example_state[:state], 29)
+    @score_recorder.record_score(@@example_state2[:state], 21)
+    @score_recorder.close()
 
     @checker = ScoreChecker.new($DATABASE_NAME)
   end

@@ -11,6 +11,9 @@ class DatabaseTester < Minitest::Test
     @setup.suppress_warnings
     @setup.send(:clear_database)
     @setup.setup_if_needed
+  end
+
+  def add_defaults
     @setup.add_default_states
   end
 

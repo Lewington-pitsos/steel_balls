@@ -1,8 +1,8 @@
 require "minitest/autorun"
-require './rubyscripts/testing/test_defaults'
+require './rubyscripts/testing/database_tester'
 require './rubyscripts/logic/state_manager'
 
-class StateManagerTest < Minitest::Test
+class StateManagerTest < DatabaseTester
 
   @@winning_state = {
     state: {
@@ -137,12 +137,8 @@ class StateManagerTest < Minitest::Test
 
 
   def setup
-    Archivist.set_db_name($DATABASE_NAME)
-
-    @setup = Setup.new()
-    @setup.suppress_warnings
-    @setup.send(:clear_database)
-    @setup.setup_if_needed
+    setup_database_for_testing
+    add_defaults
     $WINNING_RATING = 37
     $DEFAULT_LENGTH = 8
   end
@@ -205,7 +201,6 @@ class StateManagerTest < Minitest::Test
   end
 
   def teardown
-    @setup.send(:clear_database)
-    @setup.close()
+    teardown_database
   end
 end
