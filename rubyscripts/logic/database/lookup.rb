@@ -4,7 +4,7 @@ class Lookup < Archivist
 
   @@selection_tab = 'selections'
   @@side_tab = 'selection_sides'
-  @@state_tab 'scored_states'
+  @@state_tab = 'scored_states'
   @@optimal_tab = 'optimal_selections'
   @@resulting_tab = 'resulting_states'
 

@@ -154,19 +154,19 @@ class StateManagerTest < DatabaseTester
 
   def test_scores_states_correctly
     manager = StateManager.new(@@almost_winning_state)
-    assert_equal 1, manager.score
+    assert_equal 1, manager.score()
 
     manager = StateManager.new(@@almost_winning_state2)
-    assert_equal 1, manager.score
+    assert_equal 1, manager.score()
 
     manager = StateManager.new(@@non_winning_state)
-    assert_equal 2, manager.score
+    assert_equal 2, manager.score()
 
     manager = StateManager.new(@@unknown_state)
-    assert_equal 3, manager.score
+    assert_equal 3, manager.score()
 
     manager = StateManager.new(@@hard_state)
-    assert_equal 3, manager.score
+    assert_equal 3, manager.score()
   end
 
   def test_scores_different_sized_states_correctly
