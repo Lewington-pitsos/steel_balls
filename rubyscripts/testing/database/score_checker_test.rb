@@ -60,8 +60,8 @@ class ScoreCheckerTest < DatabaseTester
     setup_database_for_testing
 
     @recorder = StateRecorder.new($DATABASE_NAME)
-    @recorder.send(:save_state, @@example_state)
-    @recorder.send(:save_state, @@example_state2)
+    @recorder.send(:save, @@example_state[:state])
+    @recorder.send(:save, @@example_state2[:state])
     @recorder.close()
 
     @checker = ScoreChecker.new($DATABASE_NAME)

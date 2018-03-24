@@ -4,9 +4,9 @@
 # saves the selection id and previous state id to the best_selections table
 # saves the best_selection id to the selection_results table for each of the resulting states
 
-require_relative './archivist'
+require_relative './searcher'
 
-class SelectionRecorder < Archivist
+class SelectionRecorder < Searcher
 
   def initialize(name=@@database_name)
     super(name)
@@ -27,15 +27,18 @@ class SelectionRecorder < Archivist
     save_selection(left_side_id, right_side_id, selection[:score])
   end
 
-  def save_and_get_id(side)
-    save_side(side)
-    get_side_id(side)
+  def identify_side(side)
+    id = get_side_id(side)
+    if !id
+      id = save_side(side)
+    end
+    id
   end
 
   def save_side(side)
     @db.exec(
       <<~COMMAND
-          IF EXISTS ( SELECT 1
+          IF NOT EXISTS ( SELECT 1
             FROM selection_sides
             WHERE unknown = #{side[:unknown]} AND
               possibly_lighter = #{side[:possibly_lighter]} AND
@@ -55,7 +58,8 @@ class SelectionRecorder < Archivist
             #{side[:possibly_heavier]},
             #{side[:normal]}
           )
-        END IF;
+        END IF
+        RETURNING id;
       COMMAND
     )
   end

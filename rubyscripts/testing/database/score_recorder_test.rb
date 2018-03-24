@@ -48,9 +48,9 @@ class ScoreRecorderTest < DatabaseTester
     setup_database_for_testing
 
     @state_recorder = StateRecorder.new($DATABASE_NAME)
-    @state_recorder.send(:save_state, @@example_state)
-    @state_recorder.send(:save_state, @@example_state2)
-    @state_recorder.send(:save_state, @@example_state3)
+    @state_recorder.send(:save, @@example_state[:state])
+    @state_recorder.send(:save, @@example_state2[:state])
+    @state_recorder.send(:save, @@example_state3[:state])
     @score_recorder = ScoreRecorder.new($DATABASE_NAME)
   end
 
