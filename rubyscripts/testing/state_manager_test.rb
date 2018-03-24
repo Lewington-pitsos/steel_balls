@@ -185,10 +185,10 @@ class StateManagerTest < DatabaseTester
     manager = StateManager.new(@@state5)
     assert_equal 3, manager.score
 
-    $WINNING_RATING = 32
-    $DEFAULT_LENGTH = 7
-    manager = StateManager.new(@@state7)
-    assert_equal 3, manager.score
+    # $WINNING_RATING = 32
+    # $DEFAULT_LENGTH = 7
+    # manager = StateManager.new(@@state7)
+    # assert_equal 3, manager.score
 
     # $WINNING_RATING = 57
     # $DEFAULT_LENGTH = 12

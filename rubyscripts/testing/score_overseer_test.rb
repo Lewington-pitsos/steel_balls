@@ -10,7 +10,7 @@ class ScoreOverseerTest < DatabaseTester
   def setup
     setup_database_for_testing
     @normal_state = {
-      unknown: 8,
+      unknown: 4,
       possibly_heavier: 0,
       possibly_lighter: 0,
       normal: 0

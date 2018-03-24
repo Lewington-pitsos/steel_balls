@@ -38,7 +38,7 @@ class WinCheckerTest < Minitest::Test
       assert winner[:score]
       assert_equal 0, winner[:score]
       refute winner[:rating]
-      refute winner[:selection][:states]
+      assert winner[:selection][:states]
     end
 
   end
