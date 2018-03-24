@@ -83,10 +83,45 @@ class SelectionRecorderTest < DatabaseTester
   def test_saves_selection_object_properly
     @recorder.send(:save, @@example_side)
     @recorder.send(:save, @@example_side2)
+    @recorder.send(:save, @@example_side3)
     @recorder.send(:left_id=, 1)
     @recorder.send(:right_id=, 2)
+
+    assert_raises 'Error' do
+      get_all('selections')[0]
+    end
+
     @recorder.send(:save_selection)
 
+    assert_equal '1', get_all('selections')[0]['id']
+    assert_equal '1', get_all('selections')[0]['left_id']
+    assert_equal '2', get_all('selections')[0]['right_id']
+
+    assert_raises 'Error' do
+      get_all('selections')[1]
+    end
+
+    @recorder.send(:left_id=, 3)
+    @recorder.send(:save_selection)
+    assert_equal '2', get_all('selections')[1]['id']
+    assert_equal '3', get_all('selections')[1]['left_id']
+    assert_equal '2', get_all('selections')[1]['right_id']
+  end
+
+  def test_saves_proper_seletion_id
+    @recorder.send(:save, @@example_side)
+    @recorder.send(:save, @@example_side2)
+    @recorder.send(:save, @@example_side3)
+    @recorder.send(:left_id=, 1)
+    @recorder.send(:right_id=, 2)
+    id = @recorder.send(:save_selection)
+
+    assert_equal 1, id
+
+    @recorder.send(:left_id=, 3)
+    id = @recorder.send(:save_selection)
+
+    assert_equal 2, id
   end
 
 
