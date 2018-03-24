@@ -17,10 +17,10 @@
     <node id="n0">
       <data key="d6">
         <y:ShapeNode>
-          <y:Geometry height="1139.8790865384617" width="1465.9105167142204" x="-54.171875" y="-64.9375"/>
+          <y:Geometry height="1139.8790865384617" width="1552.2794028680667" x="-54.171875" y="-64.9375"/>
           <y:Fill color="#FFFFFF" transparent="false"/>
           <y:BorderStyle color="#000000" raised="false" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="48" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="59.875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="383.78125" x="541.0646333571102" y="4.0">Score Database</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="48" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="59.875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="383.78125" x="584.2490764340333" y="4.0">Score Database</y:NodeLabel>
           <y:Shape type="rectangle"/>
         </y:ShapeNode>
       </data>
@@ -284,7 +284,7 @@ it's id<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" an
     <edge id="e5" source="n5" target="n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="42.53271748880036" sy="-31.392144383822213" tx="168.88448125022046" ty="100.7757526748958"/>
+          <y:Path sx="42.53271748880036" sy="-8.57708238637042" tx="178.8348597814737" ty="77.96069067744406"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -294,7 +294,7 @@ it's id<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" an
     <edge id="e6" source="n5" target="n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="21.247408972366202" sy="-55.790710970674866" tx="147.5991727337863" ty="99.12889153754493"/>
+          <y:Path sx="21.247408972366202" sy="-21.599796248472103" tx="156.29545808060288" ty="64.93797681534238"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -304,7 +304,7 @@ it's id<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" an
     <edge id="e7" source="n5" target="n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="-42.273341776084635" sy="-35.979521137447364" tx="84.07842198533547" ty="95.01484392907959"/>
+          <y:Path sx="5.864855007936171" sy="-13.75122513609108" tx="89.03217569243313" ty="95.01484392907959"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -314,7 +314,7 @@ it's id<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" an
     <edge id="e8" source="n5" target="n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="34.99376104263047" sy="-58.097839876924866" tx="161.34552480405057" ty="96.3870120658223"/>
+          <y:Path sx="34.99376104263047" sy="-24.124300437458487" tx="170.85172119485674" ty="62.413472626356"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -325,7 +325,7 @@ it's id<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" an
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-10.954058772220492" sy="-25.152039947631465" tx="205.56929715148408" ty="161.83291935134574"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:LineStyle color="#000000" type="dashed_dotted" width="2.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="87.8125" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="center" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="131.142578125" x="-221.35675440938462" y="-43.90622996224238">Query to:
 -Save this selection
@@ -356,7 +356,7 @@ to be saved<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0
     <edge id="e11" source="n9" target="n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="-31.8478891611569" sy="10.87210877572602" tx="477.2412853810538" ty="-108.6427379411192"/>
+          <y:Path sx="-31.8478891611569" sy="10.87210877572602" tx="505.3595079976579" ty="-108.6427379411192"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -366,7 +366,7 @@ to be saved<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0
     <edge id="e12" source="n9" target="n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="-36.54187777583661" sy="-22.40781616274137" tx="472.9222608964089" ty="-141.92266287958662"/>
+          <y:Path sx="-36.54187777583661" sy="-22.40781616274137" tx="500.78601413731985" ty="-141.92266287958662"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -389,7 +389,7 @@ it's score<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0"
     <edge id="e14" source="n9" target="n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="-46.914936349411164" sy="185.03655430909555" tx="500.89314544250954" ty="65.52170759225034"/>
+          <y:Path sx="-46.914936349411164" sy="185.03655430909555" tx="530.404894325337" ty="65.52170759225034"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -399,7 +399,7 @@ it's score<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0"
     <edge id="e15" source="n9" target="n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="-52.97466826129198" sy="100.03804688862022" tx="458.3057846424473" ty="-19.47679982822499"/>
+          <y:Path sx="-52.97466826129198" sy="100.03804688862022" tx="485.30836064289593" ty="-19.47679982822499"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -409,7 +409,7 @@ it's score<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0"
     <edge id="e16" source="n9" target="n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="-51.63276999019968" sy="-1.9517491258250743" tx="496.5888612518311" ty="-121.4665958426703"/>
+          <y:Path sx="-51.63276999019968" sy="-1.9517491258250743" tx="525.8470092313294" ty="-121.4665958426703"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -419,7 +419,7 @@ it's score<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0"
     <edge id="e17" source="n0" target="n7">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="-237.33085099813593" sy="343.1739134008434" tx="195.20284417364795" ty="0.0"/>
+          <y:Path sx="-280.51529407505905" sy="369.7925308211961" tx="195.20284417364795" ty="0.0"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -472,7 +472,7 @@ Response<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" a
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-73.67162827816469" sy="172.48010060778563" tx="0.0" ty="-33.57251917287408"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:LineStyle color="#000000" type="dashed_dotted" width="2.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="73.84375" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="103.7265625" x="-226.60214837213925" y="-36.921862996078744">lowest scored
 selection, the 
@@ -490,7 +490,7 @@ state ids<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" 
           <y:Path sx="38.6062466783917" sy="-58.78314238307769" tx="36.72527986942206" ty="-64.18528528581571">
             <y:Point x="889.059642172151" y="307.7412816692307"/>
           </y:Path>
-          <y:LineStyle color="#000000" type="dashed_dotted" width="2.0"/>
+          <y:LineStyle color="#000000" type="dotted" width="2.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="center" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="67.15234375" x="-16.764873476683533" y="-51.19975175102161">each state<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" placement="center" side="anywhere" sideReference="relative_to_edge_flow"/>
           </y:EdgeLabel>
@@ -503,7 +503,7 @@ state ids<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" 
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-63.107922031984344" sy="0.0" tx="30.13530384940475" ty="-29.145615947614374"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:LineStyle color="#000000" type="dashed_dotted" width="2.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="139.779296875" x="-244.65292962213925" y="-22.953111064801874">all states associated
 with the lowesr scored
@@ -517,7 +517,7 @@ selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" 
       <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="1.2408112862422058" sy="-57.67901639635701" tx="127.59257504766231" ty="70.06089127035948"/>
+          <y:Path sx="51.94278593328363" sy="-37.07794909490599" tx="135.11010661778067" ty="70.06089127035948"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
@@ -542,7 +542,7 @@ selection<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" 
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="-10.077955465931836" tx="183.66647095570704" ty="0.0"/>
-          <y:LineStyle color="#000000" type="dashed_dotted" width="2.0"/>
+          <y:LineStyle color="#000000" type="dotted" width="2.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="103.7265625" x="-207.61212550313462" y="-22.953138571400586">Query to:
 save the state
@@ -557,10 +557,44 @@ and return it's id<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRight
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="25.56673084769153" tx="-55.38277490328937" ty="54.712346795305905"/>
-          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:LineStyle color="#000000" type="dashed_dotted" width="2.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="31.9375" horizontalTextPosition="center" iconTextGap="4" modelName="centered" modelPosition="center" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="67.15234375" x="141.20998541692325" y="-15.968761095667787">the ids of 
 each state<y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/>
+          </y:EdgeLabel>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e28" source="n9" target="n0">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="48.39962987755348" sy="-113.6879668533839" tx="688.4128400198327" ty="-233.20281357022913"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e29" source="n9" target="n9">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="46.35369678216898" sy="-202.5465614483063" tx="62.86473579755352" ty="-214.0325016329217">
+            <y:Point x="1387.3994140854572" y="110.1438513806718"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="dashed_dotted" width="2.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:EdgeLabel alignment="center" backgroundColor="#FFFFFF" configuration="AutoFlippingLabel" distance="2.0" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="custom" preferredPlacement="anywhere" ratio="0.5" textColor="#000000" verticalTextPosition="bottom" visible="true" width="75.583984375" x="8.230095735488248" y="-75.03338426299322">each lowest
+scored
+selection<y:LabelModel>
+              <y:SmartEdgeLabelModel autoRotationEnabled="false" defaultAngle="0.0" defaultDistance="10.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartEdgeLabelModelParameter angle="0.0" distance="30.0" distanceToCenter="true" position="right" ratio="0.5" segment="0"/>
+            </y:ModelParameter>
+            <y:PreferredPlacementDescriptor angle="0.0" angleOffsetOnRightSide="0" angleReference="absolute" angleRotationOnRightSide="co" distance="-1.0" frozen="true" placement="anywhere" side="anywhere" sideReference="relative_to_edge_flow"/>
           </y:EdgeLabel>
           <y:BendStyle smoothed="false"/>
         </y:PolyLineEdge>
