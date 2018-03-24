@@ -4,7 +4,7 @@
 
 require_relative './searcher'
 
-class StateScoreRecorder < Archivist
+class ScoreRecorder < Archivist
 
   def initialize(name=@@database_name)
     super(name)
