@@ -11,7 +11,7 @@ class Lookup < Archivist
   @@selection_id_col = 'selection_id'
   @@state_id_col = 'state_id'
 
-  attr_accessor :tree
+  attr_reader :tree
 
   def initialize(name=@@database_name)
     super(name)
@@ -27,13 +27,17 @@ class Lookup < Archivist
 
   def build_state(state_id)
     state = get_by_id(state_id, @@state_tab)
-    full_selections = optimal_selections(state_id)
-    selection_ids = ids_from(full_selections, @@selection_id_col)
-    selections = selection_ids.map do |selection_id|
-      build_selection(selection_id)
-    end
+    selections = build_optimal_selections(state_id)
     state['selections'] = selections
     state
+  end
+
+  def build_optimal_selections(state_id)
+    full_selections = optimal_selections(state_id)
+    selection_ids = ids_from(full_selections, @@selection_id_col)
+    selection_ids.map do |selection_id|
+      build_selection(selection_id)
+    end
   end
 
   def build_selection(id)
@@ -47,7 +51,7 @@ class Lookup < Archivist
   def build_resulting_states(selection_id)
     full_states = resulting_states(selection_id)
     state_ids = ids_from(full_states, @@state_id_col)
-    states = state_ids.map do |state_id|
+    state_ids.map do |state_id|
       build_state(state_id)
     end
   end
@@ -62,7 +66,7 @@ class Lookup < Archivist
   end
 
   def ids_from(rows, id_name)
-    # gets passed in a single id, a callback function (which should be mostly a query) and the column name of the ids we want to extract
+    # gets passed in a PG:Result and the column name of the ids we want to extract
     # returns an array of ids
     ids = []
     rows.each do |row|

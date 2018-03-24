@@ -101,6 +101,68 @@ class ScoreCheckerTest < DatabaseTester
     assert_equal '5', ids[2]
   end
 
+  def test_gathers_resultign_state_ids
+    states = @lookup.send(:resulting_states, '1')
+    ids = @lookup.send(:ids_from, states, 'state_id')
+
+    assert_equal 2, ids.length
+    assert_equal '3', ids[0]
+
+    states = @lookup.send(:resulting_states, '6')
+    ids = @lookup.send(:ids_from, states, 'state_id')
+
+    assert_equal 2, ids.length
+    assert_equal '4', ids[0]
+    assert_equal '3', ids[1]
+  end
+
+  def test_builds_all_states_for_winning_selection
+    states = @lookup.send(:build_resulting_states, '6')
+    assert_equal 2, states.length
+    assert_equal '4', states[0]['id']
+    assert_equal '3', states[1]['id']
+    assert_empty states[0]['selections']
+    assert_empty states[1]['selections']
+
+    states = @lookup.send(:build_resulting_states, '2')
+    assert_equal 2, states.length
+    assert_equal '3', states[0]['id']
+    assert_equal '4', states[1]['id']
+    assert_empty states[0]['selections']
+    assert_empty states[1]['selections']
+  end
+
+  def test_builds_all_selections_for_nearly_winning_states
+    selections = @lookup.send(:build_optimal_selections, '2')
+    assert_equal 2, selections.length
+    assert_equal '1', selections[0]['id']
+    assert_equal '2', selections[1]['id']
+    states = selections[1]['states']
+    assert_equal 2, states.length
+    assert_equal '3', states[0]['id']
+    assert_equal '4', states[1]['id']
+  end
+
+  def test_builds_single_selection_properly
+    selection = @lookup.send(:build_selection, '2')
+    assert_equal 2, selection['states'].length
+    assert selection['left']
+    assert_equal '0', selection['right']['unknown']
+    assert_equal '1', selection['right']['normal']
+  end
+
+  def test_builds_whole_tree
+    @lookup.build_tree
+    assert_equal '2', @lookup.tree['score']
+    assert_equal 1, @lookup.tree['selections'].length
+    assert_equal '7', @lookup.tree['selections'][0]['id']
+    assert_equal 2, @lookup.tree['selections'][0]['states'].length
+    assert_equal '5', @lookup.tree['selections'][0]['states'][1]['id']
+    assert_equal 4, @lookup.tree['selections'][0]['states'][1]['selections'].length
+    assert_equal '3', @lookup.tree['selections'][0]['states'][1]['selections'][0]['id']
+
+  end
+
   def teardown
     teardown_database
   end
