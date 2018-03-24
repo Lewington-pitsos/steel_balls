@@ -15,21 +15,29 @@ class SelectionRecorder < CarefulSaver
     super(name)
     @relation_name = @@relation_name
     @column_name = @@column_name
+    @left_id = 0
+    @right_id = 0
+    @selection_id = 0
   end
 
-  def save_selections(scored_selections, state_id, resulting_states)
-    scored_selections.each do |selection|
-      record_sides(selection)
-    end
+  def save_selections(scored_selection, state_id, resulting_states)
+    record_selection(selection)
+    save_selection()
   end
 
   private
 
+  attr_writer :left_id, :right_id
+
+  def record_selection
+    record_sides
+    @selection_id = save_selection
+  end
+
   def record_sides(selection)
     # saves both the sides (iff they haven't already been covered) finds the id's of both sides, and saves the selection using those ids
-    left_side_id = identify_side(selection[:left])
-    right_side_id = identify_side(selection[:right])
-    save_selection(left_side_id, right_side_id, selection[:score])
+    @left_id = identify_side(selection[:left])
+    @right_id = identify_side(selection[:right])
   end
 
   def identify_side(side)
@@ -38,5 +46,15 @@ class SelectionRecorder < CarefulSaver
       id = save(side)
     end
     id
+  end
+
+  def save_selection
+    @db.exec(
+      <<~COMMAND
+        INSERT INTO selections (left_id, right_id)
+        VALUES (#{@left_id}, #{@right_id})
+        RETURNING id;
+      COMMAND
+    )
   end
 end

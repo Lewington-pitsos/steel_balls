@@ -24,9 +24,10 @@ class SelectionRecorderTest < DatabaseTester
     normal: 1
   }
 
-  @@get_database_states = <<~CMD
-    SELECT * FROM selection_sides;
-  CMD
+  @@example_selection = {
+    left: @@example_side,
+    right: @@example_side2
+  }
 
   def setup
     setup_database_for_testing
@@ -35,18 +36,18 @@ class SelectionRecorderTest < DatabaseTester
 
   def test_records_single_side
     @recorder.send(:save, @@example_side)
-    row = @db.exec(@@get_database_states)[0]
+    row = get_all('selection_sides')[0]
 
     @@example_side.each do |mark, num|
       assert_equal num, row[mark.to_s].to_i
     end
 
     assert_raises 'Error' do
-      @db.exec(@@get_database_states)[1]
+      get_all('selection_sides')[1]
     end
 
     @recorder.send(:save, @@example_side2)
-    row = @db.exec(@@get_database_states)[1]
+    row = get_all('selection_sides')[1]
     @@example_side2.each do |mark, num|
       assert_equal num, row[mark.to_s].to_i
     end
@@ -77,6 +78,15 @@ class SelectionRecorderTest < DatabaseTester
   def test_returns_nil_for_non_recorded_sides
     refute @recorder.send(:get_id, @@example_side)
     refute @recorder.send(:get_id, @@example_side2)
+  end
+
+  def test_saves_selection_object_properly
+    @recorder.send(:save, @@example_side)
+    @recorder.send(:save, @@example_side2)
+    @recorder.send(:left_id=, 1)
+    @recorder.send(:right_id=, 2)
+    @recorder.send(:save_selection)
+
   end
 
 

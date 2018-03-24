@@ -20,4 +20,12 @@ class DatabaseTester < Minitest::Test
     @db.close()
   end
 
+  def get_all(relation)
+    @db.exec(
+      <<~CMD
+        SELECT * FROM #{relation};
+      CMD
+    )
+  end
+
 end
