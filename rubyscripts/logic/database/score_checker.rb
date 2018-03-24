@@ -4,23 +4,29 @@ require_relative './archivist'
 
 class ScoreChecker < Archivist
 
+  @@column_name = 'score'
+
   def initialize(name=@@database_name)
     super(name)
     @score = nil
   end
 
   def recorded_score(state)
-    get_recorded_score(state)
-    if @score.ntuples == 1
-      @score[0]['score'].to_i
-    else
-      nil
-    end
+    rubify(get_recorded_score(state))
   end
 
   private
 
   attr_reader :score
+
+  def rubify(pg_result)
+    # returns the actual number value represented within the pg result, or nil if the pg result came up with no matches
+    if pg_result.ntuples == 1
+      pg_result[0][@@column_name].to_i
+    else
+      nil
+    end
+  end
 
   def get_recorded_score(state)
     @score = @db.exec(

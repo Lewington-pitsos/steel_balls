@@ -12,8 +12,7 @@ class StateRecorderTest < Minitest::Test
       possibly_lighter: 0,
       normal: 0
     },
-    state_score: 29,
-    selections: []
+    rating: 29,
   }
 
   @@example_state2 = {
@@ -23,13 +22,28 @@ class StateRecorderTest < Minitest::Test
       possibly_lighter: 0,
       normal: 2
     },
-    state_score: 25,
-    selections: []
+    rating: 25,
+  }
+
+  @@example_state3 = {
+    state: {
+      unknown: 2,
+      possibly_heavier: 2,
+      possibly_lighter: 0,
+      normal: 2
+    },
+    rating: 25,
   }
 
   @@get_database_states = <<~CMD
     SELECT * FROM scored_states;
   CMD
+
+  @@state_array = [
+    @@example_state,
+    @@example_state2,
+    @@example_state3
+  ]
 
   def setup
     @db = PG.connect({ dbname: $DATABASE_NAME, user: 'postgres' })
@@ -47,7 +61,7 @@ class StateRecorderTest < Minitest::Test
     @@example_state[:state].each do |mark, num|
       assert_equal num, row[mark.to_s].to_i
     end
-    assert_equal @@example_state[:state_score], row['score'].to_i
+
     assert_raises 'Error' do
       @db.exec(@@get_database_states)[1]
     end
@@ -57,7 +71,51 @@ class StateRecorderTest < Minitest::Test
     @@example_state2[:state].each do |mark, num|
       assert_equal num, row[mark.to_s].to_i
     end
-    assert_equal @@example_state2[:state_score], row['score'].to_i
+  end
+
+  def test_returns_last_state_id
+    id = @recorder.send(:save_state, @@example_state)
+    assert_equal 1, id
+    id = @recorder.send(:save_state, @@example_state2)
+    assert_equal 2, id
+    id = @recorder.send(:save_state, @@example_state3)
+    assert_equal 3, id
+  end
+
+  def test_retrives_correct_id_from_recorded_states
+    @recorder.send(:save_state, @@example_state)
+    @recorder.send(:save_state, @@example_state2)
+    @recorder.send(:save_state, @@example_state3)
+
+    id = @recorder.send(:get_state_id, @@example_state)
+    assert_equal 1, id
+    id = @recorder.send(:get_state_id, @@example_state2)
+    assert_equal 2, id
+    id = @recorder.send(:get_state_id, @@example_state3)
+    assert_equal 3, id
+  end
+
+  def test_returns_nil_for_non_recorded_states
+    refute @recorder.send(:get_state_id, @@example_state)
+    refute @recorder.send(:get_state_id, @@example_state2)
+  end
+
+  def test_saves_ids_of_recorded_or_found_states
+    @recorder.send(:save_state, @@example_state)
+    @recorder.send(:record_state_and_id, @@example_state2)
+    @recorder.send(:record_state_and_id, @@example_state)
+    @recorder.send(:record_state_and_id, @@example_state3)
+
+    [2, 1, 3].each_with_index do |num, index|
+      assert_equal num, @recorder.send(:ids)[index]
+    end
+  end
+
+  def test_records_an_array_of_states
+    @recorder.record_states(@@state_array)
+    [1, 2, 3].each_with_index do |num, index|
+      assert_equal num, @recorder.send(:ids)[index]
+    end
   end
 
   def teardown

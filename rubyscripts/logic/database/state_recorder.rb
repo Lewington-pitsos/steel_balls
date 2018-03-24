@@ -5,12 +5,14 @@ require_relative './selection_recorder'
 
 class StateRecorder < Archivist
 
+  @@column_name = 'id'
+
   def initialize(name=@@database_name)
     super(name)
     @ids = []
   end
 
-  def record_state(all_states)
+  def record_states(all_states)
     all_states.each do |state|
       record_state_and_id(state)
     end
@@ -18,26 +20,37 @@ class StateRecorder < Archivist
 
   private
 
+  attr_reader :ids
+
   def record_state_and_id(state)
     id = get_state_id(state)
     if !id
-      save_state(state)
-      id = most_recent_id()
+      id = save_state(state)
     end
     @ids << id
   end
 
   def get_state_id(state)
-    @db.exec(
+    result = @db.exec(
       <<~COMMAND
           SELECT id FROM scored_states
-            WHERE unknown = #{state[:unknown]} AND
-              possibly_lighter = #{state[:possibly_lighter]} AND
-              possibly_heavier = #{state[:possibly_heavier]} AND
-              normal = #{state[:normal]};
-          );
+            WHERE unknown = #{state[:state][:unknown]} AND
+              possibly_lighter = #{state[:state][:possibly_lighter]} AND
+              possibly_heavier = #{state[:state][:possibly_heavier]} AND
+              normal = #{state[:state][:normal]};
       COMMAND
     )
+    rubify(result)
+  end
+
+  def rubify(pg_result)
+    # returns the actual number value represented within the pg result, or nil if the pg result came up with no matches
+    # only works for maximum 1 length results
+    if pg_result.ntuples == 1
+      pg_result[0][@@column_name].to_i
+    else
+      nil
+    end
   end
 
   def save_state(state)
@@ -47,23 +60,16 @@ class StateRecorder < Archivist
               unknown,
               possibly_lighter,
               possibly_heavier,
-              normal,
+              normal
             )
           VALUES (
             #{state[:state][:unknown]},
             #{state[:state][:possibly_lighter]},
             #{state[:state][:possibly_heavier]},
             #{state[:state][:normal]}
-          );
+          )
+          RETURNING id;
       COMMAND
-    )
-  end
-
-  def most_recent_id
-    @db.exec(
-      <<~COMMAND
-          IDENT_CURRENT('scored_states');
-      COMMAND
-    )
+    )[0]['id'].to_i
   end
 end
