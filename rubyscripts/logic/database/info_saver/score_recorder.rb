@@ -2,9 +2,9 @@
 
 # NOTE: there MUST be a row for the passed in state because we record all states (without scores) before attempting to find scores for any of them (Including the very first state)
 
-require_relative './searcher'
+require_relative '../searcher'
 
-class ScoreRecorder < Archivist
+class ScoreRecorder < Searcher
 
   def initialize(name=@@database_name)
     super(name)

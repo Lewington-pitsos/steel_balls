@@ -1,5 +1,5 @@
 require './rubyscripts/testing/database_tester'
-require './rubyscripts/logic/database/score_recorder'
+require './rubyscripts/logic/database/info_saver/score_recorder'
 
 class ScoreRecorderTest < DatabaseTester
 

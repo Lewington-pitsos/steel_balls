@@ -1,5 +1,5 @@
 require './rubyscripts/testing/database_tester'
-require './rubyscripts/logic/database/state_recorder'
+require './rubyscripts/logic/database/info_saver/state_recorder'
 
 class StateRecorderTest < DatabaseTester
 

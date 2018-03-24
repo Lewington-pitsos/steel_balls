@@ -1,4 +1,4 @@
-require_relative './searcher'
+require_relative '../searcher'
 
 class CarefulSaver < Searcher
 
