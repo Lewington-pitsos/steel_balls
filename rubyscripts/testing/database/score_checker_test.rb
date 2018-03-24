@@ -1,8 +1,8 @@
 require "minitest/autorun"
-require './rubyscripts/testing/test_defaults'
+require './rubyscripts/testing/database_tester'
 require './rubyscripts/logic/database/score_checker'
 
-class ScoreCheckerTest < Minitest::Test
+class ScoreCheckerTest < DatabaseTester
   @@example_state = {
     state: {
       unknown: 4,
@@ -57,10 +57,7 @@ class ScoreCheckerTest < Minitest::Test
   @@database_name = 'test_steel_balls'
 
   def setup
-    @setup = Setup.new($DATABASE_NAME)
-    @setup.suppress_warnings
-    @setup.send(:clear_database)
-    @setup.setup_if_needed
+    setup_database_for_testing
 
     @recorder = StateRecorder.new($DATABASE_NAME)
     @recorder.send(:save_state, @@example_state)
@@ -92,7 +89,6 @@ class ScoreCheckerTest < Minitest::Test
   end
 
   def teardown
-    @setup.send(:clear_database)
-    @setup.close()
+    teardown_database
   end
 end

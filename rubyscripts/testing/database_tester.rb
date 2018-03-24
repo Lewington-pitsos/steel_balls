@@ -1,10 +1,12 @@
 require "minitest/autorun"
 require './rubyscripts/testing/test_defaults'
-require_relative '../../logic/database/setup'
+require './rubyscripts/logic/database/setup'
+require 'pg'
 
 class DatabaseTester < Minitest::Test
 
   def setup_database_for_testing
+    @db = PG.connect({ dbname: $DATABASE_NAME, user: 'postgres' })
     @setup = Setup.new($DATABASE_NAME)
     @setup.suppress_warnings
     @setup.send(:clear_database)
@@ -15,6 +17,7 @@ class DatabaseTester < Minitest::Test
   def teardown_database
     @setup.send(:clear_database)
     @setup.close()
+    @db.close()
   end
 
 end
