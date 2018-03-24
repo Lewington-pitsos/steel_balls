@@ -1,4 +1,3 @@
-require "minitest/autorun"
 require './rubyscripts/testing/database_tester'
 require './rubyscripts/logic/database/state_recorder'
 
