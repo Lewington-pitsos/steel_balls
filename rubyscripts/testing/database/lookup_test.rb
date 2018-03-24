@@ -1,6 +1,7 @@
 require './rubyscripts/testing/database_tester'
 require './rubyscripts/logic/database/lookup'
 require './rubyscripts/logic/state_manager'
+require 'yaml'
 
 class ScoreCheckerTest < DatabaseTester
 
