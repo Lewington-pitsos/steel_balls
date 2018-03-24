@@ -1,10 +1,13 @@
 require_relative './state_manager'
+require './rubyscripts/logic/database/lookup'
 require_relative './state_evaluator/selection_overseer/state_expander/arrangement_generator/ball_generator'
+require 'active_support/core_ext/hash'
 
 class Interface
 
   def initialize(run=true)
     @length = 0
+    @lookup = Lookup.new()
     request_starting_state if run
   end
 
@@ -37,7 +40,11 @@ class Interface
 
     score = calculate_state_score(state)
 
-    puts "\nSuccess! Steel Ball Calculator® has calculated that you will need only #{score} weighs to determine the odd ball for certain\n\n"
+    puts "\nSuccess! Steel Ball Calculator® has calculated that you will need only #{score} weighs to determine the odd ball for certain\n\n\n\n"
+
+    puts "========================[ TREE DATA ] ========================\n\n\n"
+    @lookup.build_tree
+    puts @lookup.tree.to_xml
   end
 
   def proceed_if_valid

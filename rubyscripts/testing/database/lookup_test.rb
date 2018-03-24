@@ -1,7 +1,7 @@
 require './rubyscripts/testing/database_tester'
 require './rubyscripts/logic/database/lookup'
 require './rubyscripts/logic/state_manager'
-require 'yaml'
+
 
 class ScoreCheckerTest < DatabaseTester
 
@@ -161,6 +161,7 @@ class ScoreCheckerTest < DatabaseTester
     assert_equal '5', @lookup.tree['selections'][0]['states'][1]['id']
     assert_equal 4, @lookup.tree['selections'][0]['states'][1]['selections'].length
     assert_equal '3', @lookup.tree['selections'][0]['states'][1]['selections'][0]['id']
+    p @lookup.tree.to_xml
 
   end
 
