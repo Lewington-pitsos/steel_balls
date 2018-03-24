@@ -12,7 +12,7 @@ class SelectionRecorder < Archivist
     super(name)
   end
 
-  def save_selections(scored_selections)
+  def save_selections(scored_selections, state_id, resulting_states)
     scored_selections.each do |selection|
       record_sides(selection)
     end

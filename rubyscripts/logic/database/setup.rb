@@ -29,29 +29,28 @@ class Setup < Archivist
   COMMAND
 
   @@scored_selections_setup = <<~COMMAND
-    CREATE TABLE scored_selections (
+    CREATE TABLE selections (
       id serial,
       left_id INTEGER REFERENCES selection_sides(id) ON DELETE CASCADE,
       right_id INTEGER REFERENCES selection_sides(id) ON DELETE CASCADE,
-      score INTEGER NOT NULL DEFAULT 0,
       PRIMARY KEY(id)
     )
   COMMAND
 
   @@states_prev_selections_setup = <<~COMMAND
-    CREATE TABLE states_prev_selections (
+    CREATE TABLE optimal_selections (
       id serial,
       state_id INTEGER REFERENCES scored_states(id) ON DELETE CASCADE,
-      prev_selection_id INTEGER REFERENCES scored_selections(id) ON DELETE CASCADE,
+      selection_id INTEGER REFERENCES selections(id) ON DELETE CASCADE,
       PRIMARY KEY(id)
     )
   COMMAND
 
   @@selections_prev_states_setup = <<~COMMAND
-    CREATE TABLE selections_prev_states (
+    CREATE TABLE resulting_states (
       id serial,
-      selection_id INTEGER REFERENCES scored_selections(id) ON DELETE CASCADE,
-      prev_state_id INTEGER REFERENCES scored_states(id) ON DELETE CASCADE,
+      optimal_selection_id INTEGER REFERENCES optimal_selections(id) ON DELETE CASCADE,
+      state_id INTEGER REFERENCES scored_states(id) ON DELETE CASCADE,
       PRIMARY KEY(id)
     )
   COMMAND
@@ -59,9 +58,9 @@ class Setup < Archivist
 
 
   @@drop_all_tables = <<~COMMAND
-    DROP TABLE IF EXISTS states_prev_selections;
-    DROP TABLE IF EXISTS selections_prev_states;
-    DROP TABLE IF EXISTS scored_selections;
+    DROP TABLE IF EXISTS resulting_states;
+    DROP TABLE IF EXISTS optimal_selections;
+    DROP TABLE IF EXISTS selections;
     DROP TABLE IF EXISTS selection_sides;
     DROP TABLE IF EXISTS scored_states;
   COMMAND
@@ -99,9 +98,9 @@ class Setup < Archivist
     begin
       @db.exec('SELECT * FROM scored_states;')
       @db.exec('SELECT * FROM selection_sides;')
-      @db.exec('SELECT * FROM scored_selections;')
-      @db.exec('SELECT * FROM states_prev_selections;')
-      @db.exec('SELECT * FROM selections_prev_states;')
+      @db.exec('SELECT * FROM selections;')
+      @db.exec('SELECT * FROM optimal_selections;')
+      @db.exec('SELECT * FROM resulting_states;')
     rescue
       return true
     end
