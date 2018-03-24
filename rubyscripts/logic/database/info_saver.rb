@@ -23,11 +23,13 @@ class InfoSaver
     parse(scored_state_info)
     save_state_score
     gather_optimal_selections
-    @optmial_selections.each do |selection|
+    @optimal_selections.each do |selection|
       @state_recorder.record_states(selection)
       new_state_ids = @state_recorder.ids
-      @selection_recorder.record_selection(selection, @main_state_id, new_state_ids)
+      @selection_recorder.save_selection_data(selection, @main_state_id, new_state_ids)
     end
+
+    close_everything()
   end
 
   private
@@ -37,7 +39,7 @@ class InfoSaver
 
   def parse(scored_state_info)
     @state = scored_state_info[:state]
-    @score = scored_state_info[:score]
+    @score = scored_state_info[:state_score]
     @selections = scored_state_info[:selections]
   end
 
@@ -49,15 +51,20 @@ class InfoSaver
     # saves a list of all the selections which share the lowest score equally
     @optimal_selections = []
     min = @selections[0][:score]
-
     @selections.each do |selection|
       score = selection[:score]
       if score < min
         min = score
-        @optimal_selections = [selection]
+        @optimal_selections = [ selection ]
       elsif score == min
         @optimal_selections << selection
       end
     end
+  end
+
+  def close_everything
+    @state_recorder.close()
+    @score_recorder.close()
+    @selection_recorder.close()
   end
 end

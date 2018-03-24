@@ -19,7 +19,28 @@ class Setup < Archivist
     { unknown: 10, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
     { unknown: 11, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
     { unknown: 12, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    { unknown: 13, possibly_heavier: 0, possibly_lighter: 0, normal: 0 }
+    { unknown: 13, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
+    {:unknown=>1, :possibly_lighter=>1, :possibly_heavier=>0, :normal=>6},
+    {:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>6},
+    {:unknown=>1, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>7},
+    {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>6},
+    {:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>1, :normal=>5},
+    {:unknown=>0, :possibly_lighter=>3, :possibly_heavier=>0, :normal=>5},
+    {:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5},
+    {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>2, :normal=>5},
+    {:unknown=>1, :possibly_lighter=>0, :possibly_heavier=>1, :normal=>6},
+    {:unknown=>0, :possibly_lighter=>0, :possibly_heavier=>2, :normal=>6},
+    {:unknown=>1, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>5},
+    {:unknown=>0, :possibly_lighter=>0, :possibly_heavier=>3, :normal=>5},
+    {:unknown=>1, :possibly_lighter=>0, :possibly_heavier=>2, :normal=>5}
+
+
+
+
+
+
+
+
   ]
 
   @@scored_states_setup = <<~COMMAND

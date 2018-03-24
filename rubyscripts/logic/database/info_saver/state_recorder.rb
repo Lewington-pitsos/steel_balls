@@ -16,7 +16,7 @@ class StateRecorder < CarefulSaver
   end
 
   def record_states(selection)
-    selection[:states].each do |state|
+    selection[:selection][:states].each do |state|
       record_state_and_id(state)
     end
   end

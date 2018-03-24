@@ -17,7 +17,7 @@ class StateEvaluator
     @state = state
     @selector = SelectionOverseer.new(@state)
     @scorer = ScoreOverseer.new(rating)
-    @recorder = StateRecorder.new()
+    @recorder = InfoSaver.new()
   end
 
   def state_score
@@ -25,7 +25,6 @@ class StateEvaluator
     scored_state_info = @scorer.score(pre_weigh)
     scored_state_info[:state] = @state
     @recorder.save_everything(scored_state_info)
-    @recorder.close()
     scored_state_info[:state_score]
   end
 end
