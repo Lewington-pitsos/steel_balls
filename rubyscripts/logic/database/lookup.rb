@@ -13,9 +13,10 @@ class Lookup < Archivist
 
   attr_reader :tree
 
-  def initialize(name=@@database_name)
+  def initialize(name=@@database_name, simplified=false)
     super(name)
     @tree = {}
+    @simplified = simplified
   end
 
   def build_tree
@@ -33,10 +34,18 @@ class Lookup < Archivist
   end
 
   def build_optimal_selections(state_id)
-    full_selections = optimal_selections(state_id)
+    full_selections = get_full_selections(state_id)
     selection_ids = ids_from(full_selections, @@selection_id_col)
     selection_ids.map do |selection_id|
       build_selection(selection_id)
+    end
+  end
+
+  def get_full_selections(state_id)
+    if @simplified
+      single_optimal_selection(state_id)
+    else
+      optimal_selections(state_id)
     end
   end
 
@@ -83,6 +92,16 @@ class Lookup < Archivist
       <<~CMD
         SELECT selection_id FROM #{@@optimal_tab}
         WHERE state_id = #{state_id};
+      CMD
+    )
+  end
+
+  def single_optimal_selection(state_id)
+    @db.exec(
+      <<~CMD
+        SELECT selection_id FROM #{@@optimal_tab}
+        WHERE state_id = #{state_id}
+        LIMIT 1;
       CMD
     )
   end

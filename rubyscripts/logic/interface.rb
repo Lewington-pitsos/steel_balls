@@ -1,13 +1,12 @@
 require_relative './state_manager'
 require './rubyscripts/logic/database/lookup'
 require_relative './state_evaluator/selection_overseer/state_expander/arrangement_generator/ball_generator'
-require 'active_support/core_ext/hash'
+require 'yaml'
 
 class Interface
 
   def initialize(run=true)
     @length = 0
-    @lookup = Lookup.new()
     request_starting_state if run
   end
 
@@ -17,7 +16,7 @@ class Interface
 
     request
 
-    puts "========================[ END OF PROGRAM ] ========================\n\n\n"
+    puts "========================[ END PROGRAM ] ========================\n\n\n"
   end
 
   private
@@ -43,8 +42,14 @@ class Interface
     puts "\nSuccess! Steel Ball Calculator® has calculated that you will need only #{score} weighs to determine the odd ball for certain\n\n\n\n"
 
     puts "========================[ TREE DATA ] ========================\n\n\n"
-    @lookup.build_tree
-    puts @lookup.tree.to_xml
+
+    puts "NOTES:"
+    puts "-   a state with a null score is a 'winning' state (i.e. one where we know whiich ball the oddball is and whether it is heavier or lighter)"
+    puts "-   for simplicity we're only presenting one winning selection per state"
+
+    print_tree
+
+    puts "\n\n\n========================[ END TREE DATA ] ========================\n\n\n"
   end
 
   def proceed_if_valid
@@ -66,6 +71,13 @@ class Interface
     else
       true
     end
+  end
+
+  def print_tree
+    puts "\n\n\n\n"
+    lookup = Lookup.new($DATABASE_NAME, true)
+    lookup.build_tree
+    puts lookup.tree.to_yaml
   end
 
   def setup_defaults

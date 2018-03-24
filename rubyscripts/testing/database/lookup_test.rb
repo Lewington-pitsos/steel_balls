@@ -161,8 +161,15 @@ class ScoreCheckerTest < DatabaseTester
     assert_equal '5', @lookup.tree['selections'][0]['states'][1]['id']
     assert_equal 4, @lookup.tree['selections'][0]['states'][1]['selections'].length
     assert_equal '3', @lookup.tree['selections'][0]['states'][1]['selections'][0]['id']
-    p @lookup.tree.to_xml
+  end
 
+  def test_simplified_tree_renders_correctly
+    lookup2 = Lookup.new($DATABASE_NAME, true)
+    lookup2.build_tree
+    assert_equal '2', lookup2.tree['score']
+    assert_equal 1, lookup2.tree['selections'].length
+    assert_equal 1, lookup2.tree['selections'][0]['states'][0]['selections'].length
+    assert_equal 1, lookup2.tree['selections'][0]['states'][1]['selections'].length
   end
 
   def teardown
