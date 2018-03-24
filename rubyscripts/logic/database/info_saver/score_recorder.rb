@@ -2,21 +2,15 @@
 
 # NOTE: there MUST be a row for the passed in state because we record all states (without scores) before attempting to find scores for any of them (Including the very first state)
 
-require_relative '../searcher'
+require_relative '../archivist'
 
-class ScoreRecorder < Searcher
+class ScoreRecorder < Archivist
 
   def initialize(name=@@database_name)
     super(name)
   end
 
-  def record_score(scored_state)
-    save_score(scored_state[:state], scored_state[:score])
-  end
-
-  private
-
-  def save_score(state, score)
+  def record_score(state, score)
     @db.exec(
       <<~COMMAND
         UPDATE scored_states

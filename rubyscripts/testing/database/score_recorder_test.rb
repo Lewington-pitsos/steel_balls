@@ -54,15 +54,15 @@ class ScoreRecorderTest < DatabaseTester
   end
 
   def test_returns_correct_ids
-    assert_equal 1, @score_recorder.record_score(@@example_state)
-    assert_equal 3, @score_recorder.record_score(@@example_state3)
-    assert_equal 2, @score_recorder.record_score(@@example_state2)
+    assert_equal 1, @score_recorder.record_score(@@example_state[:state], @@example_state[:score])
+    assert_equal 3, @score_recorder.record_score(@@example_state3[:state], @@example_state2[:score])
+    assert_equal 2, @score_recorder.record_score(@@example_state2[:state], @@example_state3[:score])
   end
 
   def test_stores_correct_scores
-    @score_recorder.record_score(@@example_state)
-    @score_recorder.record_score(@@example_state2)
-    @score_recorder.record_score(@@example_state3)
+    @score_recorder.record_score(@@example_state[:state], @@example_state[:score])
+    @score_recorder.record_score(@@example_state2[:state], @@example_state2[:score])
+    @score_recorder.record_score(@@example_state3[:state], @@example_state3[:score])
     assert_equal 29, get_score(1)
     assert_equal 25, get_score(2)
     assert_equal 21, get_score(3)
