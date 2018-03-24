@@ -1,4 +1,4 @@
-module  SaveHelper
+module SaveHelper
   def save(state, relation=@relation_name)
     @db.exec(
       <<~COMMAND

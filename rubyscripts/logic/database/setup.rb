@@ -8,7 +8,6 @@ class Setup < Archivist
   include SaveHelper
 
   @@default_states = [
-    { unknown: 2, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
     { unknown: 3, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
     { unknown: 4, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
     { unknown: 5, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
@@ -33,14 +32,6 @@ class Setup < Archivist
     {:unknown=>1, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>5},
     {:unknown=>0, :possibly_lighter=>0, :possibly_heavier=>3, :normal=>5},
     {:unknown=>1, :possibly_lighter=>0, :possibly_heavier=>2, :normal=>5}
-
-
-
-
-
-
-
-
   ]
 
   @@scored_states_setup = <<~COMMAND

@@ -8,14 +8,19 @@
 
 # however we got the score, we return it
 
+require './rubyscripts/logic/database/info_saver/state_recorder'
 require_relative './state_evaluator'
 require_relative './database/score_checker'
 
+
 class StateManager
+
+  @@relation_name = 'scored_states'
 
   def initialize(rated_state)
     @rating = rated_state[:rating]
     @state = rated_state[:state]
+    @relation_name = @@relation_name
   end
 
   def score
@@ -28,12 +33,19 @@ class StateManager
     if recorded_score
       recorded_score
     else
+      record_state
       evaluator = StateEvaluator.new(@state, @rating)
       evaluator.state_score
     end
   end
 
   private
+
+  def record_state
+    recorder = StateRecorder.new()
+    recorder.record_state_and_id(@state)
+    recorder.close()
+  end
 
   def score_in_database
     # creates a new score checker, gets it to return the recorded score value, and closes it immidiately to prevent connection leakage

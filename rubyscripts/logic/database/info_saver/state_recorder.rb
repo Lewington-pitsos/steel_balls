@@ -16,17 +16,16 @@ class StateRecorder < CarefulSaver
   end
 
   def record_states(selection)
+    puts selection
     selection[:selection][:states].each do |state|
-      record_state_and_id(state)
+      record_state_and_id(state[:state])
     end
   end
 
-  private
-
   def record_state_and_id(state)
-    id = get_id(state[:state])
+    id = get_id(state)
     if !id
-      id = save(state[:state])
+      id = save(state)
     end
     @ids << id
   end

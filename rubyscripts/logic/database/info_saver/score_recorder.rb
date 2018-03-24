@@ -11,6 +11,8 @@ class ScoreRecorder < Archivist
   end
 
   def record_score(state, score)
+    puts state
+    puts score
     @db.exec(
       <<~COMMAND
         UPDATE scored_states
