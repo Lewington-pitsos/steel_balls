@@ -16,7 +16,6 @@ class WinChecker
     # goes through every selection. Is winning, all infromation regarding it's states and rating is deleted and it's added to the winning selections list with a score of 0
     rated_selections.each do |selection|
       if winner?(selection)
-        selection[:selection].delete(:states)
         @winning_selections << { selection: selection[:selection], score: 0 }
       end
     end

@@ -15,8 +15,8 @@ class StateRecorder < CarefulSaver
     @column_name = @@column_name
   end
 
-  def record_states(all_states)
-    all_states.each do |state|
+  def record_states(selection)
+    selection[:states].each do |state|
       record_state_and_id(state)
     end
   end

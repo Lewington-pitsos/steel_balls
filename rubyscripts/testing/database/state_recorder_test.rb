@@ -43,6 +43,12 @@ class StateRecorderTest < DatabaseTester
     @@example_state3
   ]
 
+  @@example_selection = {
+    left: {},
+    right: {},
+    states: @@state_array
+  }
+
   def setup
     setup_database_for_testing
     @recorder = StateRecorder.new($DATABASE_NAME)
@@ -106,7 +112,7 @@ class StateRecorderTest < DatabaseTester
   end
 
   def test_records_an_array_of_states
-    @recorder.record_states(@@state_array)
+    @recorder.record_states(@@example_selection)
     [1, 2, 3].each_with_index do |num, index|
       assert_equal num, @recorder.send(:ids)[index]
     end
