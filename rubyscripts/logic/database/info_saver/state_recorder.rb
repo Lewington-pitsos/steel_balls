@@ -4,6 +4,8 @@ require_relative './careful_saver'
 
 class StateRecorder < CarefulSaver
 
+  attr_reader :ids
+
   @@column_name = 'id'
 
   def initialize(name=@@database_name)
@@ -20,8 +22,6 @@ class StateRecorder < CarefulSaver
   end
 
   private
-
-  attr_reader :ids
 
   def record_state_and_id(state)
     id = get_id(state[:state])

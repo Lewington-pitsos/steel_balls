@@ -12,6 +12,8 @@ class InfoSaver
     @selections = scored_state_info[:selections]
     @optimal_selections = []
 
+    @main_state_id = 0
+
     @state_recorder = StateRecorder.new()
     @score_recorder = ScoreRecorder.new()
     @selection_recorder = SelectionRecorder.new()
@@ -20,15 +22,17 @@ class InfoSaver
   def save_everything
     save_state_score
     gather_optimal_selections
-    @optmial_selections.each do
-
+    @optmial_selections.each do |selection|
+      @state_recorder.record_states(selection)
+      new_state_ids = @state_recorder.ids
+      @selection_recorder.record_selection(selection, @main_state_id, new_state_ids)
     end
   end
 
   private
 
   def save_state_score
-    @score_recorder.record_score(@state, @score)
+    @main_state_id = @score_recorder.record_score(@state, @score)
   end
 
   def gather_optimal_selections

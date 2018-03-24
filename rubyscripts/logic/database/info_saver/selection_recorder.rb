@@ -21,8 +21,8 @@ class SelectionRecorder < CarefulSaver
     @optimal_selection_id = 0
   end
 
-  def save_selections(scored_selection, state_id, resulting_state_ids)
-    record_selection(selection)
+  def save_selection(scored_selection, state_id, resulting_state_ids)
+    record_selection(selection[:selection])
     record_prev_state(state_id)
     record_resulting_states(resulting_state_ids)
   end
