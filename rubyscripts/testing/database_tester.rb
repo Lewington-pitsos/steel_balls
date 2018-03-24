@@ -13,8 +13,8 @@ class DatabaseTester < Minitest::Test
     @setup.setup_if_needed
   end
 
-  def add_defaults
-    @setup.add_default_states
+  def add_defaults(*states)
+    @setup.add_default_states(*states)
   end
 
   def teardown_database

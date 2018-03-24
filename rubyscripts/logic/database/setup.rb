@@ -7,33 +7,6 @@ class Setup < Archivist
 
   include SaveHelper
 
-  @@default_states = [
-    { unknown: 3, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    { unknown: 4, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    { unknown: 5, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    { unknown: 6, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    { unknown: 7, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    { unknown: 8, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    { unknown: 9, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    { unknown: 10, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    { unknown: 11, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    { unknown: 12, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    { unknown: 13, possibly_heavier: 0, possibly_lighter: 0, normal: 0 },
-    {:unknown=>1, :possibly_lighter=>1, :possibly_heavier=>0, :normal=>6},
-    {:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>6},
-    {:unknown=>1, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>7},
-    {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>6},
-    {:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>1, :normal=>5},
-    {:unknown=>0, :possibly_lighter=>3, :possibly_heavier=>0, :normal=>5},
-    {:unknown=>1, :possibly_lighter=>2, :possibly_heavier=>0, :normal=>5},
-    {:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>2, :normal=>5},
-    {:unknown=>1, :possibly_lighter=>0, :possibly_heavier=>1, :normal=>6},
-    {:unknown=>0, :possibly_lighter=>0, :possibly_heavier=>2, :normal=>6},
-    {:unknown=>1, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>5},
-    {:unknown=>0, :possibly_lighter=>0, :possibly_heavier=>3, :normal=>5},
-    {:unknown=>1, :possibly_lighter=>0, :possibly_heavier=>2, :normal=>5}
-  ]
-
   @@scored_states_setup = <<~COMMAND
     CREATE TABLE scored_states (
       id serial,
@@ -115,8 +88,8 @@ class Setup < Archivist
     @db.exec(@@drop_all_tables)
   end
 
-  def add_default_states
-    @@default_states.each do |state|
+  def add_default_states(*args)
+    args.each do |state|
       save(state, 'scored_states')
     end
   end
@@ -153,11 +126,3 @@ class Setup < Archivist
     true
   end
 end
-
-=begin
-setup = Setup.new('test_steel_balls')
-
-setup.send(:clear_database)
-
-setup.send(:setup_tables)
-=end

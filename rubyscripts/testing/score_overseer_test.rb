@@ -9,8 +9,6 @@ class ScoreOverseerTest < DatabaseTester
 
   def setup
     setup_database_for_testing
-    add_defaults
-
     @normal_state = {
       unknown: 8,
       possibly_heavier: 0,
@@ -112,6 +110,7 @@ class ScoreOverseerTest < DatabaseTester
       @normal_selection
     ]
 
+    add_defaults(@normal_state, @fancy_state)
     @overseer = ScoreOverseer.new(28)
   end
 

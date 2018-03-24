@@ -21,4 +21,12 @@ class CarefulSaver < Searcher
     )
     rubify(result, @column_name)
   end
+
+  def record_state_and_id(state)
+    id = get_id(state)
+    if !id
+      id = save(state)
+    end
+    id
+  end
 end

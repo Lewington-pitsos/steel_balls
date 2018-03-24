@@ -29,7 +29,7 @@ class StateEvaluatorTest < DatabaseTester
 
   def setup
     setup_database_for_testing
-    add_defaults
+    add_defaults(@@almost_winning_state, @@almost_winning_state2, @@non_winning_state)
   end
 
   def test_scores_states_correctly

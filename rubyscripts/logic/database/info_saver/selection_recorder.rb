@@ -38,16 +38,8 @@ class SelectionRecorder < CarefulSaver
 
   def record_sides(selection)
     # saves both the sides (iff they haven't already been covered) finds the id's of both sides, and saves the selection using those ids
-    @left_id = identify_side(selection[:left])
-    @right_id = identify_side(selection[:right])
-  end
-
-  def identify_side(side)
-    id = get_id(side)
-    if !id
-      id = save(side)
-    end
-    id
+    @left_id = record_state_and_id(selection[:left])
+    @right_id = record_state_and_id(selection[:right])
   end
 
   def save_selection

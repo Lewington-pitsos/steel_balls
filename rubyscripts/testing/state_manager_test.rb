@@ -138,7 +138,7 @@ class StateManagerTest < DatabaseTester
 
   def setup
     setup_database_for_testing
-    add_defaults
+    add_defaults(@@state12[:state], @@state7[:state], @@state5[:state], @@state4[:state], @@small_state[:state], @@hard_state[:state], @@unknown_state[:state], @@non_winning_state[:state], @@winning_state2[:state], @@winning_state[:state], @@impossible_winning_state[:state], @@almost_winning_state2[:state], @@almost_winning_state[:state])
     $WINNING_RATING = 37
     $DEFAULT_LENGTH = 8
   end
@@ -152,7 +152,7 @@ class StateManagerTest < DatabaseTester
     assert_equal 0, manager.score
   end
 
-  def scores_states_correctly
+  def test_scores_states_correctly
     manager = StateManager.new(@@almost_winning_state)
     assert_equal 1, manager.score
 
