@@ -49,6 +49,14 @@ class StateRecorderTest < DatabaseTester
     states: @@state_array
   }
 
+  @@example_proper_selection = {
+      selection:{
+      left: {},
+      right: {},
+      states: @@state_array
+    }
+  }
+
   def setup
     setup_database_for_testing
     @recorder = StateRecorder.new($DATABASE_NAME)
@@ -102,17 +110,19 @@ class StateRecorderTest < DatabaseTester
 
   def test_saves_ids_of_recorded_or_found_states
     @recorder.send(:save, @@example_state[:state])
-    @recorder.send(:record_state_and_id, @@example_state2)
-    @recorder.send(:record_state_and_id, @@example_state)
-    @recorder.send(:record_state_and_id, @@example_state3)
+
+    ids = []
+    ids << @recorder.send(:record_state_and_id, @@example_state2[:state])
+    ids << @recorder.send(:record_state_and_id, @@example_state[:state])
+    ids << @recorder.send(:record_state_and_id, @@example_state3[:state])
 
     [2, 1, 3].each_with_index do |num, index|
-      assert_equal num, @recorder.send(:ids)[index]
+      assert_equal num, ids[index]
     end
   end
 
   def test_records_an_array_of_states
-    @recorder.record_states(@@example_selection)
+    @recorder.record_states(@@example_proper_selection)
     [1, 2, 3].each_with_index do |num, index|
       assert_equal num, @recorder.send(:ids)[index]
     end
