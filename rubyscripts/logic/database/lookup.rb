@@ -27,7 +27,7 @@ class Lookup < Archivist
 
   def build_state(state_id)
     state = get_by_id(state_id, @@state_tab)
-    selection_ids = get_ids_by_id(state_id, optimal_selection_id, @@selection_id_col)
+    selection_ids = get_ids_by_id(state_id, optimal_selection_ids, @@selection_id_col)
     selections = selection_ids.map do |selection_id|
       build_selection(selection_id)
     end
@@ -79,7 +79,7 @@ class Lookup < Archivist
         SELECT selection_id FROM #{@@optimal_tab}
         WHERE state_id = #{state_id};
       CMD
-    ).
+    )
   end
 
   def resulting_states(selection_id)
