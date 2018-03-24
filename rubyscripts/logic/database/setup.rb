@@ -1,8 +1,13 @@
 # checks if the database with the proper tables are all setup. Sets them up if not, otherwise does nothing.
 
 require_relative './archivist'
+require_relative './save_helper'
 
 class Setup < Archivist
+
+  include SaveHelper
+
+  @@default_states = {}
 
   @@scored_states_setup = <<~COMMAND
     CREATE TABLE scored_states (
@@ -83,6 +88,10 @@ class Setup < Archivist
 
   def clear_database
     @db.exec(@@drop_all_tables)
+  end
+
+  def add_sample_states
+
   end
 
   private
