@@ -11,8 +11,8 @@ class DatabaseTester < Minitest::Test
     @setup.suppress_warnings
     @setup.send(:clear_database)
     @setup.setup_if_needed
+    @setup.add_default_states
   end
-
 
   def teardown_database
     @setup.send(:clear_database)
