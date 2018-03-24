@@ -65,14 +65,14 @@ class ScoreCheckerTest < DatabaseTester
     assert_equal '2', @lookup.send(:state_id_by_values, @@other_state)
   end
 
-  def test_returns_all_optimal_selections
-    selections = @lookup.send(:optimal_selection_ids, '1')
+  def test_queries_all_optimal_selections
+    selections = @lookup.send(:optimal_selections, '1')
     assert_equal 1, selections.ntuples
     selections.each do |sel|
       assert_equal '7', sel['selection_id']
     end
 
-    selections = @lookup.send(:optimal_selection_ids, '5')
+    selections = @lookup.send(:optimal_selections, '5')
     selections.each_with_index do |sel, index|
       assert_equal (index + 3).to_s, sel['selection_id']
     end
@@ -84,7 +84,21 @@ class ScoreCheckerTest < DatabaseTester
     selections.each_with_index do |sel, index|
       assert_equal (index + 3).to_s, sel['state_id']
     end
+  end
 
+  def test_gathers_optimal_selection_ids
+    selections = @lookup.send(:optimal_selections, '1')
+    ids = @lookup.send(:ids_from, selections, 'selection_id')
+
+    assert_equal 1, ids.length
+    assert_equal '7', ids[0]
+
+    selections = @lookup.send(:optimal_selections, '5')
+    ids = @lookup.send(:ids_from, selections, 'selection_id')
+
+    assert_equal 4, ids.length
+    assert_equal '3', ids[0]
+    assert_equal '5', ids[2]
   end
 
   def teardown

@@ -27,7 +27,8 @@ class Lookup < Archivist
 
   def build_state(state_id)
     state = get_by_id(state_id, @@state_tab)
-    selection_ids = get_ids_by_id(state_id, optimal_selection_ids, @@selection_id_col)
+    full_selections = optimal_selections(state_id)
+    selection_ids = ids_from(full_selections, @@selection_id_col)
     selections = selection_ids.map do |selection_id|
       build_selection(selection_id)
     end
@@ -44,7 +45,8 @@ class Lookup < Archivist
   end
 
   def build_resulting_states(selection_id)
-    state_ids = get_ids_by_id(selection_id, resulting_states, @@state_id_col)
+    full_states = resulting_states(selection_id)
+    state_ids = ids_from(full_states, @@state_id_col)
     states = state_ids.map do |state_id|
       build_state(state_id)
     end
@@ -59,10 +61,9 @@ class Lookup < Archivist
     }
   end
 
-  def get_ids_by_id(id, callback, id_name)
+  def ids_from(rows, id_name)
     # gets passed in a single id, a callback function (which should be mostly a query) and the column name of the ids we want to extract
     # returns an array of ids
-    rows = callback(id)
     ids = []
     rows.each do |row|
       ids << row[id_name]
@@ -73,7 +74,7 @@ class Lookup < Archivist
 
   # ================ Query Methods ================
 
-  def optimal_selection_ids(state_id)
+  def optimal_selections(state_id)
     @db.exec(
       <<~CMD
         SELECT selection_id FROM #{@@optimal_tab}
