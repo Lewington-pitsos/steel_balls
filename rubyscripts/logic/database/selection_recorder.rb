@@ -29,7 +29,7 @@ class SelectionRecorder < CarefulSaver
 
   private
 
-  attr_writer :left_id, :right_id
+  attr_writer :left_id, :right_id, :selection_id
 
   def record_selection
     record_sides
@@ -70,8 +70,8 @@ class SelectionRecorder < CarefulSaver
     )[0]['id'].to_i
   end
 
-  def record_resulting_states(states_id)
-    states.each do |state_id|
+  def record_resulting_states(state_ids)
+    state_ids.each do |state_id|
       save_resulting_state(state_id)
     end
   end
@@ -80,7 +80,7 @@ class SelectionRecorder < CarefulSaver
     @db.exec(
       <<~COMMAND
         INSERT INTO resulting_states ( optimal_selection_id, state_id)
-        VALUES ( #{@optmial_selection_id}, #{state_id} )
+        VALUES ( #{@optimal_selection_id}, #{state_id} )
       COMMAND
     )
   end
