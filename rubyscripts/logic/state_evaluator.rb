@@ -9,7 +9,7 @@
 
 require_relative './state_evaluator/score_overseer'
 require_relative './state_evaluator/selection_overseer'
-require_relative './database/state_recorder'
+require_relative './database/info_saver'
 
 class StateEvaluator
 
@@ -24,7 +24,7 @@ class StateEvaluator
     pre_weigh = @selector.selections_to_weigh
     scored_state_info = @scorer.score(pre_weigh)
     scored_state_info[:state] = @state
-    @recorder.record_state(scored_state_info)
+    @recorder.save_everything(scored_state_info)
     @recorder.close()
     scored_state_info[:state_score]
   end

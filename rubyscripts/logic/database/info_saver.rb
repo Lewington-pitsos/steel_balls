@@ -6,10 +6,10 @@ require_relative './info_saver/selection_recorder'
 
 class InfoSaver
 
-  def initialize(scored_state_info)
-    @state = scored_state_info[:state]
-    @score = scored_state_info[:score]
-    @selections = scored_state_info[:selections]
+  def initialize()
+    @state = {}
+    @score = 0
+    @selections = []
     @optimal_selections = []
 
     @main_state_id = 0
@@ -19,7 +19,8 @@ class InfoSaver
     @selection_recorder = SelectionRecorder.new()
   end
 
-  def save_everything
+  def save_everything(scored_state_info)
+    parse(scored_state_info)
     save_state_score
     gather_optimal_selections
     @optmial_selections.each do |selection|
@@ -30,6 +31,15 @@ class InfoSaver
   end
 
   private
+
+  attr_reader :optimal_selections
+  attr_writer :selections
+
+  def parse(scored_state_info)
+    @state = scored_state_info[:state]
+    @score = scored_state_info[:score]
+    @selections = scored_state_info[:selections]
+  end
 
   def save_state_score
     @main_state_id = @score_recorder.record_score(@state, @score)
