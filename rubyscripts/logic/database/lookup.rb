@@ -51,10 +51,14 @@ class Lookup < Archivist
 
   def build_selection(id)
     selection = get_by_id(id, @@selection_tab)
-    selection['right'] = get_by_id(selection['right_id'], @@side_tab)
-    selection['left'] = get_by_id(selection['left_id'], @@side_tab)
+    selection['right'] = get_side(selection.delete('right_id'))
+    selection['left'] = get_side(selection.delete('left_id'))
     selection['states'] = build_resulting_states(id)
     selection
+  end
+
+  def get_side(id_name)
+    get_by_id(id_name, @@side_tab)
   end
 
   def build_resulting_states(selection_id)
@@ -83,7 +87,6 @@ class Lookup < Archivist
     end
     ids
   end
-
 
   # ================ Query Methods ================
 
@@ -116,12 +119,15 @@ class Lookup < Archivist
   end
 
   def get_by_id(id, relation)
-    @db.exec(
+    result = @db.exec(
       <<~CMD
         SELECT * FROM #{relation}
         WHERE id = #{id};
       CMD
     )[0]
+
+    result.delete('id')
+    result
   end
 
   def state_id_by_values(state)

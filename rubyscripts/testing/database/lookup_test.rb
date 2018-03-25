@@ -34,7 +34,6 @@ class ScoreCheckerTest < DatabaseTester
   end
 
   def test_retrival_by_id_works
-    assert_equal '1', @lookup.send(:get_by_id, '1', 'scored_states')['id']
     assert_equal '2', @lookup.send(:get_by_id, '1', 'scored_states')['score']
     assert_equal '1', @lookup.send(:get_by_id, '5', 'scored_states')['score']
     assert_raises 'Error' do
@@ -52,6 +51,14 @@ class ScoreCheckerTest < DatabaseTester
     assert_equal '0', @lookup.send(:get_by_id, '1', 'selection_sides')['unknown']
     assert_equal '1', @lookup.send(:get_by_id, '2', 'selection_sides')['unknown']
     assert_equal '1', @lookup.send(:get_by_id, '1', 'selection_sides')['normal']
+  end
+
+  def test_retrival_by_id_removes_ids
+    refute @lookup.send(:get_by_id, '1', 'scored_states')['id']
+    refute @lookup.send(:get_by_id, '5', 'scored_states')['id']
+    refute @lookup.send(:get_by_id, '1', 'selection_sides')['id']
+    refute @lookup.send(:get_by_id, '2', 'selection_sides')['id']
+    refute @lookup.send(:get_by_id, '4', 'selections')['id']
   end
 
   def test_creates_proper_first_state
@@ -120,15 +127,15 @@ class ScoreCheckerTest < DatabaseTester
   def test_builds_all_states_for_winning_selection
     states = @lookup.send(:build_resulting_states, '6')
     assert_equal 2, states.length
-    assert_equal '4', states[0]['id']
-    assert_equal '3', states[1]['id']
+    assert_equal '2', states[0]['normal']
+    assert_equal '1', states[1]['possibly_heavier']
     assert_empty states[0]['selections']
     assert_empty states[1]['selections']
 
     states = @lookup.send(:build_resulting_states, '2')
     assert_equal 2, states.length
-    assert_equal '3', states[0]['id']
-    assert_equal '4', states[1]['id']
+    assert_equal '2', states[0]['normal']
+    assert_equal '2', states[1]['normal']
     assert_empty states[0]['selections']
     assert_empty states[1]['selections']
   end
@@ -136,12 +143,26 @@ class ScoreCheckerTest < DatabaseTester
   def test_builds_all_selections_for_nearly_winning_states
     selections = @lookup.send(:build_optimal_selections, '2')
     assert_equal 2, selections.length
-    assert_equal '1', selections[0]['id']
-    assert_equal '2', selections[1]['id']
+    assert_equal '1', selections[0]['right']['unknown']
+    assert_equal '1', selections[1]['right']['normal']
     states = selections[1]['states']
     assert_equal 2, states.length
-    assert_equal '3', states[0]['id']
-    assert_equal '4', states[1]['id']
+    assert_equal '2', states[0]['normal']
+    assert_equal '2', states[1]['normal']
+  end
+
+  def test_built_selections_removed_side_ids
+    selections = @lookup.send(:build_optimal_selections, '2')
+    selections.each do |selection|
+      refute selection['left_id']
+      refute selection['right_id']
+    end
+
+    selections = @lookup.send(:build_optimal_selections, '3')
+    selections.each do |selection|
+      refute selection['left_id']
+      refute selection['right_id']
+    end
   end
 
   def test_builds_single_selection_properly
@@ -156,11 +177,11 @@ class ScoreCheckerTest < DatabaseTester
     @lookup.build_tree
     assert_equal '2', @lookup.tree['score']
     assert_equal 1, @lookup.tree['selections'].length
-    assert_equal '7', @lookup.tree['selections'][0]['id']
+    assert_equal '1', @lookup.tree['selections'][0]['right']['unknown']
     assert_equal 2, @lookup.tree['selections'][0]['states'].length
-    assert_equal '5', @lookup.tree['selections'][0]['states'][1]['id']
+    assert_equal '1', @lookup.tree['selections'][0]['states'][1]['possibly_heavier']
     assert_equal 4, @lookup.tree['selections'][0]['states'][1]['selections'].length
-    assert_equal '3', @lookup.tree['selections'][0]['states'][1]['selections'][0]['id']
+    assert_equal '1', @lookup.tree['selections'][0]['states'][1]['selections'][0]['right']['possibly_heavier']
   end
 
   def test_simplified_tree_renders_correctly
