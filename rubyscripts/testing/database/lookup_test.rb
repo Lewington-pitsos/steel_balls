@@ -3,7 +3,7 @@ require './rubyscripts/logic/database/lookup'
 require './rubyscripts/logic/state_manager'
 
 
-class ScoreCheckerTest < DatabaseTester
+class LookupTest < DatabaseTester
 
   @@starting_rated_state = {
     state: {
