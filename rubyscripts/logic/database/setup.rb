@@ -78,7 +78,9 @@ class Setup
   end
 
   def setup_if_needed
-    setup_tables_if_needed
+    if tables_missing
+      setup_tables
+    end
   end
 
   def suppress_warnings
@@ -116,7 +118,7 @@ class Setup
     begin
       teardown_database
     rescue
-      puts "yeap, that database doesn't exist m8"
+      true
     end
   end
 
@@ -139,12 +141,6 @@ class Setup
     closing_db = PG.connect({ dbname: 'postgres', user: 'postgres' })
     closing_db.exec("DROP DATABASE #{@name};")
     closing_db.finish()
-  end
-
-  def setup_tables_if_needed
-    if tables_missing
-      setup_tables
-    end
   end
 
   def tables_missing
