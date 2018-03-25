@@ -26,4 +26,5 @@ I mean, like, don't but just in case you're mad...
 2. Clone the project somewhere or other
 3. `bundle install` in the project directory
 4. Make sure a postgres server is running and that the `postgres` user can access the server without any weird authentication stuff.
-5. The program is executed through the `project_directory/run.rb` file, so just `cd` into the project directory and type `bundle exec ruby run.rb`
+5. `cd` into the project directory and run `bundle exec ruby db_reset.rb` to create the required databases on the postgres server.
+6. If that went well everything should be working. The program is executed through the `project_directory/run.rb` file, so again, just `cd` into the project directory and type `bundle exec ruby run.rb`
