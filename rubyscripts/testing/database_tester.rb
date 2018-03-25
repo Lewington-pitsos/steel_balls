@@ -7,7 +7,7 @@ class DatabaseTester < Minitest::Test
 
   def setup_database_for_testing
     @db = PG.connect({ dbname: $DATABASE_NAME, user: 'postgres' })
-    @setup = Setup.new($DATABASE_NAME)
+    @setup = Setup.new()
     @setup.suppress_warnings
     @setup.send(:clear_database)
     @setup.setup_if_needed

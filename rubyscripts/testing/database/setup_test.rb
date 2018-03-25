@@ -36,7 +36,7 @@ class SetupTest < Minitest::Test
 
 
   def setup
-    @setup = Setup.new($DATABASE_NAME)
+    @setup = Setup.new()
     @setup.suppress_warnings
     @setup.send(:clear_database)
   end
@@ -80,6 +80,28 @@ class SetupTest < Minitest::Test
     assert_equal '2', states[3]['possibly_lighter']
   end
 
+  def test_creates_and_drops_databases
+    $DATABASE_NAME = 'xesgytpbt_saldutvet'
+    @setup.send(:create_database)
+    PG.connect({ dbname: $DATABASE_NAME, user: 'postgres' }).finish()
+    @setup.send(:teardown_database)
+    assert_raises 'Error' do
+      PG.connect({ dbname: $DATABASE_NAME, user: 'postgres' }).finish()
+    end
+  end
+
+  def test_creates_and_connects_to_db_if_absent
+    $DATABASE_NAME = 'xesgytpbt_saldutvet'
+    @setup.send(:try_to_connect)
+    assert @setup.send(:db)
+    PG.connect({ dbname: $DATABASE_NAME, user: 'postgres' }).finish()
+    @setup.send(:teardown_database)
+    assert_raises 'Error' do
+      PG.connect({ dbname: $DATABASE_NAME, user: 'postgres' }).finish()
+    end
+  end
+
   def teardown
+    $DATABASE_NAME = 'test_steel_balls'
   end
 end
