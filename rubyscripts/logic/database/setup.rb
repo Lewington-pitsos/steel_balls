@@ -1,5 +1,5 @@
 # checks if the database with the proper tables are all setup. Sets them up if not, otherwise does nothing.
-
+require 'pg'
 require_relative './save_helper'
 
 class Setup
@@ -71,7 +71,8 @@ class Setup
     SET client_min_messages TO WARNING;
   COMMAND
 
-  def initialize()
+  def initialize(name=$DATABASE_NAME)
+    @name = name
     @db = nil
     try_to_connect
   end
@@ -98,27 +99,6 @@ class Setup
     @db.finish()
   end
 
-  private
-
-  attr_accessor :db
-
-  def spin_up
-    @db = PG.connect({ dbname: $DATABASE_NAME, user: 'postgres' })
-  end
-
-  def create_database
-    db = PG.connect({ dbname: 'postgres', user: 'postgres' })
-    db.exec("CREATE DATABASE #{$DATABASE_NAME};")
-    db.finish()
-  end
-
-  def teardown_database
-    @db.finish()
-    closing_db = PG.connect({ dbname: 'postgres', user: 'postgres' })
-    closing_db.exec("DROP DATABASE #{$DATABASE_NAME};")
-    closing_db.finish()
-  end
-
   def try_to_connect
     begin
       spin_up
@@ -128,8 +108,37 @@ class Setup
     end
 
     unless @db
-      puts "ERROR: Could not create #{$DATABASE_NAME} database"
+      puts "ERROR: Could not create #{@name} database"
     end
+  end
+
+  def try_dropping
+    begin
+      teardown_database
+    rescue
+      puts "yeap, that database doesn't exist m8"
+    end
+  end
+
+  private
+
+  attr_accessor :db, :name
+
+  def spin_up
+    @db = PG.connect({ dbname: @name, user: 'postgres' })
+  end
+
+  def create_database
+    db = PG.connect({ dbname: 'postgres', user: 'postgres' })
+    db.exec("CREATE DATABASE #{@name};")
+    db.finish()
+  end
+
+  def teardown_database
+    @db.finish()
+    closing_db = PG.connect({ dbname: 'postgres', user: 'postgres' })
+    closing_db.exec("DROP DATABASE #{@name};")
+    closing_db.finish()
   end
 
   def setup_tables_if_needed
