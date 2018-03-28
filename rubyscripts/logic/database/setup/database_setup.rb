@@ -1,6 +1,6 @@
 # checks if the database with the proper tables are all setup. Sets them up if not, otherwise does nothing.
 require 'pg'
-require_relative './setup'
+require_relative '../setup'
 
 class DatabaseSetup < Setup
 
