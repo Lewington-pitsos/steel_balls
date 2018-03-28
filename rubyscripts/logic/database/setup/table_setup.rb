@@ -1,6 +1,6 @@
 # checks if the database with the proper tables are all setup. Sets them up if not, otherwise does nothing.
 require 'pg'
-require_relative './save_helper'
+require './rubyscripts/logic/database/save_helper'
 require_relative '../setup'
 
 class TableSetup < Setup
@@ -58,8 +58,6 @@ class TableSetup < Setup
     )
   COMMAND
 
-
-
   @@drop_all_tables = <<~COMMAND
     DROP TABLE IF EXISTS resulting_states;
     DROP TABLE IF EXISTS optimal_selections;
@@ -74,6 +72,7 @@ class TableSetup < Setup
 
   def initialize(name=$DATABASE_NAME)
     super(name)
+    spin_up
     setup_if_needed
   end
 

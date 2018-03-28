@@ -7,6 +7,7 @@ class DatabaseSetup < Setup
 
   def initialize(name=$DATABASE_NAME)
     super(name)
+    @db = nil
     try_to_connect
   end
 
@@ -34,10 +35,6 @@ class DatabaseSetup < Setup
   private
 
   attr_accessor :db, :name
-
-  def spin_up
-    @db = PG.connect({ dbname: @name, user: 'postgres' })
-  end
 
   def create_database
     db = PG.connect({ dbname: 'postgres', user: 'postgres' })

@@ -3,7 +3,7 @@ require './rubyscripts/testing/test_defaults'
 require 'pg'
 require_relative '../../logic/database/setup/database_setup'
 
-class SetupTest < Minitest::Test
+class DatabaseSetupTest < Minitest::Test
 
 
   @@weird_db_name = 'xesgytpbt_saldutvet'
