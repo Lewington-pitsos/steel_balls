@@ -194,6 +194,8 @@ class LookupTest < DatabaseTester
   end
 
   def teardown
+    $WINNING_RATING = 37
+    $DEFAULT_LENGTH = 8
     teardown_database
   end
 end

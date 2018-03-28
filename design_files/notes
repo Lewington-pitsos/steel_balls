@@ -1,0 +1,10 @@
+process for State Manager:
+
+1. check if the state has already been exhaustively scored. If so, go ahead and just return that score.
+2. if the state has been scored but not exhaustively
+  1. grab the current score and all the recorded information we have on the selections for this state.
+  2. pick the best [ whatever breadth we're using ] rated but un-scored selections (and of course any associated states), and work out scores for them.
+  3. check if the state score generated using those selections is LESS THAN the current score
+    1. if so, save the new score and return it
+    2. otherwise, just return the old score
+3. if the state has not been scored at all, start the normal process (state evaluator)

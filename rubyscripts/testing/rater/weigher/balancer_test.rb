@@ -26,7 +26,7 @@ class BalancerTest < Minitest::Test
     normal: 2
   }
 
-  @@normal_balls = BallGenerator.new.generate_balls
+  @@normal_balls = BallGenerator.new.generate_balls()
 
   def setup
     @generator = BallGenerator.new()

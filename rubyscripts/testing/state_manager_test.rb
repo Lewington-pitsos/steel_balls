@@ -194,12 +194,11 @@ class StateManagerTest < DatabaseTester
     # $DEFAULT_LENGTH = 12
     # manager = StateManager.new(@@state12)
     # assert_equal 3, manager.score
-
-    $WINNING_RATING = 37
-    $DEFAULT_LENGTH = 8
   end
 
   def teardown
+    $WINNING_RATING = 37
+    $DEFAULT_LENGTH = 8
     teardown_database
   end
 end
