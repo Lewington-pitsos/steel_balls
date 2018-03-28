@@ -3,7 +3,7 @@ require 'pg'
 require_relative './save_helper'
 require_relative '../setup'
 
-class TableSetup
+class TableSetup < Setup
 
   include SaveHelper
 
