@@ -5,16 +5,16 @@ require './rubyscripts/logic/state_evaluator/scorer_manager/win_resolver'
 class WinResolverTest < Minitest::Test
 
   @@eaxmple_winners = [
-    {selection: {}, score: 0},
-    {selection: {}, score: 0}
+    {selection: {}, score: {score: 0, fully_scored: true} },
+    {selection: {}, score: {score: 0, fully_scored: true} }
   ]
 
   @@eaxmple_winners2 = [
-    {selection: {}, score: 3},
-    {selection: {}, score: 2},
-    {selection: {}, score: 3},
-    {selection: {}, score: 3},
-    {selection: {}, score: 4}
+    {selection: {}, score: {score: 3, fully_scored: true}},
+    {selection: {}, score: {score: 2, fully_scored: true}},
+    {selection: {}, score: {score: 3, fully_scored: false}},
+    {selection: {}, score: {score: 4, fully_scored: false}},
+    {selection: {}, score: {score: 3, fully_scored: true}}
   ]
 
   def setup

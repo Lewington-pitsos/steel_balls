@@ -29,15 +29,15 @@ class SelectionManagerTest < DatabaseTester
   end
 
   def test_gets_correct_scores_for_winners
-    assert_equal 1, @manager.send(:get_score, @@winning_selection)
+    assert_equal 1, @manager.send(:get_score, @@winning_selection)[:score]
 
-    assert_equal 1, @manager.send(:get_score, @@winning_selection2)
+    assert_equal 1, @manager.send(:get_score, @@winning_selection2)[:score]
   end
 
   def test_generates_correct_selection_for_rated_winners
     @manager.send(:generate_scored_selection, @winning_rated_selection)
     assert_equal 1, @manager.send(:scored_selections).length
-    assert_equal 1, @manager.send(:scored_selections)[0][:score]
+    assert_equal 1, @manager.send(:scored_selections)[0][:score][:score]
   end
 
   def test_generates_correct_scores_for_multiple_winning_selections
@@ -45,12 +45,12 @@ class SelectionManagerTest < DatabaseTester
 
     assert_equal 2, selections.length
     selections.each do |selection|
-      assert_equal 1, selection[:score]
+      assert_equal 1, selection[:score][:score]
     end
   end
 
   def test_gets_correct_scores_for_non_winners
-    assert_equal 2, @manager.send(:get_score, @@example_selection)
+    assert_equal 2, @manager.send(:get_score, @@example_selection)[:score]
     # assert_equal 3, @manager.send(:get_score, @@example_selection2)
   end
 

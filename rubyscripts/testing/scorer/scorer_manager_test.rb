@@ -22,7 +22,7 @@ class ScorerManagerTest < Minitest::Test
     selections.each do |selection|
       assert selection[:score]
       assert selection[:selection]
-      assert_instance_of Integer, selection[:score]
+      assert_instance_of Integer, selection[:score][:score]
     end
   end
 

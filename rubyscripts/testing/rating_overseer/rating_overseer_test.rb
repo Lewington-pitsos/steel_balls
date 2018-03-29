@@ -31,7 +31,8 @@ class RatingOverseerTest < DatabaseTester
     {:left=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}, :right=>[{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}]}
   ]
 
-  @@medium_ratings = [{:rating=>10, :selection=>{:left=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>1}, :right=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>1}, :states=>[{:rating=>10, :state=>{:unknown=>2, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>2}}, {:rating=>14, :state=>{:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>2}}]}}, {:rating=>8, :selection=>{:left=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}, :right=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}, :states=>[{:rating=>8, :state=>{:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>2, :normal=>0}}]}}]
+  @@medium_ratings = [{:rating=>10, :selection=>{:left=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>1}, :right=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>1}, :states=>[{:rating=>10, :state=>{:unknown=>2, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>2}}, {:rating=>14, :state=>{:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>2}}]}, :id=>1}, {:rating=>8, :selection=>{:left=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}, :right=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}, :states=>[{:rating=>8, :state=>{:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>2, :normal=>0}}]}, :id=>2}]
+
 
 
   def setup
