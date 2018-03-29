@@ -1,5 +1,5 @@
 require './rubyscripts/testing/database_tester'
-require './rubyscripts/logic/database/info_saver/score_recorder'
+require './rubyscripts/logic/database/score_recorder'
 
 class ScoreRecorderTest < DatabaseTester
 
@@ -51,21 +51,6 @@ class ScoreRecorderTest < DatabaseTester
     @state_recorder.send(:save, @@example_state2[:state])
     @state_recorder.send(:save, @@example_state3[:state])
     @score_recorder = ScoreRecorder.new($DATABASE_NAME)
-  end
-
-  def test_returns_correct_ids
-    assert_equal 1, @score_recorder.record_score(@@example_state[:state], @@example_state[:score])
-    assert_equal 3, @score_recorder.record_score(@@example_state3[:state], @@example_state2[:score])
-    assert_equal 2, @score_recorder.record_score(@@example_state2[:state], @@example_state3[:score])
-  end
-
-  def test_stores_correct_scores
-    @score_recorder.record_score(@@example_state[:state], @@example_state[:score])
-    @score_recorder.record_score(@@example_state2[:state], @@example_state2[:score])
-    @score_recorder.record_score(@@example_state3[:state], @@example_state3[:score])
-    assert_equal 29, get_score(1)
-    assert_equal 25, get_score(2)
-    assert_equal 21, get_score(3)
   end
 
   def teardown
