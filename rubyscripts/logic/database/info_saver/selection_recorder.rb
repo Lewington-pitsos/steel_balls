@@ -1,4 +1,4 @@
-# gets passed in the lowest scored selection, the id fo the previous state and al the ids of the resulting states
+# gets passed in a rated_selection, the id fo the previous state and all the ids of the resulting states
 
 # saves the selection to the selections table
 # saves the selection id and previous state id to the best_selections table
@@ -8,12 +8,10 @@ require_relative './careful_saver'
 
 class SelectionRecorder < CarefulSaver
 
-  @@relation_name = 'selection_sides'
   @@column_name = 'id'
 
   def initialize(name=@@database_name)
     super(name)
-    @relation_name = @@relation_name
     @column_name = @@column_name
     @left_id = 0
     @right_id = 0
@@ -21,9 +19,9 @@ class SelectionRecorder < CarefulSaver
     @possible_selection_id = 0
   end
 
-  def save_selection_data(scored_selection, state_id, resulting_state_ids)
-    record_selection(scored_selection[:selection])
-    record_prev_state(state_id)
+  def save_selection_data(rated_selection, state_id, resulting_state_ids)
+    record_selection(rated_selection[:selection])
+    record_prev_state(state_id, rated_selection[:rating])
     record_resulting_states(resulting_state_ids)
   end
 
@@ -52,11 +50,11 @@ class SelectionRecorder < CarefulSaver
     )[0]['id'].to_i
   end
 
-  def record_prev_state(state_id)
+  def record_prev_state(state_id, rating)
     @possible_selection_id = @db.exec(
       <<~COMMAND
-        INSERT INTO possible_selections (state_id, selection_id)
-        VALUES ( #{state_id}, #{@selection_id})
+        INSERT INTO possible_selections (state_id, selection_id, rating)
+        VALUES ( #{state_id}, #{@selection_id}, #{rating})
         RETURNING id;
       COMMAND
     )[0]['id'].to_i
