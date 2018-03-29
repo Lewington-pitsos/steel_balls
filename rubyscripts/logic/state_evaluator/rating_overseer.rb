@@ -18,7 +18,7 @@ class RatingOverseer
 
   attr_accessor :weigh_orders
 
-  def initialize(state, rating)
+  def initialize(state, rating=0)
     @state = state
     @rater = RaterManager.new(rating)
     @omni_selector = OmniSelector.new()

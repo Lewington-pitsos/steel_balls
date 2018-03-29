@@ -55,7 +55,7 @@ class RatingOverseerTest < Minitest::Test
   end
 
   def test_merges_properly
-    selections = @overseer.selections_to_weigh
+    selections = @overseer.send(:generate_selections_to_weigh)
 
     selections.each do |selection|
       assert selection[:balls]
@@ -64,7 +64,7 @@ class RatingOverseerTest < Minitest::Test
   end
 
   def test_arrangeemnt_deep_cloning_on_merge
-    selections = @overseer.selections_to_weigh
+    selections = @overseer.send(:generate_selections_to_weigh)
 
     all_balls = Set[]
 

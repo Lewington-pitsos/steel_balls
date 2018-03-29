@@ -22,10 +22,10 @@ $DATABASE_NAME = 'test_steel_balls'
 # ======================== Common Files ========================
 # we require them here so we don't need to require them lots of times in different tests
 
-require './rubyscripts/logic/state_evaluator/selection_overseer/state_expander/arrangement_generator/ball_generator'
-require './rubyscripts/logic/state_evaluator/selection_overseer/state_expander/arrangement_generator/ball_generator/ball'
-require './rubyscripts/logic/state_evaluator/selection_overseer/state_expander'
+require './rubyscripts/logic/state_evaluator/rating_overseer/state_expander/arrangement_generator/ball_generator'
+require './rubyscripts/logic/state_evaluator/rating_overseer/state_expander/arrangement_generator/ball_generator/ball'
+require './rubyscripts/logic/state_evaluator/rating_overseer/state_expander'
 require './rubyscripts/logic/database/setup'
 require './rubyscripts/logic/database/archivist'
-require './rubyscripts/logic/state_evaluator/selection_overseer/omni_selector/whole_selection_generator/selection_side_generator/shover_manager/mark_counter.rb'
+require './rubyscripts/logic/state_evaluator/rating_overseer/omni_selector/whole_selection_generator/selection_side_generator/shover_manager/mark_counter.rb'
 require './rubyscripts/logic/database/info_saver/state_recorder'
