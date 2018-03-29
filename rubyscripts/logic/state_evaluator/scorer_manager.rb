@@ -23,7 +23,6 @@ class ScorerManager
   end
 
   def scored_selections(rated_selections)
-
     scored_selections = score_all(rated_selections)
     state_score = @resolver.state_score(scored_selections)
     {selections: scored_selections, state_score: state_score}

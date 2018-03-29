@@ -6,7 +6,7 @@
 # passes the state score, the state and all the scored selections to a new state saver instance, which saves all of it.
 
 # finally, returns the state score to the state manager
-
+require 'pry'
 require './rubyscripts/logic/database/lookup'
 require './rubyscripts/logic/database/score_recorder'
 require_relative './state_evaluator/scorer_manager'
@@ -16,6 +16,7 @@ require_relative './database/info_saver'
 class StateEvaluator
 
   def initialize(state, rating, id, score=nil)
+    # binding.pry
     @state = state
     @id = id
     @rating = rating
@@ -51,7 +52,7 @@ class StateEvaluator
   end
 
   def get_rated_selections
-    if @score
+    if @score != 999
       @rated_weighed_selections = recorded_rated_selections
     else
       @rated_weighed_selections = new_rated_selections
@@ -60,6 +61,7 @@ class StateEvaluator
 
   def save_scored_selections(selections)
     # saves all the selections
+    binding.pry
     selections.each do |selection|
       @recorder.update_score(selection['id'], selection[:score][:score])
     end
