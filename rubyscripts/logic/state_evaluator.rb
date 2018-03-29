@@ -34,7 +34,7 @@ class StateEvaluator
     get_state_score
     save_scored_selections(@scored_state_info[:selections])
     save_state_score
-    { score: scored_state_info[:state_score], fully_scored: @fully_scored }
+    { score: @scored_state_info[:state_score], fully_scored: @fully_scored }
   end
 
   private
@@ -63,7 +63,7 @@ class StateEvaluator
     # saves all the selections
     binding.pry
     selections.each do |selection|
-      @recorder.update_score(selection['id'], selection[:score][:score])
+      @recorder.update_score(selection[:id], selection[:score][:score], 'possible_selections')
     end
   end
 
@@ -71,7 +71,7 @@ class StateEvaluator
     # works out the lowest score for the current state and whether or not that score has been fully calculated and updates the appropriate scored_states row
     score = [@scored_state_info[:state_score], @score].min
     @fully_scored = state_is_fully_scored?
-    @recorder.update_state_score(@id, score, fully_scored)
+    @recorder.update_state_score(@id, score, @fully_scored)
   end
 
   def new_rated_selections

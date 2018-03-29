@@ -1,5 +1,5 @@
 # checks if the database with the proper tables are all setup. Sets them up if not, otherwise does nothing.
-
+require 'pry'
 require_relative './careful_saver'
 
 class StateRecorder < CarefulSaver

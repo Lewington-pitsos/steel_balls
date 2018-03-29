@@ -2,6 +2,7 @@
 
 require_relative './info_saver/state_recorder'
 require_relative './info_saver/selection_recorder'
+require 'pry'
 
 class InfoSaver
 
@@ -13,7 +14,8 @@ class InfoSaver
   def save_everything(rated_selections, state_id)
     rated_selections.each do |selection|
       @state_recorder.record_states(selection)
-      new_state_ids = @state_recorder.ids @selection_recorder.save_selection_data(selection, state_id, new_state_ids)
+      new_state_ids = @state_recorder.ids
+      @selection_recorder.save_selection_data(selection, state_id, new_state_ids)
     end
 
     close_everything()

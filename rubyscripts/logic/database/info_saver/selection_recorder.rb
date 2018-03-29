@@ -3,7 +3,7 @@
 # saves the selection to the selections table
 # saves the selection id and previous state id to the best_selections table
 # saves the best_selection id to the selection_results table for each of the resulting states
-
+require 'pry'
 require_relative './careful_saver'
 
 class SelectionRecorder < CarefulSaver

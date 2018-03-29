@@ -25,8 +25,6 @@ class StateEvaluatorTest < DatabaseTester
     normal: 4
   }
 
-
-
   def setup
     setup_database_for_testing
     add_defaults(@@almost_winning_state, @@almost_winning_state2, @@non_winning_state)
