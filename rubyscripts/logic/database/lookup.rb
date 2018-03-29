@@ -25,14 +25,6 @@ class Lookup < Archivist
     end
   end
 
-  def build_selection(id)
-    selection = get_by_id(id, @@selection_tab)
-    selection['right'] = get_side(selection.delete('right_id'))
-    selection['left'] = get_side(selection.delete('left_id'))
-    selection['states'] = build_resulting_states(id)
-    selection
-  end
-
   def get_side(id_name)
     get_by_id(id_name, @@side_tab)
   end

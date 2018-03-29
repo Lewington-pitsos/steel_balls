@@ -20,6 +20,15 @@ class SelectionLookup < Lookup
     state
   end
 
+  def build_selection(id)
+    selection = symbolized(get_by_id(id, @@selection_tab))
+    selection[:right] = get_side(selection.delete(:right_id))
+    selection[:left] = get_side(selection.delete(:left_id))
+    selection[:states] = build_resulting_states(id)
+    selection
+  end
+
+
   def get_full_selections(state_id)
     possible_selections(state_id)
   end
