@@ -55,6 +55,8 @@ class Interface
   def proceed_if_valid
     if valid?
       calculate
+      $BREADTH = 5
+      calculate
     else
       request
     end
@@ -103,6 +105,6 @@ class Interface
   end
 
   def calculate_state_score(state)
-    StateManager.new({ state: state, rating: $DEFAULT_RATING }).score
+    StateManager.new({ state: state, rating: $DEFAULT_RATING }).score[:score]
   end
 end

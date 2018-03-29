@@ -19,6 +19,8 @@ class SelectionLookup < Lookup
     state = {}
     state[:state] = symbolized(get_by_id(state_id, @@state_tab))
     state[:rating] = state[:state].delete(:rating)
+    state[:state].delete(:fully_scored)
+    state[:state].delete(:score)
     state
   end
 
