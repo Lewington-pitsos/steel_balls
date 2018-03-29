@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require './rubyscripts/testing/test_defaults'
-require_relative '../../../logic/state_evaluator/score_overseer/rater_manager/judgement_overseer/judge_manager/selection_kuller'
+require './rubyscripts/logic/state_evaluator/rating_overseer/rater_manager/judgement_overseer/judge_manager/selection_kuller'
 
 class SelectionKullerTest < Minitest::Test
 

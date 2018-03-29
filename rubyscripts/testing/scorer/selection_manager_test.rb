@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require './rubyscripts/testing/database_tester'
-require_relative '../../logic/state_evaluator/score_overseer/scorer_manager/selection_manager'
+require './rubyscripts/logic/state_evaluator/scorer_manager/selection_manager'
 
 class SelectionManagerTest < DatabaseTester
 

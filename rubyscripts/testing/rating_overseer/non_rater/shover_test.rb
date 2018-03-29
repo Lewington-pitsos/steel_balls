@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require './rubyscripts/testing/test_defaults'
-require_relative '../../logic/state_evaluator/selection_overseer/omni_selector/whole_selection_generator/selection_side_generator/shover_manager/shover.rb'
+require './rubyscripts/logic/state_evaluator/rating_overseer/omni_selector/whole_selection_generator/selection_side_generator/shover_manager/shover.rb'
 
 
 

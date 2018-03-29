@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require './rubyscripts/testing/test_defaults'
-require_relative '../../logic/state_evaluator/selection_overseer/omni_selector/whole_selection_generator'
+require './rubyscripts/logic/state_evaluator/rating_overseer/omni_selector/whole_selection_generator'
 
 class WholeSelectionGeneratorTest < Minitest::Test
 

@@ -1,6 +1,6 @@
 require_relative './state_manager'
 require './rubyscripts/logic/database/lookup'
-require_relative './state_evaluator/selection_overseer/state_expander/arrangement_generator/ball_generator'
+require_relative './state_evaluator/rating_overseer/state_expander/arrangement_generator/ball_generator'
 require 'yaml'
 
 class Interface
