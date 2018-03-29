@@ -22,10 +22,10 @@ class CarefulSaver < Searcher
     rubify(result, @column_name)
   end
 
-  def record_state_and_id(state)
+  def record_state_and_id(state, callback=method(:save))
     id = get_id(state)
     if !id
-      id = save(state)
+      id = callback.call(state)
     end
     id
   end

@@ -114,7 +114,7 @@ class StateRecorderTest < DatabaseTester
     ids = []
     ids << @recorder.send(:record_state_and_id, @@example_state2[:state])
     ids << @recorder.send(:record_state_and_id, @@example_state[:state])
-    ids << @recorder.send(:record_state_and_id, @@example_state3[:state])
+    ids << @recorder.send(:record_state_and_id, @@example_state3[:state]) 
 
     [2, 1, 3].each_with_index do |num, index|
       assert_equal num, ids[index]

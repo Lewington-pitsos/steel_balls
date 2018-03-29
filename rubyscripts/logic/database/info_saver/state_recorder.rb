@@ -19,11 +19,34 @@ class StateRecorder < CarefulSaver
   def record_states(selection)
     @ids = []
     selection[:selection][:states].each do |state|
-      id = record_state_and_id(state[:state])
+      @rating = state[:rating]
+      id = record_state_and_id(state[:state], method(:save_state_and_rating))
       if state[:rating] >= ($WINNING_RATING || 37)
         update_full_score(id, 0, true)
       end
       @ids << id
     end
+  end
+
+  def save_state_and_rating(state)
+    @db.exec(
+      <<~COMMAND
+          INSERT INTO scored_states (
+              unknown,
+              possibly_lighter,
+              possibly_heavier,
+              normal,
+              rating
+            )
+          VALUES (
+            #{state[:unknown]},
+            #{state[:possibly_lighter]},
+            #{state[:possibly_heavier]},
+            #{state[:normal]},
+            #{@rating}
+          )
+          RETURNING id;
+      COMMAND
+    )[0]['id'].to_i
   end
 end
