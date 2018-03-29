@@ -1,9 +1,9 @@
 require "minitest/autorun"
 require "set"
 require './rubyscripts/testing/test_defaults'
-require_relative '../../logic/state_evaluator/selection_overseer'
+require './rubyscripts/logic/state_evaluator/rating_overseer'
 
-class SelectionOverseerTest < Minitest::Test
+class RatingOverseerTest < Minitest::Test
 
   @@small_state = {
     unknown: 2,
@@ -32,18 +32,18 @@ class SelectionOverseerTest < Minitest::Test
   ]
 
   def setup
-    @overseer = SelectionOverseer.new(@@medium_state)
+    @overseer = RatingOverseer.new(@@medium_state)
   end
 
   def test_gathers_arrangements_correctly
     @overseer.send(:get_all_arranments)
     assert_equal 8, @overseer.send(:arrangements).length
 
-    overseer = SelectionOverseer.new(@@small_state)
+    overseer = RatingOverseer.new(@@small_state)
     overseer.send(:get_all_arranments)
     assert_equal 4, overseer.send(:arrangements).length
 
-    overseer = SelectionOverseer.new(@@light_state)
+    overseer = RatingOverseer.new(@@light_state)
     overseer.send(:get_all_arranments)
     assert_equal 7, overseer.send(:arrangements).length
   end
