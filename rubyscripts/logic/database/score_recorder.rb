@@ -12,12 +12,13 @@ class ScoreRecorder < Archivist
     @relation_name = @@relation_name
   end
 
-  def update_state_score(id, score, fully_scored)
-    @db.exec(<<~CMD
-        UPDATE scored_states
-        SET score = #{score}, fully_scored = #{fully_scored}
+  def update_score(id, score, relation=@relation_name)
+    @db.exec(
+      <<~COMMAND
+        UPDATE #{relation}
+        SET score = #{score}
         WHERE id = #{id};
-      CMD
+      COMMAND
     )
   end
 end

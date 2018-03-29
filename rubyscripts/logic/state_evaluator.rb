@@ -15,8 +15,7 @@ require_relative './database/info_saver'
 
 class StateEvaluator
 
-  def initialize(state, rating, id, score=nil)
-    # binding.pry
+  def initialize(state, rating, id, score=999)
     @state = state
     @id = id
     @rating = rating

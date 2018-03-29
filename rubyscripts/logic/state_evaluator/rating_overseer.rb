@@ -20,7 +20,7 @@ class RatingOverseer
 
   def initialize(state, rating, id)
     @state = state
-    @rater = RaterManager.new(rating)
+    @rater = RaterManager.new(rating, id)
     @state_id = id
     @omni_selector = OmniSelector.new()
     @state_expander = StateExpander.new()
