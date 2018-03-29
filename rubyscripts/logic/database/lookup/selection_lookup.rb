@@ -7,10 +7,12 @@ class SelectionLookup < Lookup
   def initialize(name=@@database_name)
     super(name)
     @all_selections = []
+    @state_id = 1
   end
 
   def build_all_selections(id)
-    @all_selections = build_possible_selections(id)
+    @state_id = id
+    @all_selections = build_possible_selections(@state_id)
   end
 
   def build_state(state_id)
@@ -26,7 +28,8 @@ class SelectionLookup < Lookup
     selection[:left] = symbolized(get_side(selection.delete(:left_id)))
     selection[:states] = build_resulting_states(id)
     {
-      selection: selection
+      selection: selection,
+      rating: selection_rating(id)
     }
   end
 
@@ -49,6 +52,16 @@ class SelectionLookup < Lookup
     else
       value.to_i
     end
+  end
+
+  # ================ Query Methods ================
+
+  def selection_rating(selection_id)
+    @db.exec(<<~CMD
+        SELECT rating FROM possible_selections
+        WHERE state_id = #{@state_id} AND selection_id = #{selection_id};
+      CMD
+    )[0]['rating'].to_i
   end
 
 end

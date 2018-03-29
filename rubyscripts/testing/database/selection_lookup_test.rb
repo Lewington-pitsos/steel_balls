@@ -42,16 +42,15 @@ class SelectionLookupTest < DatabaseTester
   def test_returns_single_selection_build
     @lookup.build_all_selections(1)
     assert_equal 1, @lookup.all_selections.length
-        p @lookup.all_selections
     assert_equal 2, @lookup.all_selections[0][:selection][:states].length
-
-
+    assert_equal 9, @lookup.all_selections[0][:rating]
     refute @lookup.all_selections[0][:selection][:states][0]['selections']
 
 
     @lookup.build_all_selections(3)
     assert_equal 4, @lookup.all_selections.length
     refute @lookup.all_selections[0][:selection][:states][0]['selections']
+    assert_equal 12, @lookup.all_selections[-1][:rating]
   end
 
   def test_state_hashes_properly_arranged
