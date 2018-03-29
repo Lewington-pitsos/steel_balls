@@ -35,9 +35,6 @@ class LookupTest < DatabaseTester
 
   def test_retrival_by_id_works
     assert_equal '2', @lookup.send(:get_by_id, '1', 'scored_states')['score']
-    p @lookup.send(:get_by_id, '5', 'scored_states')
-    p @lookup.send(:get_by_id, '3', 'scored_states')
-    p @lookup.send(:get_by_id, '2', 'scored_states')
     p @lookup.send(:get_by_id, '6', 'scored_states')
     assert_equal '1', @lookup.send(:get_by_id, '5', 'scored_states')['score']
     assert_raises 'Error' do
@@ -79,13 +76,12 @@ class LookupTest < DatabaseTester
 
   def test_queries_all_possible_selections
     selections = @lookup.send(:possible_selections, '1')
-    assert_equal 1, selections.ntuples
-    selections.each do |sel|
-      assert_equal '7', sel['selection_id']
-    end
+    assert_equal 7, selections.ntuples
+    assert_equal '2', selections[0]['selection_id']
 
-    selections = @lookup.send(:possible_selections, '5')
+    selections = @lookup.send(:possible_selections, '2')
     selections.each_with_index do |sel, index|
+      puts sel
       assert_equal (index + 3).to_s, sel['selection_id']
     end
   end
@@ -179,6 +175,7 @@ class LookupTest < DatabaseTester
 
   def test_builds_whole_tree
     @lookup.build_tree
+    p @lookup.tree
     assert_equal '2', @lookup.tree['score']
     assert_equal 1, @lookup.tree['selections'].length
     assert_equal '1', @lookup.tree['selections'][0]['right']['unknown']
