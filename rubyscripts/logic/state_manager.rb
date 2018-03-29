@@ -27,10 +27,10 @@ class StateManager
       return fully_calculated_score(0)
     end
 
-    get_recorded_state_info
+    get_recorded_state_info()
 
     if !@state_info
-      score_for_new_state
+      score_for_new_state()
     elsif state_is_fully_calculated?()
       fully_calculated_score(state_score())
     else
@@ -60,7 +60,7 @@ class StateManager
 
   def score_for_new_state
     # records the new state and passes it and it's id through tp StateEvaluator which will eventually return a score
-    record_state
+    record_state()
     evaluator = StateEvaluator.new(@state, @rating, @new_state_id)
     evaluator.state_score
   end
