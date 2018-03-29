@@ -43,14 +43,47 @@ class ScoreRecorderTest < DatabaseTester
     )[0]['score'].to_i
   end
 
+  def get_fully_scored(id)
+    @db.exec(
+      <<~CMD
+        SELECT fully_scored FROM scored_states
+        WHERE id = #{id};
+      CMD
+    )[0]['fully_scored']
+  end
+
   def setup
     setup_database_for_testing
-
-    @state_recorder = StateRecorder.new($DATABASE_NAME)
-    @state_recorder.send(:save, @@example_state[:state])
-    @state_recorder.send(:save, @@example_state2[:state])
-    @state_recorder.send(:save, @@example_state3[:state])
+    add_defaults(@@example_state[:state], @@example_state2[:state], @@example_state3[:state])
     @score_recorder = ScoreRecorder.new($DATABASE_NAME)
+  end
+
+  def test_updates_score_properly
+    assert_equal 'f', get_fully_scored(1)
+    assert_equal 999, get_score(1)
+    @score_recorder.update_score(1, 4)
+    assert_equal 4, get_score(1)
+    assert_equal 'f', get_fully_scored(1)
+
+    assert_equal 'f', get_fully_scored(2)
+    @score_recorder.update_score(2, 0)
+    assert_equal 0, get_score(2)
+    assert_equal 'f', get_fully_scored(2)
+
+    @score_recorder.update_score(3, 4)
+    assert_equal 4, get_score(3)
+  end
+
+  def test_updates_score_and_full_score_properly
+    assert_equal 'f', get_fully_scored(1)
+    @score_recorder.update_state_score(1, 2, true)
+    assert_equal 2, get_score(1)
+    assert_equal 't', get_fully_scored(1)
+
+    assert_equal 'f', get_fully_scored(3)
+    @score_recorder.update_state_score(3, 9, false)
+    assert_equal 9, get_score(3)
+    assert_equal 'f', get_fully_scored(3)
   end
 
   def teardown
