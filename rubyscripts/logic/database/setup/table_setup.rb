@@ -48,6 +48,7 @@ class TableSetup < Setup
       selection_id INTEGER REFERENCES selections(id) ON DELETE CASCADE,
       rating INTEGER NOT NULL DEFAULT 0,
       score INTEGER DEFAULT NULL,
+      fully_scored BOOLEAN DEFAULT FALSE,
       PRIMARY KEY(id)
     )
   COMMAND
