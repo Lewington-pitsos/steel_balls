@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require './rubyscripts/testing/database_tester'
-require './rubyscripts/logic/database/lookup/lookup'
+require './rubyscripts/logic/database/lookup/tree_lookup'
 require './rubyscripts/logic/state_evaluator/rating_overseer/rater_manager'
 
 
@@ -123,7 +123,7 @@ class RaterManagerTest < DatabaseTester
     ]
     setup_database_for_testing
     add_defaults(@@placeholder_state)
-    @lookup = Lookup.new($DATABASE_NAME)
+    @lookup = TreeLookup.new($DATABASE_NAME)
     @manager = RaterManager.new(28, 1)
   end
 

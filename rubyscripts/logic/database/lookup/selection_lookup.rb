@@ -28,8 +28,9 @@ class SelectionLookup < Lookup
     selection[:left] = symbolized(get_side(selection.delete(:left_id)))
     selection[:states] = build_resulting_states(id)
     {
+      rating: selection_rating(id),
       selection: selection,
-      rating: selection_rating(id)
+      id: id.to_i
     }
   end
 

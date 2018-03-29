@@ -1,6 +1,6 @@
 require './rubyscripts/testing/database_tester'
 require './rubyscripts/logic/database/info_saver'
-require './rubyscripts/logic/database/lookup/lookup'
+require './rubyscripts/logic/database/lookup/tree_lookup'
 
 class InfoSaverTest < DatabaseTester
 
@@ -25,7 +25,7 @@ class InfoSaverTest < DatabaseTester
     setup_database_for_testing()
     add_defaults(@@placeholder_state)
     @saver = InfoSaver.new()
-    @lookup = Lookup.new($DATABASE_NAME)
+    @lookup = TreeLookup.new($DATABASE_NAME)
   end
 
   def test_saves_data_properly
