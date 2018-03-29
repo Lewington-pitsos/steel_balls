@@ -18,6 +18,7 @@ class StateEvaluator
   def initialize(state, rating, id, score=nil)
     @state = state
     @id = id
+    @rating = rating
     @score = score
     @scorer = ScorerManager.new()
     @lookup = Lookup.new($DATABASE_NAME)
@@ -41,7 +42,7 @@ class StateEvaluator
     # the state is fully scored iff all rated_welections have been scored AND all scored selections have been fully scored
     @rated_weighed_selections.length == @scored_state_info[:selections].length &&
     @scored_state_info[:selections].all? do |selection|
-      selection['score'][:fully_scored]}
+      selection[:score][:fully_scored]
     end
   end
 
@@ -60,7 +61,7 @@ class StateEvaluator
   def save_scored_selections(selections)
     # saves all the selections
     selections.each do |selection|
-      @recorder.update_score(selection['id'], selection['score'][:score])
+      @recorder.update_score(selection['id'], selection[:score][:score])
     end
   end
 
@@ -72,7 +73,7 @@ class StateEvaluator
   end
 
   def new_rated_selections
-    rater = RatingOverseer.new(@state, rating, @id)
+    rater = RatingOverseer.new(@state, @rating, @id)
     rater.rated_weighed_selections
   end
 

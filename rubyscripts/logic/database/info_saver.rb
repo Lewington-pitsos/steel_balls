@@ -1,7 +1,6 @@
 # takes an array of scored selections, a state and a state score
 
 require_relative './info_saver/state_recorder'
-require_relative './info_saver/score_recorder'
 require_relative './info_saver/selection_recorder'
 
 class InfoSaver

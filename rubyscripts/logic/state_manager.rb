@@ -9,19 +9,16 @@
 # however we got the score, we return it
 
 require './rubyscripts/logic/database/info_saver/state_recorder'
-require './rubyscripts/logic/database/info_saver/score_recorder'
+require './rubyscripts/logic/database/score_recorder'
 require_relative './state_evaluator'
 require_relative './database/state_checker'
 
 
 class StateManager
 
-  @@relation_name = 'scored_states'
-
   def initialize(rated_state)
     @rating = rated_state[:rating]
     @state = rated_state[:state]
-    @relation_name = @@relation_name
     @state_info = []
   end
 
@@ -34,7 +31,7 @@ class StateManager
 
     if !@state_info
       score_for_new_state
-    elsif fully_calculated?()
+    elsif state_info_is_fully_calculated?()
       fully_calculated_score(state_score())
     else
       updated_score()
@@ -49,22 +46,20 @@ class StateManager
     {score: score, fully_scored: true}
   end
 
-  def preliminary_score(score)
-    {score: score, fully_scored: false}
-  end
-
   def updated_score
-    evaluator = StateEvaluator.new(@state, @rating, state_id, state_score)
+    # passes the recorded state's state, rating, id and score to StateEvaluator, which will eventually return a score
+    evaluator = StateEvaluator.new(@state, @rating, state_id(), state_score())
     new_score = evaluator.state_score
   end
 
   def update_score
     recorder = ScoreRecorder.new($DATABASE_NAME)
-    recorder.update_score(state_id, state_score, @relation_name)
+    recorder.update_score(state_id(), state_score())
     recorder.close()
   end
 
   def score_for_new_state
+    # records the new state and passes it and it's id through tp StateEvaluator which will eventually return a score
     record_state
     evaluator = StateEvaluator.new(@state, @rating, @new_state_id)
     evaluator.state_score
@@ -83,7 +78,7 @@ class StateManager
     state_checker.close()
   end
 
-  def fully_calculated?
+  def state_info_is_fully_calculated?
     @state_info['fully_scored'] == 't'
   end
 
