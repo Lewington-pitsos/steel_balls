@@ -51,6 +51,7 @@ class StateEvaluator
   end
 
   def get_rated_selections
+    #binding.pry
     if @score != 999
       @rated_weighed_selections = recorded_rated_selections
     else
