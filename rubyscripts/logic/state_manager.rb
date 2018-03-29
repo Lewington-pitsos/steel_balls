@@ -31,7 +31,7 @@ class StateManager
 
     if !@state_info
       score_for_new_state
-    elsif state_info_is_fully_calculated?()
+    elsif state_is_fully_calculated?()
       fully_calculated_score(state_score())
     else
       updated_score()
@@ -78,7 +78,7 @@ class StateManager
     state_checker.close()
   end
 
-  def state_info_is_fully_calculated?
+  def state_is_fully_calculated?
     @state_info['fully_scored'] == 't'
   end
 

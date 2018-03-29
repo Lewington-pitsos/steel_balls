@@ -169,14 +169,14 @@ class StateManagerTest < DatabaseTester
   def test_returns_correct_info_for_un_scored_states
     manager = StateManager.new(@@state7)
     manager.send(:get_recorded_state_info)
-    refute manager.send(:fully_calculated?)
+    refute manager.send(:state_is_fully_calculated?)
     assert_equal 2, manager.send(:state_id)
     assert_equal 999, manager.send(:state_score)
 
 
     manager = StateManager.new(@@hard_state)
     manager.send(:get_recorded_state_info)
-    refute manager.send(:fully_calculated?)
+    refute manager.send(:state_is_fully_calculated?)
     assert_equal 6, manager.send(:state_id)
     assert_equal 999, manager.send(:state_score)
   end
@@ -188,7 +188,7 @@ class StateManagerTest < DatabaseTester
     info['score'] = '3'
     manager.send(:update_score)
     manager.send(:get_recorded_state_info)
-    refute manager.send(:fully_calculated?)
+    refute manager.send(:state_is_fully_calculated?)
     assert_equal 2, manager.send(:state_id)
     assert_equal 3, manager.send(:state_score)
 
@@ -198,7 +198,7 @@ class StateManagerTest < DatabaseTester
     info['score'] = '2'
     manager.send(:update_score)
     manager.send(:get_recorded_state_info)
-    refute manager.send(:fully_calculated?)
+    refute manager.send(:state_is_fully_calculated?)
     assert_equal 1, manager.send(:state_id)
     assert_equal 2, manager.send(:state_score)
   end
@@ -208,7 +208,7 @@ class StateManagerTest < DatabaseTester
     manager.send(:record_state)
     assert_equal 14, manager.send(:new_state_id)
     manager.send(:get_recorded_state_info)
-    refute manager.send(:fully_calculated?)
+    refute manager.send(:state_is_fully_calculated?)
     assert_equal 14, manager.send(:state_id)
     assert_equal 999, manager.send(:state_score)
   end
@@ -216,19 +216,19 @@ class StateManagerTest < DatabaseTester
   def test_scores_states_correctly
     skip
     manager = StateManager.new(@@almost_winning_state)
-    assert_equal 1, manager.score()
+    assert_equal 1, manager.score()[:score]
 
     manager = StateManager.new(@@almost_winning_state2)
-    assert_equal 1, manager.score()
+    assert_equal 1, manager.score()[:score]
 
     manager = StateManager.new(@@non_winning_state)
-    assert_equal 2, manager.score()
+    assert_equal 2, manager.score()[:score]
 
     manager = StateManager.new(@@unknown_state)
-    assert_equal 3, manager.score()
+    assert_equal 3, manager.score()[:score]
 
     manager = StateManager.new(@@hard_state)
-    assert_equal 3, manager.score()
+    assert_equal 3, manager.score()[:score]
   end
 
   def test_scores_different_sized_states_correctly

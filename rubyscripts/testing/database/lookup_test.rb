@@ -35,23 +35,22 @@ class LookupTest < DatabaseTester
 
   def test_retrival_by_id_works
     assert_equal '2', @lookup.send(:get_by_id, '1', 'scored_states')['score']
-    p @lookup.send(:get_by_id, '6', 'scored_states')
-    assert_equal '1', @lookup.send(:get_by_id, '5', 'scored_states')['score']
+    assert_equal '0', @lookup.send(:get_by_id, '5', 'scored_states')['score']
     assert_raises 'Error' do
       @lookup.get_by_id('6', 'scored_states')
     end
 
     assert_equal '1', @lookup.send(:get_by_id, '1', 'selections')['left_id']
-    assert_equal '2', @lookup.send(:get_by_id, '1', 'selections')['right_id']
-    assert_equal '1', @lookup.send(:get_by_id, '4', 'selections')['left_id']
-    assert_equal '4', @lookup.send(:get_by_id, '4', 'selections')['right_id']
+    assert_equal '1', @lookup.send(:get_by_id, '1', 'selections')['right_id']
+    assert_equal '2', @lookup.send(:get_by_id, '4', 'selections')['left_id']
+    assert_equal '3', @lookup.send(:get_by_id, '4', 'selections')['right_id']
     assert_raises 'Error' do
       @lookup.get_by_id('8', 'selections')
     end
 
-    assert_equal '0', @lookup.send(:get_by_id, '1', 'selection_sides')['unknown']
-    assert_equal '1', @lookup.send(:get_by_id, '2', 'selection_sides')['unknown']
-    assert_equal '1', @lookup.send(:get_by_id, '1', 'selection_sides')['normal']
+    assert_equal '1', @lookup.send(:get_by_id, '1', 'selection_sides')['unknown']
+    assert_equal '0', @lookup.send(:get_by_id, '2', 'selection_sides')['unknown']
+    assert_equal '0', @lookup.send(:get_by_id, '1', 'selection_sides')['normal']
   end
 
   def test_retrival_by_id_removes_ids
@@ -76,22 +75,18 @@ class LookupTest < DatabaseTester
 
   def test_queries_all_possible_selections
     selections = @lookup.send(:possible_selections, '1')
-    assert_equal 7, selections.ntuples
-    assert_equal '2', selections[0]['selection_id']
+    assert_equal 1, selections.ntuples
+    assert_equal '1', selections[0]['selection_id']
 
-    selections = @lookup.send(:possible_selections, '2')
-    selections.each_with_index do |sel, index|
-      puts sel
-      assert_equal (index + 3).to_s, sel['selection_id']
-    end
+    selections = @lookup.send(:possible_selections, '3')
+    selections[3]['selection_id'] == '7'
   end
 
   def test_returns_correct_resulting_states
     selections = @lookup.send(:resulting_states, '1')
     assert_equal 2, selections.ntuples
-    selections.each_with_index do |sel, index|
-      assert_equal (index + 3).to_s, sel['state_id']
-    end
+    assert_equal '2', selections[0]['state_id']
+    assert_equal '3', selections[1]['state_id']
   end
 
   def test_gathers_possible_selection_ids
@@ -99,14 +94,14 @@ class LookupTest < DatabaseTester
     ids = @lookup.send(:ids_from, selections, 'selection_id')
 
     assert_equal 1, ids.length
-    assert_equal '7', ids[0]
+    assert_equal '1', ids[0]
 
-    selections = @lookup.send(:possible_selections, '5')
+    selections = @lookup.send(:possible_selections, '3')
     ids = @lookup.send(:ids_from, selections, 'selection_id')
 
     assert_equal 4, ids.length
-    assert_equal '3', ids[0]
-    assert_equal '5', ids[2]
+    assert_equal '4', ids[0]
+    assert_equal '6', ids[2]
   end
 
   def test_gathers_resultign_state_ids
@@ -114,14 +109,14 @@ class LookupTest < DatabaseTester
     ids = @lookup.send(:ids_from, states, 'state_id')
 
     assert_equal 2, ids.length
-    assert_equal '3', ids[0]
+    assert_equal '2', ids[0]
 
     states = @lookup.send(:resulting_states, '6')
     ids = @lookup.send(:ids_from, states, 'state_id')
 
     assert_equal 2, ids.length
-    assert_equal '4', ids[0]
-    assert_equal '3', ids[1]
+    assert_equal '5', ids[0]
+    assert_equal '4', ids[1]
   end
 
   def test_builds_all_states_for_winning_selection
@@ -169,13 +164,12 @@ class LookupTest < DatabaseTester
     selection = @lookup.send(:build_selection, '2')
     assert_equal 2, selection['states'].length
     assert selection['left']
-    assert_equal '0', selection['right']['unknown']
-    assert_equal '1', selection['right']['normal']
+    assert_equal '1', selection['right']['unknown']
+    assert_equal '0', selection['right']['normal']
   end
 
   def test_builds_whole_tree
     @lookup.build_tree
-    p @lookup.tree
     assert_equal '2', @lookup.tree['score']
     assert_equal 1, @lookup.tree['selections'].length
     assert_equal '1', @lookup.tree['selections'][0]['right']['unknown']
@@ -192,6 +186,10 @@ class LookupTest < DatabaseTester
     assert_equal 1, lookup2.tree['selections'].length
     assert_equal 1, lookup2.tree['selections'][0]['states'][0]['selections'].length
     assert_equal 1, lookup2.tree['selections'][0]['states'][1]['selections'].length
+  end
+
+  def test_returns_single_selection_build
+
   end
 
   def teardown
