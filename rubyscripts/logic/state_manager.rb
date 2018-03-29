@@ -9,6 +9,7 @@
 # however we got the score, we return it
 
 require './rubyscripts/logic/database/info_saver/state_recorder'
+require './rubyscripts/logic/database/info_saver/score_recorder'
 require_relative './state_evaluator'
 require_relative './database/state_checker'
 
@@ -32,11 +33,11 @@ class StateManager
     get_recorded_state_info
 
     if !@state_info
-      preliminary_score(score_for_new_state)
+      score_for_new_state
     elsif fully_calculated?()
       fully_calculated_score(state_score())
     else
-      preliminary_score(verified_score())
+      updated_score()
     end
   end
 
@@ -52,19 +53,13 @@ class StateManager
     {score: score, fully_scored: false}
   end
 
-  def verified_score
+  def updated_score
     evaluator = StateEvaluator.new(@state, @rating, state_id, state_score)
     new_score = evaluator.state_score
-    if new_score < state_score
-      update_score
-      state_score
-    else
-      state_score
-    end
   end
 
   def update_score
-    recorder = StateRecorder.new()
+    recorder = ScoreRecorder.new($DATABASE_NAME)
     recorder.update_score(state_id, state_score, @relation_name)
     recorder.close()
   end
@@ -76,14 +71,14 @@ class StateManager
   end
 
   def record_state
-    recorder = StateRecorder.new()
+    recorder = StateRecorder.new($DATABASE_NAME)
     @new_state_id = recorder.record_state_and_id(@state)
     recorder.close()
   end
 
   def get_recorded_state_info
     # creates a new score checker, gets it to return the recorded score value, and closes it immidiately to prevent connection leakage
-    state_checker = StateChecker.new()
+    state_checker = StateChecker.new($DATABASE_NAME)
     @state_info = state_checker.state_info(@state)
     state_checker.close()
   end
