@@ -11,13 +11,8 @@ class Lookup < Archivist
   @@selection_id_col = 'selection_id'
   @@state_id_col = 'state_id'
 
-  attr_reader :tree, :selections
-
   def initialize(name=@@database_name, simplified=false)
     super(name)
-    @tree = {}
-    @simplified = simplified
-    @selections = {}
   end
 
   private
@@ -27,14 +22,6 @@ class Lookup < Archivist
     selection_ids = ids_from(full_selections, @@selection_id_col)
     selection_ids.map do |selection_id|
       build_selection(selection_id)
-    end
-  end
-
-  def get_full_selections(state_id)
-    if @simplified
-      single_possible_selection(state_id)
-    else
-      possible_selections(state_id)
     end
   end
 

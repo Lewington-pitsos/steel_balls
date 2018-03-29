@@ -2,6 +2,15 @@ require_relative '../lookup'
 
 class TreeLookup < Lookup
 
+  attr_reader :tree
+
+  def initialize(name=@@database_name, simplified=false)
+    super(name)
+    @tree = {}
+    @simplified = simplified
+  end
+
+
   def build_tree
     first_id = state_id_by_values(first_state)
     @tree = build_state(first_id)
@@ -24,6 +33,14 @@ class TreeLookup < Lookup
       possibly_lighter: 0,
       normal: 0
     }
+  end
+
+  def get_full_selections(state_id)
+    if @simplified
+      single_possible_selection(state_id)
+    else
+      possible_selections(state_id)
+    end
   end
 
     # ================ Query Methods ================

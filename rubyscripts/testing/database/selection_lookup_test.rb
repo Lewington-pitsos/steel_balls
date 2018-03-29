@@ -35,13 +35,23 @@ class SelectionLookupTest < DatabaseTester
 
   def test_returns_single_selection_build
     @lookup.build_all_selections(1)
-    assert_equal 1, @lookup.selections.length
-    assert_equal 2, @lookup.selections[0]['states'].length
-    refute @lookup.selections[0]['states'][0]['selections']
+    assert_equal 1, @lookup.all_selections.length
+    assert_equal 2, @lookup.all_selections[0]['states'].length
+    refute @lookup.all_selections[0]['states'][0]['selections']
+
+    p @lookup.all_selections
 
     @lookup.build_all_selections(3)
-    assert_equal 4, @lookup.selections.length
-    refute @lookup.selections[0]['states'][0]['selections']
+    assert_equal 4, @lookup.all_selections.length
+    refute @lookup.all_selections[0]['states'][0]['selections']
+  end
+
+  def test_state_hashes_properly_arranged
+    state = @lookup.send(:build_state, 1)
+    assert_equal '3', state[:state]['unknown']
+    assert_equal '0', state[:rating]
+    p state
+
   end
 
   def teardown
