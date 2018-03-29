@@ -7,7 +7,7 @@
 
 # finally, returns the state score to the state manager
 require 'pry'
-require './rubyscripts/logic/database/lookup/lookup'
+require './rubyscripts/logic/database/lookup/selection_lookup'
 require './rubyscripts/logic/database/score_recorder'
 require_relative './state_evaluator/scorer_manager'
 require_relative './state_evaluator/rating_overseer'
@@ -21,7 +21,7 @@ class StateEvaluator
     @rating = rating
     @score = score
     @scorer = ScorerManager.new()
-    @lookup = Lookup.new($DATABASE_NAME)
+    @lookup = SelectionLookup.new($DATABASE_NAME)
     @recorder = ScoreRecorder.new($DATABASE_NAME)
     @rated_weighed_selections = []
     @scored_state_info = []

@@ -1,5 +1,5 @@
 require_relative './state_manager'
-require './rubyscripts/logic/database/lookup/lookup'
+require './rubyscripts/logic/database/lookup/tree_lookup'
 require_relative './state_evaluator/rating_overseer/state_expander/arrangement_generator/ball_generator'
 require 'yaml'
 
@@ -75,7 +75,7 @@ class Interface
 
   def print_tree
     puts "\n\n\n\n"
-    lookup = Lookup.new($DATABASE_NAME, true)
+    lookup = TreeLookup.new($DATABASE_NAME, true)
     lookup.build_tree
     puts lookup.tree.to_yaml
   end

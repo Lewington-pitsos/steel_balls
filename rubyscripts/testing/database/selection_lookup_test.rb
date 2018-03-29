@@ -1,9 +1,9 @@
 require './rubyscripts/testing/database_tester'
-require './rubyscripts/logic/database/lookup/lookup'
+require './rubyscripts/logic/database/lookup/selection_lookup'
 require './rubyscripts/logic/state_manager'
 
 
-class LookupTest < DatabaseTester
+class SelectionLookupTest < DatabaseTester
 
   @@starting_rated_state = {
     state: {
@@ -30,7 +30,7 @@ class LookupTest < DatabaseTester
     @manager = StateManager.new(@@starting_rated_state)
     @manager.score()
 
-    @lookup = Lookup.new($DATABASE_NAME)
+    @lookup = SelectionLookup.new($DATABASE_NAME)
   end
 
   def test_retrival_by_id_works
@@ -180,7 +180,7 @@ class LookupTest < DatabaseTester
   end
 
   def test_simplified_tree_renders_correctly
-    lookup2 = Lookup.new($DATABASE_NAME, true)
+    lookup2 = SelectionLookup.new($DATABASE_NAME, true)
     lookup2.build_tree
     assert_equal '2', lookup2.tree['score']
     assert_equal 1, lookup2.tree['selections'].length

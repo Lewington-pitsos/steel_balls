@@ -1,4 +1,4 @@
-require_relative '../archivist'
+require_relative './archivist'
 
 class Lookup < Archivist
 
