@@ -15,6 +15,7 @@ class TableSetup < Setup
       possibly_heavier INTEGER NOT NULL DEFAULT 0,
       normal INTEGER NOT NULL DEFAULT 0,
       score INTEGER DEFAULT NULL,
+      fully_scored BOOLEAN DEFAULT FALSE,
       PRIMARY KEY(id)
     )
   COMMAND
@@ -41,10 +42,12 @@ class TableSetup < Setup
   COMMAND
 
   @@states_prev_selections_setup = <<~COMMAND
-    CREATE TABLE optimal_selections (
+    CREATE TABLE possible_selections (
       id serial,
       state_id INTEGER REFERENCES scored_states(id) ON DELETE CASCADE,
       selection_id INTEGER REFERENCES selections(id) ON DELETE CASCADE,
+      rating INTEGER NOT NULL DEFAULT 0,
+      score INTEGER DEFAULT NULL,
       PRIMARY KEY(id)
     )
   COMMAND
@@ -52,7 +55,7 @@ class TableSetup < Setup
   @@selections_prev_states_setup = <<~COMMAND
     CREATE TABLE resulting_states (
       id serial,
-      optimal_selection_id INTEGER REFERENCES optimal_selections(id) ON DELETE CASCADE,
+      possible_selection_id INTEGER REFERENCES possible_selections(id) ON DELETE CASCADE,
       state_id INTEGER REFERENCES scored_states(id) ON DELETE CASCADE,
       PRIMARY KEY(id)
     )
@@ -60,7 +63,7 @@ class TableSetup < Setup
 
   @@drop_all_tables = <<~COMMAND
     DROP TABLE IF EXISTS resulting_states;
-    DROP TABLE IF EXISTS optimal_selections;
+    DROP TABLE IF EXISTS possible_selections;
     DROP TABLE IF EXISTS selections;
     DROP TABLE IF EXISTS selection_sides;
     DROP TABLE IF EXISTS scored_states;
@@ -106,7 +109,7 @@ class TableSetup < Setup
       @db.exec('SELECT * FROM scored_states;')
       @db.exec('SELECT * FROM selection_sides;')
       @db.exec('SELECT * FROM selections;')
-      @db.exec('SELECT * FROM optimal_selections;')
+      @db.exec('SELECT * FROM possible_selections;')
       @db.exec('SELECT * FROM resulting_states;')
     rescue
       return true

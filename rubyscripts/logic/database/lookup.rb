@@ -5,7 +5,7 @@ class Lookup < Archivist
   @@selection_tab = 'selections'
   @@side_tab = 'selection_sides'
   @@state_tab = 'scored_states'
-  @@optimal_tab = 'optimal_selections'
+  @@possible_tab = 'possible_selections'
   @@resulting_tab = 'resulting_states'
 
   @@selection_id_col = 'selection_id'
@@ -28,12 +28,12 @@ class Lookup < Archivist
 
   def build_state(state_id)
     state = get_by_id(state_id, @@state_tab)
-    selections = build_optimal_selections(state_id)
+    selections = build_possible_selections(state_id)
     state['selections'] = selections
     state
   end
 
-  def build_optimal_selections(state_id)
+  def build_possible_selections(state_id)
     full_selections = get_full_selections(state_id)
     selection_ids = ids_from(full_selections, @@selection_id_col)
     selection_ids.map do |selection_id|
@@ -43,9 +43,9 @@ class Lookup < Archivist
 
   def get_full_selections(state_id)
     if @simplified
-      single_optimal_selection(state_id)
+      single_possible_selection(state_id)
     else
-      optimal_selections(state_id)
+      possible_selections(state_id)
     end
   end
 
@@ -90,19 +90,19 @@ class Lookup < Archivist
 
   # ================ Query Methods ================
 
-  def optimal_selections(state_id)
+  def possible_selections(state_id)
     @db.exec(
       <<~CMD
-        SELECT selection_id FROM #{@@optimal_tab}
+        SELECT selection_id FROM #{@@possible_tab}
         WHERE state_id = #{state_id};
       CMD
     )
   end
 
-  def single_optimal_selection(state_id)
+  def single_possible_selection(state_id)
     @db.exec(
       <<~CMD
-        SELECT selection_id FROM #{@@optimal_tab}
+        SELECT selection_id FROM #{@@possible_tab}
         WHERE state_id = #{state_id}
         LIMIT 1;
       CMD
@@ -113,7 +113,7 @@ class Lookup < Archivist
     @db.exec(
       <<~CMD
         SELECT state_id FROM #{@@resulting_tab}
-        WHERE optimal_selection_id = #{selection_id};
+        WHERE possible_selection_id = #{selection_id};
       CMD
     )
   end

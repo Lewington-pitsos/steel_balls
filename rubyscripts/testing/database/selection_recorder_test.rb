@@ -168,16 +168,16 @@ class SelectionRecorderTest < DatabaseTester
     @recorder.send(:selection_id=, selection_id)
 
     assert_raises 'Error' do
-      get_all('optimal_selections')[0]
+      get_all('possible_selections')[0]
     end
 
     id = @recorder.send(:record_prev_state, 2)
 
     assert_equal 1, id
 
-    assert_equal 1, get_all('optimal_selections')[0]['id'].to_i
-    assert_equal id, get_all('optimal_selections')[0]['selection_id'].to_i
-    assert_equal 2, get_all('optimal_selections')[0]['state_id'].to_i
+    assert_equal 1, get_all('possible_selections')[0]['id'].to_i
+    assert_equal id, get_all('possible_selections')[0]['selection_id'].to_i
+    assert_equal 2, get_all('possible_selections')[0]['state_id'].to_i
   end
 
   def test_associates_optimal_state_with_next_states
@@ -203,8 +203,8 @@ class SelectionRecorderTest < DatabaseTester
     assert_equal 2, get_all('resulting_states').ntuples
     assert_equal 1, get_all('resulting_states')[0]['state_id'].to_i
     assert_equal 3, get_all('resulting_states')[1]['state_id'].to_i
-    assert_equal id, get_all('resulting_states')[0]['optimal_selection_id'].to_i
-    assert_equal id, get_all('resulting_states')[1]['optimal_selection_id'].to_i
+    assert_equal id, get_all('resulting_states')[0]['possible_selection_id'].to_i
+    assert_equal id, get_all('resulting_states')[1]['possible_selection_id'].to_i
   end
 
 

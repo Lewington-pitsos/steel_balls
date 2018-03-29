@@ -18,7 +18,7 @@ class SelectionRecorder < CarefulSaver
     @left_id = 0
     @right_id = 0
     @selection_id = 0
-    @optimal_selection_id = 0
+    @possible_selection_id = 0
   end
 
   def save_selection_data(scored_selection, state_id, resulting_state_ids)
@@ -53,9 +53,9 @@ class SelectionRecorder < CarefulSaver
   end
 
   def record_prev_state(state_id)
-    @optimal_selection_id = @db.exec(
+    @possible_selection_id = @db.exec(
       <<~COMMAND
-        INSERT INTO optimal_selections (state_id, selection_id)
+        INSERT INTO possible_selections (state_id, selection_id)
         VALUES ( #{state_id}, #{@selection_id})
         RETURNING id;
       COMMAND
@@ -71,8 +71,8 @@ class SelectionRecorder < CarefulSaver
   def save_resulting_state(state_id)
     @db.exec(
       <<~COMMAND
-        INSERT INTO resulting_states ( optimal_selection_id, state_id)
-        VALUES ( #{@optimal_selection_id}, #{state_id} )
+        INSERT INTO resulting_states ( possible_selection_id, state_id)
+        VALUES ( #{@possible_selection_id}, #{state_id} )
       COMMAND
     )
   end

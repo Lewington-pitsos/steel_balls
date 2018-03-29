@@ -15,14 +15,14 @@ class InfoSaverTest < DatabaseTester
 
   def test_correctly_identifies_low_scored_selections
     @saver.send(:selections=, @@scored_selections[:selections])
-    @saver.send(:gather_optimal_selections)
-    assert_equal 2, @saver.send(:optimal_selections).length
-    assert_equal 1, @saver.send(:optimal_selections)[0][:score]
+    @saver.send(:gather_possible_selections)
+    assert_equal 2, @saver.send(:possible_selections).length
+    assert_equal 1, @saver.send(:possible_selections)[0][:score]
 
     @saver.send(:selections=, @@scored_selections2[:selections])
-    @saver.send(:gather_optimal_selections)
-    assert_equal 1, @saver.send(:optimal_selections).length
-    assert_equal 0, @saver.send(:optimal_selections)[0][:score]
+    @saver.send(:gather_possible_selections)
+    assert_equal 1, @saver.send(:possible_selections).length
+    assert_equal 0, @saver.send(:possible_selections)[0][:score]
   end
 
   def teardown

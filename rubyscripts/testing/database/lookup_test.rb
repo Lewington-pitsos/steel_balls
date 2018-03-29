@@ -73,14 +73,14 @@ class LookupTest < DatabaseTester
     assert_equal '2', @lookup.send(:state_id_by_values, @@other_state)
   end
 
-  def test_queries_all_optimal_selections
-    selections = @lookup.send(:optimal_selections, '1')
+  def test_queries_all_possible_selections
+    selections = @lookup.send(:possible_selections, '1')
     assert_equal 1, selections.ntuples
     selections.each do |sel|
       assert_equal '7', sel['selection_id']
     end
 
-    selections = @lookup.send(:optimal_selections, '5')
+    selections = @lookup.send(:possible_selections, '5')
     selections.each_with_index do |sel, index|
       assert_equal (index + 3).to_s, sel['selection_id']
     end
@@ -94,14 +94,14 @@ class LookupTest < DatabaseTester
     end
   end
 
-  def test_gathers_optimal_selection_ids
-    selections = @lookup.send(:optimal_selections, '1')
+  def test_gathers_possible_selection_ids
+    selections = @lookup.send(:possible_selections, '1')
     ids = @lookup.send(:ids_from, selections, 'selection_id')
 
     assert_equal 1, ids.length
     assert_equal '7', ids[0]
 
-    selections = @lookup.send(:optimal_selections, '5')
+    selections = @lookup.send(:possible_selections, '5')
     ids = @lookup.send(:ids_from, selections, 'selection_id')
 
     assert_equal 4, ids.length
@@ -141,7 +141,7 @@ class LookupTest < DatabaseTester
   end
 
   def test_builds_all_selections_for_nearly_winning_states
-    selections = @lookup.send(:build_optimal_selections, '2')
+    selections = @lookup.send(:build_possible_selections, '2')
     assert_equal 2, selections.length
     assert_equal '1', selections[0]['right']['unknown']
     assert_equal '1', selections[1]['right']['normal']
@@ -152,13 +152,13 @@ class LookupTest < DatabaseTester
   end
 
   def test_built_selections_removed_side_ids
-    selections = @lookup.send(:build_optimal_selections, '2')
+    selections = @lookup.send(:build_possible_selections, '2')
     selections.each do |selection|
       refute selection['left_id']
       refute selection['right_id']
     end
 
-    selections = @lookup.send(:build_optimal_selections, '3')
+    selections = @lookup.send(:build_possible_selections, '3')
     selections.each do |selection|
       refute selection['left_id']
       refute selection['right_id']
