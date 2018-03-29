@@ -17,21 +17,11 @@ class StateEvaluator
     @state = state
     @rater= RatingOverseer.new(@state, rating)
     @scorer = ScorerManager.new()
-    @recorder = InfoSaver.new()
-    @scored_state_info = []
   end
 
   def state_score
     rated_weighed_selections = @rater.rated_weighed_selections
-    @scored_state_info = @scorer.scored_selections(rated_weighed_selections)
-    record_info
-    @scored_state_info[:state_score]
-  end
-
-  private
-
-  def record_info
-    @scored_state_info[:state] = @state
-    @recorder.save_everything(@scored_state_info)
+    scored_state_info = @scorer.scored_selections(rated_weighed_selections)
+    scored_state_info[:state_score]
   end
 end

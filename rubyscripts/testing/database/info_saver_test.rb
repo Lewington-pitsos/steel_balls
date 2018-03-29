@@ -40,11 +40,6 @@ class InfoSaverTest < DatabaseTester
 
       assert_equal selection[:rating], ratings[index]['rating'].to_i
     end
-
-
-
-
-
   end
 
   def teardown
