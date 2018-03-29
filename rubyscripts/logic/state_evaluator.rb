@@ -31,7 +31,7 @@ class StateEvaluator
   private
 
   def record_info
-    scored_state_info[:state] = @state
-    @recorder.save_everything(scored_state_info)
+    @scored_state_info[:state] = @state
+    @recorder.save_everything(@scored_state_info)
   end
 end
