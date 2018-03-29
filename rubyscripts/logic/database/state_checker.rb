@@ -15,8 +15,8 @@ class StateChecker < Searcher
     @score = nil
   end
 
-  def recorded_score(state)
-    rubify(get_recorded_score(state), 'score', 'id', 'fully_scored')
+  def state_info(state)
+    rubify(get_recorded_score(state), nil)
   end
 
   private

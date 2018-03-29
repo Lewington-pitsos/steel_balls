@@ -21,25 +21,57 @@ class StateManager
     @rating = rated_state[:rating]
     @state = rated_state[:state]
     @relation_name = @@relation_name
+    @state_info = []
   end
 
   def score
     if @rating >= ($WINNING_RATING || 37)
-      return 0
+      return fully_calculated_score(0)
     end
 
-    recorded_score = score_in_database
+    get_recorded_state_info
 
-    if recorded_score
-      recorded_score
+    if !@state_info
+      preliminary_score(score_for_new_state)
+    elsif fully_calculated?()
+      fully_calculated_score(state_score())
     else
-      record_state
-      evaluator = StateEvaluator.new(@state, @rating)
-      evaluator.state_score
+      preliminary_score(verified_score())
     end
   end
 
   private
+
+  def fully_calculated_score(score)
+    {score: score, fully_scored: true}
+  end
+
+  def preliminary_score(score)
+    {score: score, fully_scored: false}
+  end
+
+  def verified_score
+    evaluator = StateEvaluator.new(@state, @rating)
+    new_score = evaluator.state_score
+    if new_score < state_score
+      update_score
+      state_score
+    else
+      state_score
+    end
+  end
+
+  def update_score
+    recorder = StateRecorder.new()
+    recorder.update_score(state_id, state_score, @relation_name)
+    recorder.close()
+  end
+
+  def score_for_new_state
+    record_state
+    evaluator = StateEvaluator.new(@state, @rating)
+    evaluator.state_score
+  end
 
   def record_state
     recorder = StateRecorder.new()
@@ -47,11 +79,22 @@ class StateManager
     recorder.close()
   end
 
-  def score_in_database
+  def get_recorded_state_info
     # creates a new score checker, gets it to return the recorded score value, and closes it immidiately to prevent connection leakage
     state_checker = StateChecker.new()
-    score = state_checker.recorded_score(@state)
+    @state_info = state_checker.state_info(@state)
     state_checker.close()
-    score
+  end
+
+  def fully_calculated?
+    @state_info['fully_scored'] == 't'
+  end
+
+  def state_score
+    @state_info['score'].to_i
+  end
+
+  def state_id
+    @state_info['id'].to_i
   end
 end

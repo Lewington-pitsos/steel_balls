@@ -87,17 +87,17 @@ class StateCheckerTest < DatabaseTester
   end
 
   def test_returns_correct_score_values
-    assert_equal 29, @checker.recorded_score(@@just_state)[0].to_i
-    assert_equal 21, @checker.recorded_score(@@just_state2)[0].to_i
-    assert_nil @checker.recorded_score(@@new_state)
-    assert_nil @checker.recorded_score(@@new_state2)
+    assert_equal 29, @checker.state_info(@@just_state)['score'].to_i
+    assert_equal 21, @checker.state_info(@@just_state2)['score'].to_i
+    assert_nil @checker.state_info(@@new_state)
+    assert_nil @checker.state_info(@@new_state2)
   end
 
   def test_returns_correct_ids_and_fully_scored_indicators
-    assert_equal 1, @checker.recorded_score(@@just_state)[1].to_i
-    assert_equal 2, @checker.recorded_score(@@just_state2)[1].to_i
-    assert_equal 'f', @checker.recorded_score(@@just_state)[2]
-    assert_equal 'f', @checker.recorded_score(@@just_state2)[2]
+    assert_equal 1, @checker.state_info(@@just_state)['id'].to_i
+    assert_equal 2, @checker.state_info(@@just_state2)['id'].to_i
+    assert_equal 'f', @checker.state_info(@@just_state)['fully_scored']
+    assert_equal 'f', @checker.state_info(@@just_state2)['fully_scored']
   end
 
   def teardown
