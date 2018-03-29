@@ -7,11 +7,12 @@ class StateRecorder < CarefulSaver
   attr_reader :ids
 
   @@column_name = 'id'
+  @@relation_name = 'scored_states'
 
   def initialize(name=@@database_name)
     super(name)
     @ids = []
-    @relation_name = 'scored_states'
+    @relation_name = @@relation_name
     @column_name = @@column_name
   end
 
@@ -20,7 +21,7 @@ class StateRecorder < CarefulSaver
     selection[:selection][:states].each do |state|
       id = record_state_and_id(state[:state])
       if state[:rating] >= ($WINNING_RATING || 37)
-        update_state_score(id, 0, true)
+        update_full_score(id, 0, true)
       end
       @ids << id
     end

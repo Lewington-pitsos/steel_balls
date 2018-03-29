@@ -61,7 +61,7 @@ class StateEvaluator
   def save_scored_selections(selections)
     # saves all the selections
     selections.each do |selection|
-      @recorder.update_score(selection[:id], selection[:score][:score], 'possible_selections')
+      @recorder.update_full_score(selection[:id], selection[:score][:score], selection[:score][:fully_scored], 'possible_selections')
     end
   end
 
@@ -69,7 +69,7 @@ class StateEvaluator
     # works out the lowest score for the current state and whether or not that score has been fully calculated and updates the appropriate scored_states row
     score = [@scored_state_info[:state_score], @score].min
     @fully_scored = state_is_fully_scored?
-    @recorder.update_state_score(@id, score, @fully_scored)
+    @recorder.update_full_score(@id, score, @fully_scored, 'scored_states')
   end
 
   def new_rated_selections

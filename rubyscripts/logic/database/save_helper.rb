@@ -19,9 +19,9 @@ module SaveHelper
     )[0]['id'].to_i
   end
 
-  def update_state_score(id, score, fully_scored)
+  def update_full_score(id, score, fully_scored, relation=@relation_name)
     @db.exec(<<~CMD
-        UPDATE scored_states
+        UPDATE #{relation}
         SET score = #{score}, fully_scored = #{fully_scored}
         WHERE id = #{id};
       CMD

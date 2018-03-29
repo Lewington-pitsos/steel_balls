@@ -76,12 +76,12 @@ class ScoreRecorderTest < DatabaseTester
 
   def test_updates_score_and_full_score_properly
     assert_equal 'f', get_fully_scored(1)
-    @score_recorder.update_state_score(1, 2, true)
+    @score_recorder.update_full_score(1, 2, true)
     assert_equal 2, get_score(1)
     assert_equal 't', get_fully_scored(1)
 
     assert_equal 'f', get_fully_scored(3)
-    @score_recorder.update_state_score(3, 9, false)
+    @score_recorder.update_full_score(3, 9, false)
     assert_equal 9, get_score(3)
     assert_equal 'f', get_fully_scored(3)
   end
