@@ -18,7 +18,11 @@ class StateRecorder < CarefulSaver
   def record_states(selection)
     @ids = []
     selection[:selection][:states].each do |state|
-      @ids << record_state_and_id(state[:state])
+      id = record_state_and_id(state[:state])
+      if state[:rating] >= ($WINNING_RATING || 37)
+        update_score(id, 0)
+      end
+      @ids << id
     end
   end
 end

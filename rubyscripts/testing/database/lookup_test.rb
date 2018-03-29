@@ -35,6 +35,10 @@ class LookupTest < DatabaseTester
 
   def test_retrival_by_id_works
     assert_equal '2', @lookup.send(:get_by_id, '1', 'scored_states')['score']
+    p @lookup.send(:get_by_id, '5', 'scored_states')
+    p @lookup.send(:get_by_id, '3', 'scored_states')
+    p @lookup.send(:get_by_id, '2', 'scored_states')
+    p @lookup.send(:get_by_id, '6', 'scored_states')
     assert_equal '1', @lookup.send(:get_by_id, '5', 'scored_states')['score']
     assert_raises 'Error' do
       @lookup.get_by_id('6', 'scored_states')

@@ -61,7 +61,6 @@ class StateEvaluator
 
   def save_scored_selections(selections)
     # saves all the selections
-    binding.pry
     selections.each do |selection|
       @recorder.update_score(selection[:id], selection[:score][:score], 'possible_selections')
     end
