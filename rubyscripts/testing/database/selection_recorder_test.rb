@@ -56,8 +56,11 @@ class SelectionRecorderTest < DatabaseTester
   }
 
   @@example_selection = {
-    left: @@example_side,
-    right: @@example_side2
+    selection: {
+      left: @@example_side,
+      right: @@example_side2,
+    },
+    rating: 18
   }
 
   def setup
@@ -171,13 +174,14 @@ class SelectionRecorderTest < DatabaseTester
       get_all('possible_selections')[0]
     end
 
-    id = @recorder.send(:record_prev_state, 2)
+    id = @recorder.send(:record_prev_state, 2, 17)
 
     assert_equal 1, id
 
     assert_equal 1, get_all('possible_selections')[0]['id'].to_i
     assert_equal id, get_all('possible_selections')[0]['selection_id'].to_i
     assert_equal 2, get_all('possible_selections')[0]['state_id'].to_i
+    assert_equal 17, get_all('possible_selections')[0]['rating'].to_i
   end
 
   def test_associates_optimal_state_with_next_states
@@ -192,7 +196,7 @@ class SelectionRecorderTest < DatabaseTester
     @recorder.send(:right_id=, 2)
     selection_id = @recorder.send(:save_selection)
     @recorder.send(:selection_id=, selection_id)
-    id = @recorder.send(:record_prev_state, 2)
+    id = @recorder.send(:record_prev_state, 2, 17)
 
     assert_raises 'Error' do
       get_all('resulting_states')[0]

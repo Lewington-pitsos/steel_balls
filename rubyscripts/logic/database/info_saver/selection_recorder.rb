@@ -8,10 +8,12 @@ require_relative './careful_saver'
 
 class SelectionRecorder < CarefulSaver
 
+  @@relation_name = 'selection_sides'
   @@column_name = 'id'
 
   def initialize(name=@@database_name)
     super(name)
+    @relation_name = @@relation_name
     @column_name = @@column_name
     @left_id = 0
     @right_id = 0
@@ -54,7 +56,7 @@ class SelectionRecorder < CarefulSaver
     @possible_selection_id = @db.exec(
       <<~COMMAND
         INSERT INTO possible_selections (state_id, selection_id, rating)
-        VALUES ( #{state_id}, #{@selection_id}, #{rating})
+        VALUES (#{state_id}, #{@selection_id}, #{rating})
         RETURNING id;
       COMMAND
     )[0]['id'].to_i
