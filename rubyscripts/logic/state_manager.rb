@@ -42,6 +42,8 @@ class StateManager
 
   private
 
+  attr_reader :state_info, :new_state_id
+
   def fully_calculated_score(score)
     {score: score, fully_scored: true}
   end
@@ -51,7 +53,7 @@ class StateManager
   end
 
   def verified_score
-    evaluator = StateEvaluator.new(@state, @rating)
+    evaluator = StateEvaluator.new(@state, @rating, state_id)
     new_score = evaluator.state_score
     if new_score < state_score
       update_score
@@ -75,7 +77,7 @@ class StateManager
 
   def record_state
     recorder = StateRecorder.new()
-    recorder.record_state_and_id(@state)
+    @new_state_id = recorder.record_state_and_id(@state)
     recorder.close()
   end
 
