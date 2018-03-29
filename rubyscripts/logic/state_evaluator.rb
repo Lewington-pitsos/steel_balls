@@ -78,6 +78,6 @@ class StateEvaluator
   end
 
   def recorded_rated_selections
-    @lookup.build_selections(@id)
+    @lookup.build_all_selections(@id)
   end
 end

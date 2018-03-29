@@ -14,6 +14,7 @@ class TableSetup < Setup
       possibly_lighter INTEGER NOT NULL DEFAULT 0,
       possibly_heavier INTEGER NOT NULL DEFAULT 0,
       normal INTEGER NOT NULL DEFAULT 0,
+      rating INTEGER DEFAULT 0,
       score INTEGER DEFAULT 999,
       fully_scored BOOLEAN DEFAULT FALSE,
       PRIMARY KEY(id)

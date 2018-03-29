@@ -11,7 +11,7 @@ class Lookup < Archivist
   @@selection_id_col = 'selection_id'
   @@state_id_col = 'state_id'
 
-  attr_reader :tree
+  attr_reader :tree, :selections
 
   def initialize(name=@@database_name, simplified=false)
     super(name)
@@ -21,7 +21,7 @@ class Lookup < Archivist
     @selections = {}
   end
 
-  def build_selections(id)
+  def build_all_selections(id)
     @depth = 2
     @selections = build_state(id)['selections']
   end

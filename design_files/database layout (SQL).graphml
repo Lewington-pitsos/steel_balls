@@ -17,10 +17,10 @@
     <node id="n0" yfiles.foldertype="group">
       <data key="d6">
         <y:TableNode configuration="YED_TABLE_NODE">
-          <y:Geometry height="206.55999999999995" width="840.5076923076923" x="-288.0765162721893" y="661.7354068047339"/>
+          <y:Geometry height="206.55999999999995" width="960.5076923076923" x="-288.0765162721893" y="661.7354068047339"/>
           <y:Fill color="#ECF5FF" color2="#0042F440" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="21.4609375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="110.88232421875" x="364.81268404447115" y="4.0">Scored_States</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="15" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="21.4609375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="110.88232421875" x="424.81268404447115" y="4.0">Scored_States</y:NodeLabel>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="58.52734375" x="30.736328125" y="33.0">unknown<y:LabelModel>
               <y:ColumnNodeLabelModel offset="3.0"/>
             </y:LabelModel>
@@ -70,6 +70,13 @@
               <y:ColumnNodeLabelModelParameter id="column_6" inside="true" verticalPosition="0.0"/>
             </y:ModelParameter>
           </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="42.953125" x="879.0311298076924" y="33.0">Rating<y:LabelModel>
+              <y:ColumnNodeLabelModel offset="3.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:ColumnNodeLabelModelParameter id="column_7" inside="true" verticalPosition="0.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
           <y:StyleProperties>
             <y:Property class="java.awt.Color" name="yed.table.section.color" value="#7192b2"/>
             <y:Property class="java.lang.Double" name="yed.table.header.height" value="24.0"/>
@@ -106,6 +113,9 @@
                 <y:Insets bottom="0.0" left="0.0" right="0.0" top="24.0"/>
               </y:Column>
               <y:Column id="column_6" minimumWidth="80.0" width="120.0">
+                <y:Insets bottom="0.0" left="0.0" right="0.0" top="24.0"/>
+              </y:Column>
+              <y:Column id="column_7" minimumWidth="80.0" width="120.0">
                 <y:Insets bottom="0.0" left="0.0" right="0.0" top="24.0"/>
               </y:Column>
             </y:Columns>
@@ -471,7 +481,7 @@
     <edge id="e3" source="n0" target="n3">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="148.88230797326827" sy="-0.3279930581627468" tx="-304.62905538333484" ty="-31.606283524703713">
+          <y:Path sx="88.88230797326827" sy="-5.063467949034475" tx="-304.62905538333484" ty="-31.606283524703713">
             <y:Point x="281.05963785492514" y="1395.7625543686534"/>
             <y:Point x="907.1857620826102" y="1395.7625543686534"/>
           </y:Path>
@@ -484,7 +494,7 @@
     <edge id="e4" source="n0" target="n4">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="87.58626017939662" sy="-0.3279930581627468" tx="-159.37146572438166" ty="-2.2308331802123575">
+          <y:Path sx="27.586260179396618" sy="-7.609597513227641" tx="-159.37146572438166" ty="-2.2308331802123575">
             <y:Point x="219.7635900610535" y="2044.0956728767483"/>
             <y:Point x="374.7928014771992" y="2044.0956728767483"/>
           </y:Path>
