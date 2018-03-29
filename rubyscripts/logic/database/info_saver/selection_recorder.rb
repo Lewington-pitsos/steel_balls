@@ -25,6 +25,7 @@ class SelectionRecorder < CarefulSaver
     record_selection(rated_selection[:selection])
     record_prev_state(state_id, rated_selection[:rating])
     record_resulting_states(resulting_state_ids)
+    rated_selection[:id] = @selection_id
   end
 
   private

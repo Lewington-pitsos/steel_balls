@@ -55,15 +55,15 @@ class SelectionRecorderTest < DatabaseTester
     normal: 1
   }
 
-  @@example_selection = {
-    selection: {
-      left: @@example_side,
-      right: @@example_side2,
-    },
-    rating: 18
-  }
-
   def setup
+    @example_selection = {
+      selection: {
+        left: @@example_side,
+        right: @@example_side2,
+      },
+      rating: 18
+    }
+
     setup_database_for_testing
     @state_recorder = StateRecorder.new()
     @recorder = SelectionRecorder.new($DATABASE_NAME)
@@ -95,6 +95,14 @@ class SelectionRecorderTest < DatabaseTester
     assert_equal 2, id
     id = @recorder.send(:save, @@example_side3)
     assert_equal 3, id
+  end
+
+  def test_updates_rated_selections_with_ids
+    @state_recorder.send(:save, @@example_state[:state])
+    @state_recorder.send(:save, @@example_state2[:state])
+    @recorder.save_selection_data(@example_selection, 1, [2])
+
+    assert_equal 1, @example_selection[:id]
   end
 
   def test_retrives_correct_id_from_recorded_sides
