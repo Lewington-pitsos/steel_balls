@@ -17,9 +17,17 @@ class Lookup < Archivist
     super(name)
     @tree = {}
     @simplified = simplified
+    @depth = 999
+    @selections = {}
+  end
+
+  def build_selections(id)
+    @depth = 2
+    @selections = build_state(id)['selections']
   end
 
   def build_tree
+    @depth = 999
     first_id = state_id_by_values(first_state)
     @tree = build_state(first_id)
   end
@@ -27,9 +35,12 @@ class Lookup < Archivist
   private
 
   def build_state(state_id)
+    @depth -= 1
     state = get_by_id(state_id, @@state_tab)
-    selections = build_possible_selections(state_id)
-    state['selections'] = selections
+    if @depth > 0
+      selections = build_possible_selections(state_id)
+      state['selections'] = selections
+    end
     state
   end
 

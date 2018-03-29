@@ -29,7 +29,19 @@ class SelectionScorer
   private
 
   def highest_score
-    @state_scores.max
+    # returns a hash containing the highes score from among the score hashes, and whether or not the current selection ahs been fully scored or not (i.e. whether all of it's states have been calculated already or not) based on whether ANY of the states have yet to be fully calculated.
+    max = @state_scores[0][:score]
+    fully_scored = true
+    @state_scores.each do |score|
+      if score[:score] > max
+        max = score[:score]
+      end
+      if !score[:fully_scored]
+        fully_scored = false
+      end
+    end
+
+    { score: chosen, fully_scored: fully_scored }
   end
 
 end

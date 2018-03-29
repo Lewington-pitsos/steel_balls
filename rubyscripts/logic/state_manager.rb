@@ -53,7 +53,7 @@ class StateManager
   end
 
   def verified_score
-    evaluator = StateEvaluator.new(@state, @rating, state_id)
+    evaluator = StateEvaluator.new(@state, @rating, state_id, state_score)
     new_score = evaluator.state_score
     if new_score < state_score
       update_score
