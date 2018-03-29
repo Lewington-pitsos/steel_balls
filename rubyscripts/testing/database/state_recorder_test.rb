@@ -57,6 +57,10 @@ class StateRecorderTest < DatabaseTester
     }
   }
 
+  @@get_rating = <<~CMD
+    SELECT rating FROM scored_states WHERE id = #{id};
+  CMD
+
   def setup
     setup_database_for_testing
     @recorder = StateRecorder.new($DATABASE_NAME)
@@ -114,7 +118,7 @@ class StateRecorderTest < DatabaseTester
     ids = []
     ids << @recorder.send(:record_state_and_id, @@example_state2[:state])
     ids << @recorder.send(:record_state_and_id, @@example_state[:state])
-    ids << @recorder.send(:record_state_and_id, @@example_state3[:state]) 
+    ids << @recorder.send(:record_state_and_id, @@example_state3[:state])
 
     [2, 1, 3].each_with_index do |num, index|
       assert_equal num, ids[index]
@@ -126,6 +130,11 @@ class StateRecorderTest < DatabaseTester
     [1, 2, 3].each_with_index do |num, index|
       assert_equal num, @recorder.send(:ids)[index]
     end
+  end
+
+  def test_records_state_ratings
+    @recorder.record_states(@@example_proper_selection)
+    p @db.exec(@@get_rating)[0]
   end
 
   def teardown
