@@ -31,6 +31,9 @@ class RatingOverseerTest < Minitest::Test
     {:left=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}, :right=>[{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}]}
   ]
 
+  @@medium_ratings = [{:rating=>10, :selection=>{:left=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>1}, :right=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>1}, :states=>[{:rating=>10, :state=>{:unknown=>2, :possibly_lighter=>0, :possibly_heavier=>0, :normal=>2}}, {:rating=>14, :state=>{:unknown=>0, :possibly_lighter=>1, :possibly_heavier=>1, :normal=>2}}]}}, {:rating=>8, :selection=>{:left=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}, :right=>{:normal=>0, :possibly_lighter=>0, :possibly_heavier=>0, :unknown=>2}, :states=>[{:rating=>8, :state=>{:unknown=>0, :possibly_lighter=>2, :possibly_heavier=>2, :normal=>0}}]}}]
+
+
   def setup
     @overseer = RatingOverseer.new(@@medium_state)
   end
@@ -73,6 +76,15 @@ class RatingOverseerTest < Minitest::Test
         assert all_balls.add?(ball)
       end
     end
+  end
+
+  def test_rates_selectios_properly
+    ratings = @overseer.rated_weighed_selections
+
+    assert_equal 2, ratings.length
+    assert_equal 10, ratings[0][:rating]
+    assert_equal 8, ratings[1][:rating]
+    assert_equal @@medium_ratings.to_s, ratings.to_s
   end
 
   def teardown
