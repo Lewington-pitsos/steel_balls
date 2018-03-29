@@ -57,9 +57,9 @@ class StateRecorderTest < DatabaseTester
     }
   }
 
-  @@get_rating = <<~CMD
-    SELECT rating FROM scored_states WHERE id = #{id};
-  CMD
+  def get_rating(id)
+    @db.exec("SELECT rating FROM scored_states WHERE id = #{id};")
+  end
 
   def setup
     setup_database_for_testing
@@ -134,7 +134,9 @@ class StateRecorderTest < DatabaseTester
 
   def test_records_state_ratings
     @recorder.record_states(@@example_proper_selection)
-    p @db.exec(@@get_rating)[0]
+    assert_equal '29', get_rating(1)[0]['rating']
+    assert_equal '25', get_rating(2)[0]['rating']
+    assert_equal '25', get_rating(3)[0]['rating']
   end
 
   def teardown
