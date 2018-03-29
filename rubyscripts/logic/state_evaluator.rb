@@ -13,9 +13,9 @@ require_relative './database/info_saver'
 
 class StateEvaluator
 
-  def initialize(state, rating)
+  def initialize(state, rating, id)
     @state = state
-    @rater= RatingOverseer.new(@state, rating)
+    @rater = RatingOverseer.new(@state, rating, id)
     @scorer = ScorerManager.new()
   end
 

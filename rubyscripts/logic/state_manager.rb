@@ -71,7 +71,7 @@ class StateManager
 
   def score_for_new_state
     record_state
-    evaluator = StateEvaluator.new(@state, @rating)
+    evaluator = StateEvaluator.new(@state, @rating, @new_state_id)
     evaluator.state_score
   end
 

@@ -18,9 +18,10 @@ class RatingOverseer
 
   attr_accessor :weigh_orders
 
-  def initialize(state, rating=0)
+  def initialize(state, rating, id)
     @state = state
     @rater = RaterManager.new(rating)
+    @state_id = id
     @omni_selector = OmniSelector.new()
     @state_expander = StateExpander.new()
     @selection_orders = []

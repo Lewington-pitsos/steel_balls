@@ -1,9 +1,9 @@
 require "minitest/autorun"
 require "set"
-require './rubyscripts/testing/test_defaults'
+require './rubyscripts/testing/database_tester'
 require './rubyscripts/logic/state_evaluator/rating_overseer'
 
-class RatingOverseerTest < Minitest::Test
+class RatingOverseerTest < DatabaseTester
 
   @@small_state = {
     unknown: 2,
@@ -35,18 +35,19 @@ class RatingOverseerTest < Minitest::Test
 
 
   def setup
-    @overseer = RatingOverseer.new(@@medium_state)
+    setup_database_for_testing
+    @overseer = RatingOverseer.new(@@medium_state, 0, 1)
   end
 
   def test_gathers_arrangements_correctly
     @overseer.send(:get_all_arranments)
     assert_equal 8, @overseer.send(:arrangements).length
 
-    overseer = RatingOverseer.new(@@small_state)
+    overseer = RatingOverseer.new(@@small_state, 0, 1)
     overseer.send(:get_all_arranments)
     assert_equal 4, overseer.send(:arrangements).length
 
-    overseer = RatingOverseer.new(@@light_state)
+    overseer = RatingOverseer.new(@@light_state, 0, 1)
     overseer.send(:get_all_arranments)
     assert_equal 7, overseer.send(:arrangements).length
   end
@@ -78,7 +79,7 @@ class RatingOverseerTest < Minitest::Test
     end
   end
 
-  def test_rates_selectios_properly
+  def test_rates_selections_properly
     ratings = @overseer.rated_weighed_selections
 
     assert_equal 2, ratings.length
@@ -88,5 +89,6 @@ class RatingOverseerTest < Minitest::Test
   end
 
   def teardown
+    teardown_database
   end
 end

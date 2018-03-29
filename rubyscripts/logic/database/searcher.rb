@@ -11,7 +11,7 @@ class Searcher < Archivist
     # only works for maximum 1 length results
     if pg_result.ntuples == 1
       if column_name
-        pg_result[0][column_names[0]].to_i
+        pg_result[0][column_name].to_i
       else
         pg_result[0]
       end
