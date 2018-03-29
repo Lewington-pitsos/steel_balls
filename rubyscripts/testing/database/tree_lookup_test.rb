@@ -187,18 +187,7 @@ class TreeLookupTest < DatabaseTester
     assert_equal 1, lookup2.tree['selections'][0]['states'][0]['selections'].length
     assert_equal 1, lookup2.tree['selections'][0]['states'][1]['selections'].length
   end
-
-  def test_returns_single_selection_build
-    @lookup.build_all_selections(1)
-    assert_equal 1, @lookup.selections.length
-    assert_equal 2, @lookup.selections[0]['states'].length
-    refute @lookup.selections[0]['states'][0]['selections']
-
-    @lookup.build_all_selections(3)
-    assert_equal 4, @lookup.selections.length
-    refute @lookup.selections[0]['states'][0]['selections']
-  end
-
+  
   def teardown
     $WINNING_RATING = 37
     $DEFAULT_LENGTH = 8
