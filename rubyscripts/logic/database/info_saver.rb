@@ -10,7 +10,6 @@ class InfoSaver
     @state = {}
     @score = 0
     @selections = []
-    @possible_selections = []
 
     @main_state_id = 0
 
@@ -22,8 +21,7 @@ class InfoSaver
   def save_everything(scored_state_info)
     parse(scored_state_info)
     save_state_score
-    gather_possible_selections
-    @possible_selections.each do |selection|
+    @selections.each do |selection|
       @state_recorder.record_states(selection)
       new_state_ids = @state_recorder.ids
       @selection_recorder.save_selection_data(selection, @main_state_id, new_state_ids)
@@ -45,21 +43,6 @@ class InfoSaver
 
   def save_state_score
     @main_state_id = @score_recorder.record_score(@state, @score)
-  end
-
-  def gather_possible_selections
-    # saves a list of all the selections which share the lowest score equally
-    @possible_selections = []
-    min = @selections[0][:score]
-    @selections.each do |selection|
-      score = selection[:score]
-      if score < min
-        min = score
-        @possible_selections = [ selection ]
-      elsif score == min
-        @possible_selections << selection
-      end
-    end
   end
 
   def close_everything
