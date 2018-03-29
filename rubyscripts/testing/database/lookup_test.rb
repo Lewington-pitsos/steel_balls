@@ -1,5 +1,5 @@
 require './rubyscripts/testing/database_tester'
-require './rubyscripts/logic/database/lookup'
+require './rubyscripts/logic/database/lookup/lookup'
 require './rubyscripts/logic/state_manager'
 
 

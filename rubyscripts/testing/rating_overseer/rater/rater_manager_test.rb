@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require './rubyscripts/testing/database_tester'
-require './rubyscripts/logic/database/lookup'
+require './rubyscripts/logic/database/lookup/lookup'
 require './rubyscripts/logic/state_evaluator/rating_overseer/rater_manager'
 
 

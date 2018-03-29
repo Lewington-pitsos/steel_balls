@@ -7,7 +7,7 @@
 
 # finally, returns the state score to the state manager
 require 'pry'
-require './rubyscripts/logic/database/lookup'
+require './rubyscripts/logic/database/lookup/lookup'
 require './rubyscripts/logic/database/score_recorder'
 require_relative './state_evaluator/scorer_manager'
 require_relative './state_evaluator/rating_overseer'

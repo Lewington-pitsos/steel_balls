@@ -1,6 +1,6 @@
 require './rubyscripts/testing/database_tester'
 require './rubyscripts/logic/database/info_saver'
-require './rubyscripts/logic/database/lookup'
+require './rubyscripts/logic/database/lookup/lookup'
 
 class InfoSaverTest < DatabaseTester
 
