@@ -9,4 +9,13 @@ class SelectionLookup < Lookup
     @all_selections = []
   end
 
+  def build_all_selections(id)
+    @selections = build_possible_selections(id)
+  end
+
+  def build_state(state_id)
+    state = get_by_id(state_id, @@state_tab)
+    state
+  end
+
 end

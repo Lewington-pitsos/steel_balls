@@ -20,31 +20,12 @@ class Lookup < Archivist
     @selections = {}
   end
 
-  def build_all_selections(id)
-    @selections = build_state(id)['selections']
-  end
-
   def build_tree
     first_id = state_id_by_values(first_state)
     @tree = build_state(first_id)
   end
 
   private
-
-  def build_state(state_id)
-    state = get_by_id(state_id, @@state_tab)
-    selections = build_possible_selections(state_id)
-    state['selections'] = selections
-    state
-  end
-
-  def build_possible_selections(state_id)
-    full_selections = get_full_selections(state_id)
-    selection_ids = ids_from(full_selections, @@selection_id_col)
-    selection_ids.map do |selection_id|
-      build_selection(selection_id)
-    end
-  end
 
   def get_full_selections(state_id)
     if @simplified
