@@ -33,7 +33,7 @@ class SelectionManager
     # seperates the selection from it's rating, generates a score for it, deletes it's states and adds it to the array of scored selections
     selection = rated_selection[:selection]
     score = get_score(selection)
-    @scored_selections << { selection: selection, score: score }
+    @scored_selections << { selection: selection, score: score, id: rated_selection[:id] }
   end
 
   def get_score(selection)

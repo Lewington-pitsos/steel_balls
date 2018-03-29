@@ -20,7 +20,6 @@ class ScoreRecorder < Archivist
   end
 
   def update_score(id, score, relation=@relation_name)
-    binding.pry
     @db.exec(
       <<~COMMAND
         UPDATE #{relation}
