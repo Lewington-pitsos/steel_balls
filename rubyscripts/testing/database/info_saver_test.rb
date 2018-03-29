@@ -17,6 +17,10 @@ class InfoSaverTest < DatabaseTester
   @@resulting_tree = {"unknown"=>"8", "possibly_lighter"=>"0", "possibly_heavier"=>"0", "normal"=>"0", "score"=>nil, "fully_scored"=>"f", "selections"=>[{"right"=>{"unknown"=>"0", "possibly_lighter"=>"0", "possibly_heavier"=>"2", "normal"=>"0"}, "left"=>{"unknown"=>"1", "possibly_lighter"=>"0", "possibly_heavier"=>"0", "normal"=>"1"}, "states"=>[{"unknown"=>"1", "possibly_lighter"=>"2", "possibly_heavier"=>"0", "normal"=>"5", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}, {"unknown"=>"0", "possibly_lighter"=>"0", "possibly_heavier"=>"1", "normal"=>"7", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}, {"unknown"=>"0", "possibly_lighter"=>"1", "possibly_heavier"=>"2", "normal"=>"5", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}]}, {"right"=>{"unknown"=>"0", "possibly_lighter"=>"1", "possibly_heavier"=>"1", "normal"=>"0"}, "left"=>{"unknown"=>"1", "possibly_lighter"=>"0", "possibly_heavier"=>"0", "normal"=>"1"}, "states"=>[{"unknown"=>"1", "possibly_lighter"=>"1", "possibly_heavier"=>"1", "normal"=>"5", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}, {"unknown"=>"0", "possibly_lighter"=>"1", "possibly_heavier"=>"1", "normal"=>"6", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}]}, {"right"=>{"unknown"=>"0", "possibly_lighter"=>"2", "possibly_heavier"=>"0", "normal"=>"0"}, "left"=>{"unknown"=>"1", "possibly_lighter"=>"0", "possibly_heavier"=>"0", "normal"=>"1"}, "states"=>[{"unknown"=>"1", "possibly_lighter"=>"0", "possibly_heavier"=>"2", "normal"=>"5", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}, {"unknown"=>"0", "possibly_lighter"=>"2", "possibly_heavier"=>"1", "normal"=>"5", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}, {"unknown"=>"0", "possibly_lighter"=>"1", "possibly_heavier"=>"0", "normal"=>"7", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}]}, {"right"=>{"unknown"=>"1", "possibly_lighter"=>"0", "possibly_heavier"=>"1", "normal"=>"0"}, "left"=>{"unknown"=>"1", "possibly_lighter"=>"0", "possibly_heavier"=>"0", "normal"=>"1"}, "states"=>[{"unknown"=>"0", "possibly_lighter"=>"1", "possibly_heavier"=>"2", "normal"=>"5", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}, {"unknown"=>"0", "possibly_lighter"=>"1", "possibly_heavier"=>"1", "normal"=>"6", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}, {"unknown"=>"0", "possibly_lighter"=>"2", "possibly_heavier"=>"1", "normal"=>"5", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}]}, {"right"=>{"unknown"=>"1", "possibly_lighter"=>"1", "possibly_heavier"=>"0", "normal"=>"0"}, "left"=>{"unknown"=>"1", "possibly_lighter"=>"0", "possibly_heavier"=>"0", "normal"=>"1"}, "states"=>[{"unknown"=>"0", "possibly_lighter"=>"1", "possibly_heavier"=>"1", "normal"=>"6", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}, {"unknown"=>"0", "possibly_lighter"=>"2", "possibly_heavier"=>"1", "normal"=>"5", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}, {"unknown"=>"0", "possibly_lighter"=>"1", "possibly_heavier"=>"2", "normal"=>"5", "score"=>nil, "fully_scored"=>"f", "selections"=>[]}]}]}
 
 
+  @@get_all_ratings = <<~CMD
+    SELECT rating FROM possible_selections;
+  CMD
+
   def setup
     setup_database_for_testing()
     add_defaults(@@placeholder_state)
@@ -29,9 +33,17 @@ class InfoSaverTest < DatabaseTester
     @lookup.build_tree
     assert_equal @@rated_selections.length, @lookup.tree['selections'].length
 
+    ratings = @db.exec(@@get_all_ratings)
+
     @@rated_selections.each_with_index do |selection, index|
       assert_equal selection[:selection][:states].length, @lookup.tree['selections'][index]['states'].length
+
+      assert_equal selection[:rating], ratings[index]['rating'].to_i
     end
+
+
+
+
 
   end
 
