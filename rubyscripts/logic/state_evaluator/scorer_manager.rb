@@ -23,7 +23,9 @@ class ScorerManager
   end
 
   def scored_selections(rated_selections)
-    scored_selections = score_all(rated_selections)
+    # first identifies the highest rated selections, scores each of these, calculates a state score from those scores and returns a state info hash
+    selections_to_score = highest_rated(rated_selections)
+    scored_selections = score_all(selections_to_score)
     state_score = @resolver.state_score(scored_selections)
     {selections: scored_selections, state_score: state_score}
   end
@@ -37,5 +39,13 @@ class ScorerManager
     else
       @selection_manager.score_all_selections(rated_selections)
     end
+  end
+
+  def highest_rated(selections)
+    # returns the $BREADTH highest rated selections from among the passed in selections
+    sorted = selections.sort do |selection1, selection2|
+      selection2[:rating] <=> selection1[:rating]
+    end
+    sorted[0.. $BREADTH]
   end
 end

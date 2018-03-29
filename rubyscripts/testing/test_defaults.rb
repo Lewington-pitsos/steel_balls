@@ -19,6 +19,12 @@ $UNKNOWN_SCORE = 0
 
 $DATABASE_NAME = 'test_steel_balls'
 
+# ======================== Calculation Breadth ========================
+# I.e. how many rated selections to bother calculating for each run
+
+$BREADTH = 999
+
+
 # ======================== Common Files ========================
 # we require them here so we don't need to require them lots of times in different tests
 

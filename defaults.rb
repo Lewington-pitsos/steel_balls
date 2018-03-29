@@ -17,3 +17,8 @@ $UNKNOWN_SCORE = 0
 # I.e. which database to use
 
 $DATABASE_NAME = 'steel_balls'
+
+# ======================== Calculation Breadth ========================
+# I.e. how many rated selections to bother calculating for each run
+
+$BREADTH = 2
