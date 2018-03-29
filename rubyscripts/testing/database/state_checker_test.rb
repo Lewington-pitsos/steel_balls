@@ -1,8 +1,8 @@
 require './rubyscripts/testing/database_tester'
-require './rubyscripts/logic/database/score_checker'
+require './rubyscripts/logic/database/state_checker'
 require './rubyscripts/logic/database/info_saver/score_recorder'
 
-class ScoreCheckerTest < DatabaseTester
+class StateCheckerTest < DatabaseTester
   @@example_state = {
     state: {
       unknown: 4,
@@ -69,7 +69,7 @@ class ScoreCheckerTest < DatabaseTester
     @score_recorder.record_score(@@example_state2[:state], 21)
     @score_recorder.close()
 
-    @checker = ScoreChecker.new($DATABASE_NAME)
+    @checker = StateChecker.new($DATABASE_NAME)
   end
 
   def test_finds_scores_of_existing_balls
@@ -87,10 +87,17 @@ class ScoreCheckerTest < DatabaseTester
   end
 
   def test_returns_correct_score_values
-    # assert_equal 29, @checker.recorded_score(@@just_state)
-    # assert_equal 25, @checker.recorded_score(@@just_state2)
+    assert_equal 29, @checker.recorded_score(@@just_state)[0].to_i
+    assert_equal 21, @checker.recorded_score(@@just_state2)[0].to_i
     assert_nil @checker.recorded_score(@@new_state)
     assert_nil @checker.recorded_score(@@new_state2)
+  end
+
+  def test_returns_correct_ids_and_fully_scored_indicators
+    assert_equal 1, @checker.recorded_score(@@just_state)[1].to_i
+    assert_equal 2, @checker.recorded_score(@@just_state2)[1].to_i
+    assert_equal 'f', @checker.recorded_score(@@just_state)[2]
+    assert_equal 'f', @checker.recorded_score(@@just_state2)[2]
   end
 
   def teardown

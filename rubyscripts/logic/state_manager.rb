@@ -10,7 +10,7 @@
 
 require './rubyscripts/logic/database/info_saver/state_recorder'
 require_relative './state_evaluator'
-require_relative './database/score_checker'
+require_relative './database/state_checker'
 
 
 class StateManager
@@ -49,9 +49,9 @@ class StateManager
 
   def score_in_database
     # creates a new score checker, gets it to return the recorded score value, and closes it immidiately to prevent connection leakage
-    score_checker = ScoreChecker.new()
-    score = score_checker.recorded_score(@state)
-    score_checker.close()
+    state_checker = StateChecker.new()
+    score = state_checker.recorded_score(@state)
+    state_checker.close()
     score
   end
 end

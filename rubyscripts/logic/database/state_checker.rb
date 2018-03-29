@@ -1,8 +1,12 @@
-# checks if the database with the proper tables are all setup. Sets them up if not, otherwise does nothing.
+# checks whether or not the current state has been recorded yet
+# => if not it just returns nil
+# => if so, we return a hash containing the state id, it's score and whether it has been fully scored'
+
+# { 'score' => 2, 'fully_scored' => false, 'id' => 3 }
 
 require_relative './searcher'
 
-class ScoreChecker < Searcher
+class StateChecker < Searcher
 
   @@column_name = 'score'
 
@@ -12,7 +16,7 @@ class ScoreChecker < Searcher
   end
 
   def recorded_score(state)
-    rubify(get_recorded_score(state), @@column_name)
+    rubify(get_recorded_score(state), 'score', 'id', 'fully_scored')
   end
 
   private
@@ -22,12 +26,11 @@ class ScoreChecker < Searcher
   def get_recorded_score(state)
     @score = @db.exec(
       <<~CMD
-        SELECT score FROM scored_states
+        SELECT score, id, fully_scored FROM scored_states
           WHERE unknown = #{state[:unknown]} AND
             possibly_lighter = #{state[:possibly_lighter]} AND
             possibly_heavier = #{state[:possibly_heavier]} AND
-            normal = #{state[:normal]} AND
-            score IS NOT NULL;
+            normal = #{state[:normal]};
       CMD
     )
   end
