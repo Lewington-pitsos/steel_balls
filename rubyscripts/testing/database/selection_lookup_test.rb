@@ -22,6 +22,12 @@ class SelectionLookupTest < DatabaseTester
     normal: 2
   }
 
+  @@hash = {
+    'id' => '3',
+    'fully_scored' => 't',
+    'unknown' => '0'
+  }
+
   def setup
     setup_database_for_testing
     add_defaults(@@starting_rated_state[:state])
@@ -48,10 +54,20 @@ class SelectionLookupTest < DatabaseTester
 
   def test_state_hashes_properly_arranged
     state = @lookup.send(:build_state, 1)
-    assert_equal '3', state[:state]['unknown']
-    assert_equal '0', state[:rating]
-    p state
+    assert_equal 3, state[:state][:unknown]
+    assert_equal 0, state[:rating]
 
+    state = @lookup.send(:build_state, 2)
+    assert_equal 1, state[:state][:unknown]
+    assert_equal 10, state[:rating]
+
+  end
+
+  def test_converts_hashes
+    hash = @lookup.send(:symbolized, @@hash)
+    assert hash[:unknown]
+    assert hash[:id]
+    assert hash[:fully_scored]
   end
 
   def teardown
