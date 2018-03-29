@@ -20,12 +20,15 @@ class Lookup < Archivist
     @selections = {}
   end
 
-  def build_tree
-    first_id = state_id_by_values(first_state)
-    @tree = build_state(first_id)
-  end
-
   private
+
+  def build_possible_selections(state_id)
+    full_selections = get_full_selections(state_id)
+    selection_ids = ids_from(full_selections, @@selection_id_col)
+    selection_ids.map do |selection_id|
+      build_selection(selection_id)
+    end
+  end
 
   def get_full_selections(state_id)
     if @simplified
@@ -55,14 +58,6 @@ class Lookup < Archivist
     end
   end
 
-  def first_state
-    {
-      unknown: $DEFAULT_LENGTH,
-      possibly_heavier: 0,
-      possibly_lighter: 0,
-      normal: 0
-    }
-  end
 
   def ids_from(rows, id_name)
     # gets passed in a PG:Result and the column name of the ids we want to extract
@@ -81,16 +76,6 @@ class Lookup < Archivist
       <<~CMD
         SELECT selection_id FROM #{@@possible_tab}
         WHERE state_id = #{state_id};
-      CMD
-    )
-  end
-
-  def single_possible_selection(state_id)
-    @db.exec(
-      <<~CMD
-        SELECT selection_id FROM #{@@possible_tab}
-        WHERE state_id = #{state_id}
-        LIMIT 1;
       CMD
     )
   end
@@ -115,17 +100,4 @@ class Lookup < Archivist
     result.delete('id')
     result
   end
-
-  def state_id_by_values(state)
-    @db.exec(
-      <<~CMD
-        SELECT * FROM scored_states
-        WHERE unknown = #{state[:unknown]} AND
-          possibly_lighter = #{state[:possibly_lighter]} AND
-          possibly_heavier = #{state[:possibly_heavier]} AND
-          normal = #{state[:normal]};
-      CMD
-    )[0]['id']
-  end
-
 end
