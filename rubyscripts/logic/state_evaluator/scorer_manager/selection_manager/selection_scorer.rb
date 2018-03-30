@@ -19,8 +19,10 @@ class SelectionScorer
   def score_selection(states)
     @state_scores = []
     states.each do |rated_state|
+      $LOGGER.debug("Scoring new state: #{rated_state}")
       manager = StateManager.new(rated_state)
       @state_scores << manager.score
+      $LOGGER.debug("\nState Score successfully calculated")
     end
 
     highest_score

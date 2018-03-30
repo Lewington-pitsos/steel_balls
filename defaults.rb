@@ -1,3 +1,5 @@
+require 'logger'
+
 # ======================== Ball Number ========================
 # i.e. how maany balls are we weighing. The $WINNING_RATING depends on how many balls are being weighed
 
@@ -17,3 +19,9 @@ $UNKNOWN_SCORE = 0
 # I.e. which database to use
 
 $DATABASE_NAME = 'steel_balls'
+
+
+# ======================== Logger ========================
+# We want the same logger to be accessible everywhere
+
+$LOGGER = Logger.new('standard.log')

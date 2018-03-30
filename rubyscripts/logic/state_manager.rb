@@ -30,11 +30,14 @@ class StateManager
     get_recorded_state_info()
 
     if !@state_info
+      $LOGGER.debug('generating score for new state...')
       score_for_new_state()
     elsif state_is_fully_calculated?()
+      $LOGGER.debug('returning fully calculated score...')
       fully_calculated_score(state_score())
     else
-      updated_score()
+      $LOGGER.debug('calculating updated score for older state...')
+      verified_score()
     end
   end
 
@@ -46,7 +49,7 @@ class StateManager
     {score: score, fully_scored: true}
   end
 
-  def updated_score
+  def verified_score
     # passes the recorded state's state, rating, id and score to StateEvaluator, which will eventually return a score
     evaluator = StateEvaluator.new(@state, @rating, state_id(), state_score())
     new_score = evaluator.state_score

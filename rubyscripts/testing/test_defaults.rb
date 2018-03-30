@@ -1,3 +1,5 @@
+require 'logger'
+
 # ======================== Ball Number ========================
 # i.e. how maany balls are we weighing. The $WINNING_RATING depends on how many balls are being weighed
 
@@ -18,6 +20,12 @@ $UNKNOWN_SCORE = 0
 # I.e. which database to use
 
 $DATABASE_NAME = 'test_steel_balls'
+
+
+# ======================== Logger ========================
+# We want the same logger to be accessible everywhere
+
+$LOGGER = Logger.new('test.log')
 
 # ======================== Common Files ========================
 # we require them here so we don't need to require them lots of times in different tests
