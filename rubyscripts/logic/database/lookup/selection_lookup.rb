@@ -16,6 +16,7 @@ class SelectionLookup < Lookup
   end
 
   def build_state(state_id)
+    $LOGGER.debug('-------> building new state...')
     state = {}
     state[:state] = symbolized(get_by_id(state_id, @@state_tab))
     state[:rating] = state[:state].delete(:rating)
@@ -23,6 +24,7 @@ class SelectionLookup < Lookup
   end
 
   def build_selection(id)
+    $LOGGER.debug('-------> building selection...')
     selection = symbolized(get_by_id(id, @@selection_tab))
     selection[:right] = symbolized(get_side(selection.delete(:right_id)))
     selection[:left] = symbolized(get_side(selection.delete(:left_id)))

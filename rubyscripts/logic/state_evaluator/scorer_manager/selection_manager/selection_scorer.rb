@@ -22,7 +22,7 @@ class SelectionScorer
       $LOGGER.debug("Scoring new state: #{rated_state}")
       manager = StateManager.new(rated_state)
       @state_scores << manager.score
-      $LOGGER.debug("\nState Score successfully calculated")
+      $LOGGER.debug("State Score successfully calculated\n\n")
     end
 
     highest_score
