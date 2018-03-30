@@ -64,6 +64,7 @@ class StateManager
   def score_for_new_state
     # records the new state and passes it and it's id through tp StateEvaluator which will eventually return a score
     record_state()
+    $LOGGER.debug('new state info recorded')
     evaluator = StateEvaluator.new(@state, @rating, @new_state_id)
     evaluator.state_score
   end
