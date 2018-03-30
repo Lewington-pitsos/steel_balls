@@ -24,7 +24,6 @@ $DATABASE_NAME = 'steel_balls'
 # I.e. how many rated selections to bother calculating for each run
 
 $BREADTH = 1
-=======
 
 
 # ======================== Logger ========================

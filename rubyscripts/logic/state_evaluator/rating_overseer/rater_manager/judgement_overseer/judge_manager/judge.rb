@@ -12,12 +12,12 @@ class Judge
   }
 
   def initialize
-    @lowest_score = 4611686018427387903
+    @lowest_rating = 4611686018427387903
   end
 
   def rate_selections(weighed_selections)
     weighed_selections.each_with_index do |selection, index|
-      @lowest_score = 4611686018427387903
+      @lowest_rating = 4611686018427387903
       rate_states(selection)
       weighed_selections[index] = rated_selection(selection)
     end
@@ -31,8 +31,8 @@ class Judge
     # rates each state and replaces it with a rated state object which stores both the score and the state
     selection[:states].each_with_index do |state, index|
       rating = rate(state)
-      if rating < @lowest_score
-        @lowest_score = rating
+      if rating < @lowest_rating
+        @lowest_rating = rating
       end
       selection[:states][index] = rated_state(state, rating)
     end
@@ -53,7 +53,7 @@ class Judge
 
   def rated_selection(selection)
     {
-      rating: @lowest_score,
+      rating: @lowest_rating,
       selection: selection
     }
   end
