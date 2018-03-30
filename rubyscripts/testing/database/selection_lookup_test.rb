@@ -61,7 +61,6 @@ class SelectionLookupTest < DatabaseTester
     state = @lookup.send(:build_state, 2)
     assert_equal 1, state[:state][:unknown]
     assert_equal 10, state[:rating]
-
   end
 
   def test_converts_hashes
@@ -69,6 +68,16 @@ class SelectionLookupTest < DatabaseTester
     assert hash[:unknown]
     assert hash[:id]
     assert hash[:fully_scored]
+  end
+
+  def test_limits_selections_gathered
+    @lookup.send(:state_id=, 3)
+    selections = @lookup.send(:build_possible_selections, 3)
+    assert_equal 4, selections.length
+
+    @lookup.send(:state_id=, 3)
+    selections = @lookup.send(:build_possible_selections, 3, 1)
+    assert_equal 2, selections.length
   end
 
   def teardown

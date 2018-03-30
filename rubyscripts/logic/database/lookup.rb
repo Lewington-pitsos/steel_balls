@@ -56,7 +56,8 @@ class Lookup < Archivist
     @db.exec(
       <<~CMD
         SELECT selection_id FROM #{@@possible_tab}
-        WHERE state_id = #{state_id};
+        WHERE state_id = #{state_id}
+        ORDER BY rating DESC;
       CMD
     )
   end
