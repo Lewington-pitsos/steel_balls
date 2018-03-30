@@ -31,12 +31,17 @@ class StateEvaluator
   def state_score
     get_rated_selections
     get_state_score
-    save_scored_selections(@scored_state_info[:selections])
-    save_state_score
+    save_everything
     { score: @scored_state_info[:state_score], fully_scored: @fully_scored }
   end
 
   private
+
+  def save_everything
+    $LOGGER.debug('Saving scored selections...')
+    save_scored_selections(@scored_state_info[:selections])
+    save_state_score
+  end
 
   def state_is_fully_scored?
     # the state is fully scored iff all rated_welections have been scored AND all scored selections have been fully scored
@@ -47,10 +52,12 @@ class StateEvaluator
   end
 
   def get_state_score
+    $LOGGER.debug('scoring weighed rated selections...')
     @scored_state_info = @scorer.scored_selections(@rated_weighed_selections)
   end
 
   def get_rated_selections
+    $LOGGER.debug('generating weighed rated selections...')
     if @score != 999
       #binding.pry
       @rated_weighed_selections = recorded_rated_selections
