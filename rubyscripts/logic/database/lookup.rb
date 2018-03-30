@@ -17,9 +17,11 @@ class Lookup < Archivist
 
   private
 
-  def build_possible_selections(state_id)
+  def build_possible_selections(state_id, length=-1)
+    # gathers all the ids of selections related to the current state (or, if a length is passed in, the first however many)
+    # builds a selection out of each one and returns the array of those selections
     full_selections = get_full_selections(state_id)
-    selection_ids = ids_from(full_selections, @@selection_id_col)
+    selection_ids = ids_from(full_selections, @@selection_id_col)[0.. length]
     selection_ids.map do |selection_id|
       build_selection(selection_id)
     end
