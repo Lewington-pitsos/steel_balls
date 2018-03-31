@@ -12,8 +12,12 @@ class SelectionLookup < Lookup
 
   def build_all_selections(id)
     @state_id = id
-    @all_selections = build_possible_selections(@state_id)
+    @all_selections = build_possible_selections(@state_id, $BREADTH)
   end
+
+  private
+
+  attr_writer :state_id
 
   def build_state(state_id)
     $LOGGER.debug('-------> building new state...')
@@ -37,7 +41,6 @@ class SelectionLookup < Lookup
       id: id.to_i
     }
   end
-
 
   def get_full_selections(state_id)
     possible_selections(state_id)
@@ -68,5 +71,4 @@ class SelectionLookup < Lookup
       CMD
     )[0]['rating'].to_i
   end
-
 end

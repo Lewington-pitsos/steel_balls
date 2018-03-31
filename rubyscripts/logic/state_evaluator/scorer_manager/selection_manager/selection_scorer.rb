@@ -8,8 +8,6 @@
 
 # finally we return this score
 
-require './rubyscripts/logic/state_manager'
-
 class SelectionScorer
 
   def initialize
