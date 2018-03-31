@@ -24,10 +24,13 @@ class RaterManager
   end
 
   def weighed_and_scored(weigh_order)
+    # first we conert the complex selection orders from the passed in weigh order into simple selection orders, and map each to all the ball arrangements in the weigh order
+    # We then actually weigh the ball arrangements according to the associated simple selections
+    # lastly we save ALL the results of this weigh and return as many of them as BREADTH demands
     @weigher.collect_all_weighs(weigh_order)
     rated_weighed_selections = @judgement_overseer.scored_and_kulled(@weigher.weighed_selections)
     @saver.save_everything(rated_weighed_selections, @state_id)
-    rated_weighed_selections
+    rated_weighed_selections[0.. $BREADTH]
   end
 
 end

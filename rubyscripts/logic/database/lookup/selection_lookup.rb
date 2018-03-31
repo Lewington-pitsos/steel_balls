@@ -12,7 +12,7 @@ class SelectionLookup < Lookup
 
   def build_all_selections(id)
     @state_id = id
-    @all_selections = build_possible_selections(@state_id)
+    @all_selections = build_possible_selections(@state_id, $BREADTH)
   end
 
   private

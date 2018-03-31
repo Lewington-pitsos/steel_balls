@@ -55,7 +55,7 @@ class Interface
   def proceed_if_valid
     if valid?
       calculate
-      $BREADTH = 5
+      $BREADTH = 4
       calculate
     else
       request
