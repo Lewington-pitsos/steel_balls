@@ -25,7 +25,7 @@ class Judge
 
   private
 
-  attr_accessor :lowest_score
+  attr_accessor :lowest_rating
 
   def rate_states(selection)
     # rates each state and replaces it with a rated state object which stores both the score and the state

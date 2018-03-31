@@ -42,11 +42,11 @@ class JudgeTest < Minitest::Test
 
   def test_scores_selections_correctly
     @judge.send(:rate_states, @basic_selection)
-    assert_equal 29, @judge.send(:lowest_score)
+    assert_equal 29, @judge.send(:lowest_rating)
 
-    @judge.send(:lowest_score=, 4611686018427387903)
+    @judge.send(:lowest_rating=, 4611686018427387903)
     @judge.send(:rate_states, @other_selection)
-    assert_equal 20, @judge.send(:lowest_score)
+    assert_equal 20, @judge.send(:lowest_rating)
   end
 
   def test_actually_modifies_rated_states
