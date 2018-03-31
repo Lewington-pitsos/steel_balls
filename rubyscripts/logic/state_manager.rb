@@ -52,7 +52,7 @@ class StateManager
   def verified_score
     # passes the recorded state's state, rating, id and score to StateEvaluator, which will eventually return a score
     evaluator = StateEvaluator.new(@state, @rating, state_id(), state_score())
-    new_score = evaluator.state_score
+    evaluator.state_score
   end
 
   def update_score

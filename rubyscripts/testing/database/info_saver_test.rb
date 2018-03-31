@@ -18,7 +18,7 @@ class InfoSaverTest < DatabaseTester
 
 
   @@get_all_ratings = <<~CMD
-    SELECT rating FROM possible_selections;
+    SELECT rating FROM possible_selections ORDER BY rating DESC;
   CMD
 
   def setup
@@ -35,7 +35,12 @@ class InfoSaverTest < DatabaseTester
 
     ratings = @db.exec(@@get_all_ratings)
 
-    @@rated_selections.each_with_index do |selection, index|
+    sels = @@rated_selections.sort do |sel1, sel2|
+      sel2[:rating] <=> sel1[:rating]
+    end
+
+
+    sels.each_with_index do |selection, index|
       assert_equal selection[:selection][:states].length, @lookup.tree['selections'][index]['states'].length
 
       assert_equal selection[:rating], ratings[index]['rating'].to_i
