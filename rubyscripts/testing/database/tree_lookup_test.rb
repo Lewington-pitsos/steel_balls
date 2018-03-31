@@ -124,15 +124,15 @@ class TreeLookupTest < DatabaseTester
     assert_equal 2, states.length
     assert_equal '2', states[0]['normal']
     assert_equal '1', states[1]['possibly_heavier']
-    assert_empty states[0]['selections']
-    assert_empty states[1]['selections']
+    assert_nil states[0]['selections']
+    assert_nil states[1]['selections']
 
     states = @lookup.send(:build_resulting_states, '2')
     assert_equal 2, states.length
     assert_equal '2', states[0]['normal']
     assert_equal '2', states[1]['normal']
-    assert_empty states[0]['selections']
-    assert_empty states[1]['selections']
+    assert_nil states[0]['selections']
+    assert_nil states[1]['selections']
   end
 
   def test_builds_all_selections_for_nearly_winning_states
@@ -187,7 +187,7 @@ class TreeLookupTest < DatabaseTester
     assert_equal 1, lookup2.tree['selections'][0]['states'][0]['selections'].length
     assert_equal 1, lookup2.tree['selections'][0]['states'][1]['selections'].length
   end
-  
+
   def teardown
     $WINNING_RATING = 37
     $DEFAULT_LENGTH = 8

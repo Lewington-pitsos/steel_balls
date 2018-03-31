@@ -22,7 +22,9 @@ class TreeLookup < Lookup
   def build_state(state_id)
     state = get_by_id(state_id, @@state_tab)
     selections = build_possible_selections(state_id)
-    state['selections'] = selections
+    state['selections'] = selections unless selections.empty?
+    state.delete('rating')
+    state.delete('fully_scored')
     state
   end
 
@@ -67,7 +69,7 @@ class TreeLookup < Lookup
   def state_id_by_values(state)
     @db.exec(
       <<~CMD
-        SELECT * FROM scored_states
+        SELECT id FROM scored_states
         WHERE unknown = #{state[:unknown]} AND
           possibly_lighter = #{state[:possibly_lighter]} AND
           possibly_heavier = #{state[:possibly_heavier]} AND
